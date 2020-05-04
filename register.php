@@ -76,7 +76,15 @@ if (!empty($_POST)) {
 <body>
 <header>
 
-<h2><span class="titre1">Plate-forme de Gestion d'inscription</span></h2>
+<div>
+            <a href="index.html">
+                <h2>
+                     
+                     <span class="titre1">Plate-forme de Gestion d'inscription</span>
+               </h2>      
+            </a>
+      </div>
+     
      
         
 </header>
