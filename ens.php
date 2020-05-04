@@ -29,7 +29,7 @@
         <li><a href="#">Principale</a></li>
         <li><a href="#">Mes candidatures</a></li>
         <!--<li><a href="#">Modifier mes information</a></li>-->
-        <li><a href="#">Quitter</a></li>
+        <li><a href="logout.php">Quitter</a></li>
       </ul>
     </nav>
  
