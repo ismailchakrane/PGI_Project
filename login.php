@@ -53,7 +53,7 @@
 
 	<meta charset="utf-8">
 	<title>Plateform de Gestion d'inscription</title>
-	<link rel="stylesheet" href="style/styleindex.css">
+	<link rel="stylesheet" href="style/stylelogreg.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
@@ -62,7 +62,14 @@
 
 <header>
 
-<h2><span class="titre1">Plate-forme de Gestion d'inscription </h2>></span>
+<div>
+            <a href="index.html">
+         	      <h2>
+         		         
+         		         <span class="titre1">Plate-forme de Gestion d'inscription</span>
+         		   </h2>      
+            </a>
+     	</div>
 
 
 
@@ -88,39 +95,47 @@
 
 <div class="login">
 
-		<h2>Identiez-vous</h2>
-				
+	 <tt><h2>Identfiez-vous</h2></tt>
 
+             <form action="" method="POST">
 
-   <form action="" method="POST">
-
-              <div class="inputlogin">
+                   <div class="inputlogin">
           
-			      <input type="email" name="email" >
-			      <label>Adress e-mail</label>
+	                        <input type="email" id="email" name="email" required="">
+	                        <label>Adress e-mail</label>
 
-			  </div>
+	                 </div>
 
-			  <div class="inputlogin">
-			      <input type="password" name="password" >
-			      <label>Mot de Passe</label>
-		     </div>
-				
-				<h6><a href="">Mot de pass oublié ?</a></h6>
-			    
-			    <br><br>
+	                 <div class="inputlogin">
 
-			<input type="submit" name="ok" value="Se connecter">
-			
-			
-			   <br><br>
-			
-			<h6><a href="register.php">Créer un compte</a></h6>
+	                        <input type="password" id="password" name="password" required="" >
+	                        <label>Mot de Passe</label>
+                            <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd()">
 
+                     </div>
+                     
+	     
+	                        <input type="submit" name="ok" value="se connecter">
 	
-
-   </form>
-
+	
+	                                      <br><br><br>
+	
+	                        <h6><a href="registre.html">Créer un compte</a></h6>     
+	
+	
+                 </form>
+                 <script type="text/javascript">
+function Viewpwd() {
+  var VIEW = document.getElementById("password");
+  if (VIEW.type === "password") {
+    VIEW.type = "text";
+  } else {
+    VIEW.type = "password";
+  }
+}
+                </script>
+                 
+   
  </div>
 </body>
 </html>
