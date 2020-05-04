@@ -68,7 +68,7 @@ if (!empty($_POST)) {
 <head>
 	<meta charset="utf-8">
 	<title>Créer un compte</title>
-	<link rel="stylesheet" href="style/styleindex.css">
+	<link rel="stylesheet" href="style/stylelogreg.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
@@ -84,7 +84,7 @@ if (!empty($_POST)) {
 
 
 <div class="login">
-		<h2>Nouveau Compte</h2>
+		<tt><h2>Nouveau Compte</h2></tt>
 
 <?php  if (!empty($errors)):?>
 
@@ -123,18 +123,64 @@ if (!empty($_POST)) {
                  <?php endif;?>
     
 	     <div class="inputlogin">
-	          
-		      <input type="email" name="email" placeholder="Adress e-mail" >
-		      <input type="password" name="password" placeholder="Mot de passe" >
-		      <input type="password" name="password2" placeholder="Confirme Mot de passe" >
+          
+          <input type="email" name="email" placeholder="Adressd e-mail" required="">
 
-	    </div>
-			
-		    <input type="submit" name="ok" value="S'inscrire">
-	    </div>
+          <input type="password"  name="password" id="password" placeholder="Mot de passe" required="">
+                <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd1()">
+
+          <input type="password" name="password2" id="confirm_pwd"   placeholder="Confirme Mot de passe" required=""  >
+                  <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd2()">
+                                
+
+                         </div>
+    
+                             <input type="submit" id="submit" name="submit" value="S'inscrire" >
 	  
-   
- 
-</form>
+   </form>
+
+
+   <!--script js-->
+
+   <script type="text/javascript">
+  //Script pour valide est ce que le mot de passe est le meme dans la confirmation 
+  var password = document.getElementById("password")
+  , confirm_pwd = document.getElementById("confirm_pwd");
+
+function validatePassword(){
+  if(password.value != confirm_pwd.value) {
+    confirm_pwd.setCustomValidity("Verfie Mot de pass");
+  } else {
+    confirm_pwd.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_pwd.onkeyup = validatePassword;
+</script>
+
+<script type="text/javascript">
+  //Ce script pour regarde le motdepasse de input 1
+function Viewpwd1() {
+  var VIEW = document.getElementById('password');
+  if (VIEW.type === "password") {
+    VIEW.type = "text";
+  } else {
+    VIEW.type = "password";
+  }
+}
+    </script>
+
+ <script type="text/javascript">
+  //Ce script pour regarde le motdepasse de input 2 (Confirme mot de passe)
+function Viewpwd2() {
+  var VIEW = document.getElementById('confirm_pwd');
+  if (VIEW.type === "password") {
+    VIEW.type = "text";
+  } else {
+    VIEW.type = "password";
+  }
+}
+    </script>   
 </body>
 </html>
