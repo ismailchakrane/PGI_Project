@@ -120,7 +120,7 @@
 	
 	                                      <br><br><br>
 	
-	                        <h6><a href="registre.php">Créer un compte</a></h6>     
+	                        <h6><a href="register.php">Créer un compte</a></h6>     
 	
 	
                  </form>
