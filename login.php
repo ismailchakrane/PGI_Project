@@ -118,7 +118,7 @@
 	                        <input type="submit" name="ok" value="se connecter">
 	
 	
-	                                      <br><br><br>
+	                                      <br><br>
 	
 	                        <h6><a href="register.php">Créer un compte</a></h6>     
 	
