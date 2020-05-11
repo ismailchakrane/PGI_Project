@@ -74,7 +74,7 @@ if(isset($_POST['envoye']))
 					<ul>
 						<li class="nav_item"><a href="index.html">Acceuil</a></li>
 						<li class="nav_item"><a href="about.html">A propos</a></li>
-						<li class="nav_item"><a href="contact.php">Contact</a></li>
+						<li class="nav_item"><a href="Contact.php">Contact</a></li>
 						<li class="nav_item btn_login"><a href="login.php">Se Connecter</a></li>
 						
 					</ul>
