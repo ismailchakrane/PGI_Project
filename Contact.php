@@ -1,8 +1,10 @@
 <?php
 //send to gmail email=projet.pgi@gmail.com pwd=PGI2K19SQL
 //pour faire un test online https://pgitest.000webhostapp.com/Contact.php
-//send email from localhost to gmail refuse maghykhdmch 
-//send email from localhost to maildev accept ghaykhdm
+//send email from localhost to gmail refuse 
+//send email from localhost to maildev accept 
+$type="msg";
+
 ?>
 <?php
 if(isset($_POST['envoye']))
@@ -17,12 +19,12 @@ if(isset($_POST['envoye']))
 			<body>
 				<div align="center">
 					<br>
-					<u>Nom :</u>'.$_POST['nom'].'<br>
+					<u>Nom complet:</u>'.$_POST['nom'].'<br>
 					<u>E-mail :</u>'.$_POST['email'].'<br>
 					<u>objet :</u>'.$_POST['objet'].'<br>
 					<br>
 					<div style="color:red;">
-					<u>Messge :</u><br>
+					<u>Message :</u><br>
 					'.($_POST['message']).'
 					</div>
 					
@@ -31,7 +33,7 @@ if(isset($_POST['envoye']))
 		</html>
 		';
 
-		mail("projet.pgi@gmail.com", "CONTACT - PGI", $message, $header);//;peut change email;
+		mail("projet.pgi@gmail.com", "CONTACT - PGI", $message, $header);//On peut changer l'email;
 		$msg="Votre message a étè Envoyé";
 	}
 	else
@@ -39,7 +41,7 @@ if(isset($_POST['envoye']))
 		$msg="Remplissez les champs sans erreur";
 		
 	}
-	{$type="msg";}
+
 	
 	    
 	
@@ -104,7 +106,7 @@ if(isset($_POST['envoye']))
 							<br><br>
 				<textarea name="message" class="text"  placeholder="Message" required></textarea>
 							<br><br>
-				<input name="envoye" class="contact_send_btn" type="submit" class="btn-submit" value="Envoye un message">
+				<input name="envoye" class="contact_send_btn" type="submit" class="btn-submit" value="Envoyer le message">
 			</form>
 		
 		</div>
