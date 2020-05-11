@@ -1,9 +1,13 @@
-<?php  require_once 'function.php';
+<?php  
+
+   
+   require_once 'function.php';
+
    
    if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
    	
    
-		    $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','');
+		  $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','');
 
 			$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
@@ -15,14 +19,19 @@
     $user = $req->fetch();
     
 		    if( password_verify($_POST['password'], $user->password)){
-		    	session_status();
+		    
+
+               	session_start();
              
-               $_SESSION['auth'] = $user;
-               $_SESSION['flash']['success']= 'Vous etes maintenant connecté ';
+                 $_SESSION['auth'] = $user;
+              
+                 $_SESSION['flash']['success']= 'Vous êtes maintenant connecté ';
+                 header('location: profil.php');
+                 
 
-               header('location: profil.php');
-               exit();
+   
 
+      
 
 		    }else{
                     $_SESSION['flash']['danger']= 'Email ou mot de passe incorrecte';
@@ -85,7 +94,7 @@
      if (isset($_SESSION['flash'])): ?>
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
-                         <div class="alert alert-danger"><li>Votre token n'est pas valide</li></div>
+                         <div class="alert alert-<?=$type;?>"><li><?=$message;?></li></div>
 
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>

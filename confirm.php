@@ -11,7 +11,7 @@
 
 			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 
-  $req = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+  $req = $pdo->prepare('SELECT * FROM users WHERE id = ? ');
   $req->execute([$user_id]);
 
   $user = $req->fetch();

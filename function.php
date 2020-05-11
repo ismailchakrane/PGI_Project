@@ -1,4 +1,6 @@
 <?php 
+
+
 function debug($variable){
    
    echo '<pre>'. print_r($variable,true) . '</pre>';
@@ -10,6 +12,10 @@ function debug($variable){
 
      return substr(str_shuffle(str_repeat($alphabet,$length)), 0, $length);
  }
+
+
+
+ 
 
 
  

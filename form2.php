@@ -1,4 +1,107 @@
+<?php 
+require_once 'function.php';
 
+
+session_start();
+
+
+    $errors=array();
+
+
+  if (!empty($_FILES)) {
+
+
+           
+            $errors=array();
+    
+            $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','');
+
+            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+
+        
+
+
+ if (!empty($_FILES['file1']) && !empty($_FILES['file2']) ){
+
+
+
+// la photo de profil:    
+
+    $name_file1 = $_FILES['file1']['name'];
+
+    $name_extension1 = strrchr($name_file1, ".");
+
+    $extensions_autorisation1 = array('.png','.PNG','.jpg','.JPG' );
+
+    $file_tmp_name1 = $_FILES['file1']['tmp_name'];
+
+    $file_dest1 = 'files_upload/'.$name_file1;
+
+// le fichier PDF:
+    $name_file2 = $_FILES['file2']['name'];
+
+    $name_extension2 = strrchr($name_file2, ".");
+
+    $extensions_autorisation2 = array('.pdf','.PDF');
+
+    $file_tmp_name2 = $_FILES['file2']['tmp_name'];
+
+    $file_dest2 = 'files_upload/'.$name_file2;
+
+//le BAC :
+
+    $name_file3 = $_FILES['file3']['name'];
+
+    $name_extension3 = strrchr($name_file3, ".");
+
+    $extensions_autorisation3 = array('.pdf','.PDF');
+
+    $file_tmp_name3 = $_FILES['file3']['tmp_name'];
+
+    $file_dest3 = 'files_upload/'.$name_file2;
+
+
+
+    if (in_array($name_extension1, $extensions_autorisation1) && in_array($name_extension2, $extensions_autorisation2) && in_array($name_extension3, $extensions_autorisation3)) {
+      
+      if (move_uploaded_file( $file_tmp_name1,$file_dest1) && move_uploaded_file( $file_tmp_name2,$file_dest2) && move_uploaded_file( $file_tmp_name3,$file_dest3)) {
+
+       $insertionFile = $pdo->prepare("UPDATE users SET name_file1 = ?,file_url1 = ?,name_file2 = ?,file_url2 = ?,name_file3 = ?,file_url3 = ? WHERE  id =(SELECT MAX(id) FROM users) ");
+
+         $insertionFile->bindValue(1, $name_file1);
+         $insertionFile->bindValue(2, $file_dest1);
+         $insertionFile->bindValue(3, $name_file2);
+         $insertionFile->bindValue(4, $file_dest2);
+         $insertionFile->bindValue(5, $name_file3);
+         $insertionFile->bindValue(6, $file_dest3);
+
+         $insertionFile->execute();
+
+        $_SESSION['flash']['success'] = 'Et voilà votre compte est bien créé';
+        header('location: profil.php');
+
+              }
+      
+    else{
+     
+      $errors['file1']= "Pour l'images seuls les extenetions PNG ou JBG sont autorisées";
+      $errors['file2']= "Pour le fichier de la Carte d'identité seul l'extenetion PDF est autorisée";
+      $errors['file3']= "Pour le fichier du BAC  seul l'extenetion PDF est autorisée";
+
+    }
+  
+ }
+
+else{
+   $errors['error']= "Tout les fichiers doivent être uploadés ";
+    }
+}
+
+}
+
+?>
 <!DOCTYPE html>
  <html>
 <head>
@@ -14,7 +117,43 @@
 </style>
 </head>
 <body>
+ 
+<?php  if (!empty($errors)):?>
+  <div class="alert alert-danger">
+  <p>Vous n'avez pas uploader les fichiers  correctement</p>
    
+  <?php foreach ($errors as $error): ?>
+  <ul>
+
+    <li><?= $error; ?></li>
+    
+    <?php endforeach; ?> 
+
+    </ul>
+
+</div>
+<?php endif; ?>
+
+
+
+<?php 
+                if (session_status() == PHP_SESSION_NONE ) {
+
+                    session_start();
+                }
+                ?>
+    <?php if (isset($_SESSION['flash'])): ?>
+                       <?php foreach ($_SESSION['flash'] as $type => $message): ?>
+                 
+                         <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
+
+                      <?php endforeach; ?>
+                     <?php unset($_SESSION['flash']); ?>
+                 <?php endif;?>
+       
+
+
+
 <form class="md-form" method="POST" enctype="multipart/form-data" >
         <div class="container"
        style="display: grid;
@@ -41,25 +180,27 @@
         0 20px 30px 0 rgba(0,0,0,.1),
         0 4px  4px 0 rgba(0,0,0,.15)">
      
-      <strong>Photo de profil</strong>
-      <input type="file" name="fichier">
+      <strong>Photo de profil:</strong>
+      <input type="file" name="file1">
       <p>Exemple</p>
       <img src="style/img/profil.jpg" width="450pX" height="300px">
       <br>
   
 
-      <strong>Carte d'identité(recto)</strong>
-      <input type="file" name="fichier">
+      <strong>Carte d'identité en format PDF:</strong>
+      <input type="file" name="file2">
       <p>Exemple</p>
-      <img src="style/img/id1.jpg"width="450pX" height="300px">
-      <br>
-
-      <strong>carte d'identité(verso)</strong>
-      <input type="file" name="fichier">
-      <p>Exemple</p>
-      <img src="style/img/id2.jpg"width="450pX" height="300px">
+      <img src="style/img/identité.jpg"width="450pX" height="500px">
       <br><br>
+
       
+      <strong>Votre Bac au format PDF:</strong> 
+      <input type="file" name="file3"></td>
+      <p>Exemple</p>
+      <img src="style/img/BAC.jpg"width="500pX" height="500px">
+      <br><br>
+     
+
       <input class="btn btn-info" type="submit" value="Confirmer" >
     </div>
   </main>

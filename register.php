@@ -36,6 +36,8 @@ if (!empty($_POST)) {
     	$errors['password']="Vous devez rentrer un mot de passe valide ";
     }
 
+
+
     if (empty($errors)){
         
 
@@ -45,9 +47,10 @@ if (!empty($_POST)) {
 
     $req->execute([$_POST['email'],$password,$token]);
     $user_id = $pdo->lastInsertId();
-    mail($_POST['email'],'Confirmation de votre compte',"Votre compte est bien cree pour continuer les demarches d'inscription  merci de cliquer sur ce lien\n\nhttp://localhost/Projet/confirm.php?id=$user_id&token=$token");
+    mail($_POST['email'],'<strong>Confirmation de votre compte</strong>',"Votre compte est bien cree pour continuer les demarches d'inscription  merci de cliquer sur ce lien\n\nhttp://localhost/Projet/confirm.php?id=$user_id&token=$token");
 
     $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
+    $_SESSION['flash']['danger'] = 'Attention le token est valid pour une seul fois';
     header('location: register.php');
     exit();
     
@@ -124,7 +127,7 @@ if (!empty($_POST)) {
     <?php if (isset($_SESSION['flash'])): ?>
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
-                         <div class="alert alert-success"><li>Un email de confirmation vous a été envoyé pour valider votre compte </li></div>
+                         <div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>
 
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>

@@ -2,31 +2,38 @@
 
 require_once 'function.php';
 
-
 session_start();
 		    
 
-  
 
+
+
+          
+
+        
    if (!empty($_POST)) {
+
 
 
                        $options = array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
             );
 
-   	        $errors=array();
-   	
+            $errors=array();
+    
             $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','',$options);
 
-		       	$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-			      $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+
+        
 
      
+            
 			    
     	
-   if (!empty($_POST['nom_fr']) && !empty($_POST['nom_ar']) && !empty($_POST['prénom_fr']) && !empty($_POST['prénom_ar']) && !empty($_POST['adresse_fr']) && !empty($_POST['adresse_ar']) && !empty($_POST['CIN']) && !empty($_POST['num_télé']) && !empty($_POST['pays']) && !empty($_POST['ville']) && !empty($_POST['date_de_naissance']) && !empty($_POST['sexe']) && !empty($_POST['Code_postal'])&& !empty($_POST['nationalité'])&& !empty($_POST['prénom_pére'])&& !empty($_POST['Nom_pére'])&& !empty($_POST['CIN_pére'])&& !empty($_POST['date_naissance_pére'])&& !empty($_POST['prénom_mére'])&& !empty($_POST['Nom_mére'])&& !empty($_POST['CIN_mére'])&& !empty($_POST['date_naissance_mére'])&& !empty($_POST['Assurance'])){
+   if (!empty($_POST['nom_fr']) && !empty($_POST['nom_ar']) && !empty($_POST['prénom_fr']) && !empty($_POST['prénom_ar']) && !empty($_POST['adresse_fr']) && !empty($_POST['adresse_ar']) && !empty($_POST['CNE']) && !empty($_POST['CIN']) && !empty($_POST['num_télé']) && !empty($_POST['pays']) && !empty($_POST['ville']) && !empty($_POST['date_de_naissance']) && !empty($_POST['sexe']) && !empty($_POST['Code_postal'])&& !empty($_POST['nationalité'])&& !empty($_POST['prénom_pére'])&& !empty($_POST['Nom_pére'])&& !empty($_POST['CIN_pére'])&& !empty($_POST['date_naissance_pére'])&& !empty($_POST['prénom_mére'])&& !empty($_POST['Nom_mére'])&& !empty($_POST['CIN_mére'])&& !empty($_POST['date_naissance_mére'])&& !empty($_POST['Assurance'])){
 
               $nom_fr = $_POST['nom_fr'];
               $nom_ar = $_POST['nom_ar'];
@@ -34,6 +41,7 @@ session_start();
               $prénom_ar = $_POST['prénom_ar'];
               $adresse_fr = $_POST['adresse_fr'];
               $adresse_ar = $_POST['adresse_ar'];
+              $CNE = $_POST['CNE'];
               $CIN = $_POST['CIN'];
               $num_télé = $_POST['num_télé'];
               $pays = $_POST['pays'];
@@ -57,41 +65,40 @@ session_start();
               
      
     
-              $dure =  date("Y-m-d G:i:s"); 
+             
  
 
 
 
 
-   $insertion = $pdo->prepare("UPDATE users SET nom_fr = ?,nom_ar = ?,prénom_fr = ?,prénom_ar = ?,adresse_fr = ?,adresse_ar = ?,CIN = ? ,num_télé = ?,pays = ? ,ville = ? ,date_de_naissance = ? ,sexe = ? ,Code_postal = ?,nationalité = ?,prénom_pére =? ,Nom_pére = ? ,CIN_pére = ? ,date_naissance_pére = ?,pére_décédé = ?,prénom_mére = ?,Nom_mére = ?,CIN_mére = ?,date_naissance_mére =? ,mére_décédée =? ,Assurance = ?,compte_bancaire =? WHERE confirmed_at <= ? AND confirmed_at >='2020-05-02 13:41:22' ");
+   $insertion = $pdo->prepare("UPDATE users SET nom_fr = ?,nom_ar = ?,prénom_fr = ?,prénom_ar = ?,adresse_fr = ?,adresse_ar = ?,CNE = ?,CIN = ? ,num_télé = ?,pays = ? ,ville = ? ,date_de_naissance = ? ,sexe = ? ,Code_postal = ?,nationalité = ?,prénom_pére =? ,Nom_pére = ? ,CIN_pére = ? ,date_naissance_pére = ?,pére_décédé = ?,prénom_mére = ?,Nom_mére = ?,CIN_mére = ?,date_naissance_mére =? ,mére_décédée =? ,Assurance = ?,compte_bancaire =? WHERE id =(SELECT MAX(id) FROM users)");
   $insertion->bindValue(1, $nom_fr);
   $insertion->bindValue(2, $nom_ar);
   $insertion->bindValue(3, $prénom_fr);
   $insertion->bindValue(4, $prénom_ar);
   $insertion->bindValue(5, $adresse_fr);
   $insertion->bindValue(6, $adresse_ar);
-  $insertion->bindValue(7, $CIN);
-  $insertion->bindValue(8, $num_télé);
-  $insertion->bindValue(9, $pays);
-  $insertion->bindValue(10, $ville);
-  $insertion->bindValue(11, $date_de_naissance);
-  $insertion->bindValue(12, $sexe);
-  $insertion->bindValue(13, $Code_postal);
-  $insertion->bindValue(14, $nationalité);
-  $insertion->bindValue(15, $prénom_pére);
-  $insertion->bindValue(16, $Nom_pére);
-  $insertion->bindValue(17, $CIN_pére);
-  $insertion->bindValue(18, $date_naissance_pére);
-  $insertion->bindValue(19, $pére_décédé);
-  $insertion->bindValue(20, $prénom_mére);
-  $insertion->bindValue(21, $Nom_mére);
-  $insertion->bindValue(22, $CIN_mére);
-  $insertion->bindValue(23, $date_naissance_mére);
-  $insertion->bindValue(24, $mére_décédée);
-  $insertion->bindValue(25, $Assurance);
-  $insertion->bindValue(26, $compte_bancaire);
-  $insertion->bindValue(27, $dure);
- 
+  $insertion->bindValue(7, $CNE);
+  $insertion->bindValue(8, $CIN);
+  $insertion->bindValue(9, $num_télé);
+  $insertion->bindValue(10, $pays);
+  $insertion->bindValue(11, $ville);
+  $insertion->bindValue(12, $date_de_naissance);
+  $insertion->bindValue(13, $sexe);
+  $insertion->bindValue(14, $Code_postal);
+  $insertion->bindValue(15, $nationalité);
+  $insertion->bindValue(16, $prénom_pére);
+  $insertion->bindValue(17, $Nom_pére);
+  $insertion->bindValue(18, $CIN_pére);
+  $insertion->bindValue(19, $date_naissance_pére);
+  $insertion->bindValue(20, $pére_décédé);
+  $insertion->bindValue(21, $prénom_mére);
+  $insertion->bindValue(22, $Nom_mére);
+  $insertion->bindValue(23, $CIN_mére);
+  $insertion->bindValue(24, $date_naissance_mére);
+  $insertion->bindValue(25, $mére_décédée);
+  $insertion->bindValue(26, $Assurance);
+  $insertion->bindValue(27, $compte_bancaire);
 
    $insertion->execute();
 
@@ -175,7 +182,7 @@ session_start();
     <?php if (isset($_SESSION['flash'])): ?>
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
-                         <div class="alert alert-success"><li>Votre compte est bien validé</li></div>
+                         <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
 
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>
@@ -210,27 +217,27 @@ session_start();
          </td>
         <td>
              <label><b>Prénom en Arabe :</label> 
-             <input type="text" class="form-control"  placeholder="Enter votre prénomen Arabe" style="width:80%;" maxlength="255" id="prénom_ar" name="prénom_ar" >
+             <input type="text" class="form-control"  placeholder="Enter votre prénom en Arabe" style="width:80%;" maxlength="255" id="prénom_ar" name="prénom_ar" >
         </td>
     </tr>
     <tr>
         <td>
             <label><b>Adresse :</label>
-            <input type="text" class="form-control"  placeholder="Enter votre prénom" style="width:80%;" maxlength="255" id="adresse" name="adresse_fr" >
+            <input type="text" class="form-control"  placeholder="Enter votre adresse" style="width:80%;" maxlength="255" id="adresse" name="adresse_fr" >
         </td>
        <td>
             <label><b> Adresse en Arabe :</label> 
-             <input type="text" class="form-control"  placeholder="Enter votre prénomen Arabe" style="width:80%;" maxlength="255" id="adresse_ar" name="adresse_ar" >
+             <input type="text" class="form-control"  placeholder="Enter votre adresse en Arabe" style="width:80%;" maxlength="255" id="adresse_ar" name="adresse_ar" >
        </td>
    </tr>
     <tr>
          <td>
-             <label><b>CIN :</label>
+             <label><b>CIN:</label>
              <input type="text" class="form-control"  placeholder="Enter le numéro de votre CIN" style="width:80%;" maxlength="255" id="CIN" name="CIN" >
          </td>
         <td>
-             <label><b>Numéro de téléphone :</label> 
-             <input type="tel" class="form-control"  placeholder="Enter votre numéro de téléphone" style="width:80%;" maxlength="255" id="num_télé" name="num_télé" >
+             <label><b>CNE:</label> 
+             <input type="text" class="form-control"  placeholder="Enter le numéro de votre CNE" style="width:80%;" maxlength="255" id="num_télé" name="CNE" >
         </td>
     </tr>
     <tr>
@@ -239,7 +246,7 @@ session_start();
              <select class="browser-default custom-select" style="width:80%;"
              name="pays">
                      <option selected>Veuillez choisir votre pays</option>
-                     <option value="1">Maroc</option>
+                     <option value="Maroc">Maroc</option>
              </select>
          </td>
          <td>
@@ -247,73 +254,73 @@ session_start();
              <select class="browser-default custom-select" style="width:80%;"
              name="ville">
                      <option selected>Veuillez choisir votre Ville</option>
-                     <option value="1">casablanca</option>
-                     <option value="2">Fez</option>
-                     <option value="3">Tangier</option>
-                     <option value="4">Marrakech</option>
-                     <option value="5">Salé</option>
-                     <option value="6">Meknes</option>
-                     <option value="7">Rabat</option>
-                     <option value="8">Oujda</option>
-                     <option value="9">Kenitra</option>
-                     <option value="10">Agadir</option>
-                     <option value="11">Tetouan</option>
-                     <option value="12">Temara</option>
-                     <option value="13">Safi</option>
-                     <option value="14">Mohammedia</option>
-                     <option value="15">Khouribga</option>
-                     <option value="16">El Jadida</option>
-                     <option value="17">Beni Mellal</option>
-                     <option value="18">Aït Melloul</option>
-                     <option value="19">Nador</option>
-                     <option value="20">Dar Bouazza</option>
-                     <option value="21">Taza</option>
-                     <option value="22">Settat</option>
-                     <option value="23">Berrechid</option>
-                     <option value="24">Khemisset</option>
-                     <option value="25">Inezgane</option>
-                     <option value="26">Ksar El Kebir</option>
-                     <option value="27">Larache</option>
-                     <option value="28">Guelmim</option>
-                     <option value="29">Khenifra</option>
-                     <option value="30">Berkane</option>
-                     <option value="31">Taourirt</option>
-                     <option value="32">Bouskoura</option>
-                     <option value="33">Fquih Ben Salah</option>
-                     <option value="34">Dcheira El Jihadia</option>
-                     <option value="35">Oued Zem</option>
-                     <option value="36">El Kelaa Des Sraghna</option>
-                     <option value="37">Sidi Slimane</option>
-                     <option value="38">Errachidia</option>
-                     <option value="39">Guercif</option>
-                     <option value="40">Oulad Teima</option>
-                     <option value="41">Ben Guerir</option>
-                     <option value="42">Tifelt</option>
-                     <option value="43">Lqliaa</option>
-                     <option value="44">Taroudant</option>
-                     <option value="45">Sefrou</option>
-                     <option value="46">Essaouira</option>
-                     <option value="47">Fnideq</option>
-                     <option value="48">Sidi Kacem</option>
-                     <option value="49">Tiznit</option>
-                     <option value="50">Tan-Tan</option>
-                     <option value="51">Ouarzazate</option>
-                     <option value="52">Souk El Arbaa</option>
-                     <option value="53">Youssoufia</option>
-                     <option value="54">Lahraouyine</option>
-                     <option value="55">Martil</option>
-                     <option value="56">Ain Harrouda</option>
-                     <option value="57">Suq as-Sabt Awlad an-Nama</option>
-                     <option value="58">Skhirat</option>
-                     <option value="59">Ouazzane</option>
-                     <option value="60">Benslimane</option>
-                     <option value="61">Al Hoceima</option>
-                     <option value="62">Beni Ansar</option>
-                     <option value="63">M'diq</option>
-                     <option value="64">Sidi Bennour</option>
-                     <option value="65">Midelt</option>
-                     <option value="66">Azrou</option>
-                     <option value="67">Drargua</option>
+                     <option value="casablanca">casablanca</option>
+                     <option value="Fez">Fez</option>
+                     <option value="Tangier">Tangier</option>
+                     <option value="Marrakech">Marrakech</option>
+                     <option value="Salé">Salé</option>
+                     <option value="Meknes">Meknes</option>
+                     <option value="Rabat">Rabat</option>
+                     <option value="Oujda">Oujda</option>
+                     <option value="Kenitra">Kenitra</option>
+                     <option value="Agadir">Agadir</option>
+                     <option value="Tetouan">Tetouan</option>
+                     <option value="Temara">Temara</option>
+                     <option value="Safi">Safi</option>
+                     <option value="Mohammedia">Mohammedia</option>
+                     <option value="Khouribga">Khouribga</option>
+                     <option value="EL Jadida">El Jadida</option>
+                     <option value="Beni Mellal">Beni Mellal</option>
+                     <option value="Aït Melloul">Aït Melloul</option>
+                     <option value="Nador">Nador</option>
+                     <option value="Dar Bouazza">Dar Bouazza</option>
+                     <option value="Taza">Taza</option>
+                     <option value="Settat">Settat</option>
+                     <option value="Berrechid">Berrechid</option>
+                     <option value="Khemisset">Khemisset</option>
+                     <option value="Inezgane">Inezgane</option>
+                     <option value="Ksar El Kebir">Ksar El Kebir</option>
+                     <option value="Larache">Larache</option>
+                     <option value="Guelmim">Guelmim</option>
+                     <option value="Khenifra">Khenifra</option>
+                     <option value="Berkane">Berkane</option>
+                     <option value="Taourirt">Taourirt</option>
+                     <option value="Bouskoura">Bouskoura</option>
+                     <option value="Fquih Ben Salah">Fquih Ben Salah</option>
+                     <option value="Dcheira El Jihadia">Dcheira El Jihadia</option>
+                     <option value="Oued Zem">Oued Zem</option>
+                     <option value="El Kelaa">El Kelaa Des Sraghna</option>
+                     <option value="Sidi Slimane">Sidi Slimane</option>
+                     <option value="Errachidia">Errachidia</option>
+                     <option value="Guercif">Guercif</option>
+                     <option value="Oulad">Oulad Teima</option>
+                     <option value="Ben Guerir">Ben Guerir</option>
+                     <option value="Tifelt">Tifelt</option>
+                     <option value="Lqliaa">Lqliaa</option>
+                     <option value="Taroudant">Taroudant</option>
+                     <option value="Sefrou">Sefrou</option>
+                     <option value="Essaouira">Essaouira</option>
+                     <option value="Fnideq">Fnideq</option>
+                     <option value="Sidi Kacem">Sidi Kacem</option>
+                     <option value="Tiznit">Tiznit</option>
+                     <option value="Tan-Tan">Tan-Tan</option>
+                     <option value="Ouarzazate">Ouarzazate</option>
+                     <option value="Souk El Arbaa">Souk El Arbaa</option>
+                     <option value="Youssoufia">Youssoufia</option>
+                     <option value="Lahraouyine">Lahraouyine</option>
+                     <option value="Martil">Martil</option>
+                     <option value="Ain Harrouda">Ain Harrouda</option>
+                     <option value="Suq as-Sabt Awlad an-Nama">Suq as-Sabt Awlad an-Nama</option>
+                     <option value="Skhirat">Skhirat</option>
+                     <option value="Ouazzane">Ouazzane</option>
+                     <option value="Benslimane">Benslimane</option>
+                     <option value="Al Hoceima">Al Hoceima</option>
+                     <option value="Beni Ansar">Beni Ansar</option>
+                     <option value="M'diq">M'diq</option>
+                     <option value="Sidi Bennour">Sidi Bennour</option>
+                     <option value="Midelt">Midelt</option>
+                     <option value="Azrou">Azrou</option>
+                     <option value="Drargua">Drargua</option>
              </select>
              </select>
              </select>
@@ -329,8 +336,8 @@ session_start();
             <select class="browser-default custom-select" style="width:80%;"
             name="sexe">
                      <option selected>--sexe--</option>
-                     <option value="1">Masculin</option>
-                     <option value="2">Féminin</option>
+                     <option value="M">Masculin</option>
+                     <option value="F">Féminin</option>
             </select>
         </td>
    </tr>
@@ -343,6 +350,12 @@ session_start();
             <label><b>Nationalité :</label><br>
             <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" maxlength="255" id="nationalité" name="nationalité" >
         </td>
+   </tr>
+   <tr>
+    <td>
+       <label><b>Numéro de téléphone :</label> 
+             <input type="tel" class="form-control"  placeholder="Enter votre numéro de téléphone" style="width:80%;" maxlength="255" id="num_télé" name="num_télé" >
+    </td>
    </tr>
 
 </table>
@@ -448,9 +461,9 @@ session_start();
            <select class="browser-default custom-select" style="width:80%;"
            name="Assurance">
                      <option selected>Avez-vous une Assurance Médicale?</option>
-                     <option value="1">CNOPS</option>
-                     <option value="2">SANAD</option>
-                     <option value="3">Autres</option>
+                     <option value="CNOPS">CNOPS</option>
+                     <option value="SANAD">SANAD</option>
+                     <option value="Autres">Autres</option>
             </select>
         </td>
         <td>

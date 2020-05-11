@@ -1,3 +1,51 @@
+<?php 
+session_start();
+require_once 'photo_et_nom_users.php';
+
+
+
+   if (!empty($_POST)) {
+   if (!empty($_POST['SpécialitéBAC']) && !empty($_POST['ProvinceBAC']) && !empty($_POST['AcademyBAC']) && !empty($_POST['AnnéeBAC']) && !empty($_POST['NoteRégional']) && !empty($_POST['NoteNational'])){
+
+           
+  
+
+
+              $SpécialitéBAC = $_POST['SpécialitéBAC'];
+              $ProvinceBAC = $_POST['ProvinceBAC'];
+              $AcademyBAC = $_POST['AcademyBAC'];
+              $AnnéeBAC = $_POST['AnnéeBAC'];
+              $NoteRégional = $_POST['NoteRégional'];
+              $NoteNational = $_POST['NoteNational'];
+
+
+  $insertion = $pdo->prepare("UPDATE users SET SpécialitéBAC = ?, ProvinceBAC = ?, AcademyBAC = ?, AnnéeBAC = ?,NoteRégional = ?,NoteNational = ? WHERE  id = (SELECT MAX(id) FROM users) ");
+  $insertion->bindValue(1, $SpécialitéBAC);
+  $insertion->bindValue(2, $ProvinceBAC);
+  $insertion->bindValue(3, $AcademyBAC);
+  $insertion->bindValue(4, $AnnéeBAC);
+  $insertion->bindValue(5, $NoteRégional);
+  $insertion->bindValue(6, $NoteNational);
+  $insertion->execute();
+            
+
+    $_SESSION['flash']['success'] = 'Choisissez la filiére préféré';
+    header('location: filiére.php');
+    exit();
+    
+}
+
+else{
+
+    $errors[]="tous les champs doivent être remplis"; 
+    
+ }
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -16,7 +64,9 @@
      td{width:50%;}
      hr{border: 3px solid rgb(113, 197, 223);
                     border-radius: 10px;}}
+    
  </style>
+        
   </head>
   <body>
     <nav>
@@ -26,13 +76,38 @@
       </label>
       <label class="logo">Espace etudiant</label>
       <ul>
-        <li><a href="#">Principale</a></li>
-        <li><a href="#">Mes candidatures</a></li>
-        <!--<li><a href="#">Modifier mes information</a></li>-->
+        <li><img src="<?php echo $PHOTO->file_url1; ?>" style="
+        width: 40px;
+        height: 40px;
+        border-radius: 50% ;"></li>
+        <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
+        <li><a href="profil.php">Principale</a></li>
+        <li><a href="candidature.php">Mes candidatures</a></li>
         <li><a href="logout.php">Quitter</a></li>
       </ul>
     </nav>
- 
+
+
+
+
+
+<?php  if (!empty($errors)):?>
+
+<div class="alert alert-danger">
+    <p>vous n'avez pas rempli le formulaire correctement</p>
+   
+  <?php foreach ($errors as $error): ?>
+  <ul>
+
+      <li><?= $error; ?></li>
+      
+      <?php endforeach; ?> 
+
+      </ul>
+
+<?php endif; ?>
+
+ <form action="" method="POST">
  <table align="center" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin:auto; border: 5;">
     <tr >
         <td>
@@ -45,132 +120,131 @@
          <td>
               <br><br>
              <label><b>Spécialité de votre Baccalauréat</label>
-             <select class="browser-default custom-select" style="width:80%;">
+             <select class="browser-default custom-select" style="width:80%;" name="SpécialitéBAC">
                      <option selected>Filière</option>
-                     <option value="1">Sciences de la Vie et de la Terre</option>
-                     <option value="2">Sciences Physiques et Chimiques</option>
-                     <option value="3">Sciences Maths A</option>
-                     <option value="4">Sciences Maths B</option>
-                     <option value="5">Sciences Economiques</option>
-                     <option value="6">Techniques de Gestion et de Comptabilité</option>
-                     <option value="7">Sciences agronomiques</option>
-                     <option value="8">Sciences et Technologies Electriques</option>
-                     <option value="9">Sciences et Technologies Mécaniques</option>
+                     <option value="SVT">Sciences de la Vie et de la Terre</option>
+                     <option value="PC">Sciences Physiques et Chimiques</option>
+                     <option value="SMA">Sciences Maths A</option>
+                     <option value="SMB">Sciences Maths B</option>
+                     <option value="SE">Sciences Economiques</option>
+                     <option value="STGC">Sciences et Techniques de Gestion et de Comptabilité</option>
+                     <option value="STE">Sciences et Technologies Electriques</option>
+                     <option value="STM">Sciences et Technologies Mécaniques</option>
              </select>  
          </td>
          <td>
           <br><br>
            <label><b>Province de votre Baccalauréat</label>
-             <select class="browser-default custom-select" style="width:80%;">
+             <select class="browser-default custom-select" style="width:80%;" name="ProvinceBAC">
                      <option selected>Province de votre Baccalauréat</option>
-                     <option value="1">Rabat</option>
-                     <option value="2">Salé</option>
-                     <option value="3">Skhirate,Témara</option>
-                     <option value="4">Kénitra</option>
-                     <option value="5">Khémisset</option>
-                     <option value="6">Sidi Kacem</option>
-                     <option value="7">Sidi Slimane</option>
-                     <option value="8">Casablanca</option>
-                     <option value="9">Mohammédia</option>
-                     <option value="10">El Jadida</option>
-                     <option value="11">Nouaceur</option>
-                     <option value="12">Médiouna</option>
-                     <option value="13">Benslimane</option>
-                     <option value="14">Berrechid</option>
-                     <option value="15">Settat</option>
-                     <option value="16">Sidi Bennour</option>
-                     <option value="17">Fès</option>
-                     <option value="18">Meknès</option>
-                     <option value="19">El Hajeb</option>
-                     <option value="20">Ifrane</option>
-                     <option value="21">Moulay Yaâcoub</option>
-                     <option value="22">Séfrou</option>
-                     <option value="23">Boulemane</option>
-                     <option value="24">Taounate</option>
-                     <option value="25">Taza</option>
-                     <option value="26">Marrakech</option>
-                     <option value="27">Chichaoua</option>
-                     <option value="28">Al Haouz</option>
-                     <option value="29">El Kelaâ des Sraghna</option>
-                     <option value="30">Essaouira</option>
-                     <option value="31">Rehamna</option>
-                     <option value="32">Safi</option>
-                     <option value="33">Youssoufia</option>
-                     <option value="34">Tanger, Assilah</option>
-                     <option value="35">M’diq, Fnideq</option>
-                     <option value="36">Tétouan</option>
-                     <option value="37">Fahs, Anjra</option>
-                     <option value="38">Larache</option>
-                     <option value="39">Al Hoceïma</option>
-                     <option value="40">Chefchaouen</option>
-                     <option value="41">Ouezzane</option>
-                     <option value="42">Oujda, Angad</option>
-                     <option value="43">Nador</option>
-                     <option value="44">Driouch</option>
-                     <option value="45">Jerada</option>
-                     <option value="46">Berkane</option>
-                     <option value="47">Taourirt</option>
-                     <option value="48">Guercif</option>
-                     <option value="49">Figuig</option>
-                     <option value="50">Béni, Mellal</option>
-                     <option value="51">Azilal</option>
-                     <option value="52">Fquih Ben Salah</option>
-                     <option value="53">Khénifra</option>
-                     <option value="54">Khouribga</option>
-                     <option value="55">Errachidia</option>
-                     <option value="56">Ouarzazate</option>
-                     <option value="57">Midelt</option>
-                     <option value="58">Tinghir</option>
-                     <option value="59">Zagora</option>
-                     <option value="60">Agadir Ida, Outanane</option>
-                     <option value="61">Inezgane, Aït Melloul</option>
-                     <option value="62">Chtouka, Aït Baha</option>
-                     <option value="63">Taroudant</option>
-                     <option value="64">Tiznit</option>
-                     <option value="65">Tata</option>
-                     <option value="66">Guelmim</option>
-                     <option value="67">Assa-Zag</option>
-                     <option value="68">Tan Tan</option>
-                     <option value="69">Sidi Ifni</option>
-                     <option value="70">Laâyoune</option>
-                     <option value="71">Boujdour</option>
-                     <option value="72">Tarfaya</option>
-                     <option value="73">Es-Semara</option>
-                     <option value="74">Oued Ed Dahab</option>
-                     <option value="75">Aousserd</option>
+                     <option value="Rabat">Rabat</option>
+                     <option value="Salé">Salé</option>
+                     <option value="Skhirate Témara">Skhirate,Témara</option>
+                     <option value="Kénitra">Kénitra</option>
+                     <option value="Khémisset">Khémisset</option>
+                     <option value="Sidi Kacem">Sidi Kacem</option>
+                     <option value="Sidi Slimane">Sidi Slimane</option>
+                     <option value="Casablanca">Casablanca</option>
+                     <option value="Mohammédia">Mohammédia</option>
+                     <option value="El Jadida">El Jadida</option>
+                     <option value="Nouaceur">Nouaceur</option>
+                     <option value="Médiouna">Médiouna</option>
+                     <option value="Benslimane">Benslimane</option>
+                     <option value="Berrechid">Berrechid</option>
+                     <option value="Settat">Settat</option>
+                     <option value="Sidi Bennour">Sidi Bennour</option>
+                     <option value="Fès">Fès</option>
+                     <option value="Meknès">Meknès</option>
+                     <option value="El Hajeb">El Hajeb</option>
+                     <option value="Ifrane">Ifrane</option>
+                     <option value="Moulay Yaâcoub">Moulay Yaâcoub</option>
+                     <option value="Séfrou">Séfrou</option>
+                     <option value="Boulemane">Boulemane</option>
+                     <option value="Taounate">Taounate</option>
+                     <option value="Taza">Taza</option>
+                     <option value="MARRAKECH">Marrakech</option>
+                     <option value="Chichaoua">Chichaoua</option>
+                     <option value="Al Haouz">Al Haouz</option>
+                     <option value="EL Kelaâ">El Kelaâ des Sraghna</option>
+                     <option value="Essaouira">Essaouira</option>
+                     <option value="Rehamna">Rehamna</option>
+                     <option value="Safi">Safi</option>
+                     <option value="Youssoufia">Youssoufia</option>
+                     <option value="Tanger Assilah">Tanger, Assilah</option>
+                     <option value="M'diq Fnideq">M’diq, Fnideq</option>
+                     <option value="Tetouan">Tétouan</option>
+                     <option value="Fahs Anjra">Fahs, Anjra</option>
+                     <option value="Larache">Larache</option>
+                     <option value="Hoceïma">Al Hoceïma</option>
+                     <option value="Chefchaouen">Chefchaouen</option>
+                     <option value="Ouezzane">Ouezzane</option>
+                     <option value="Oujda Angad">Oujda, Angad</option>
+                     <option value="Nador">Nador</option>
+                     <option value="Driouch">Driouch</option>
+                     <option value="Jerada">Jerada</option>
+                     <option value="Berkane">Berkane</option>
+                     <option value="Taourirt">Taourirt</option>
+                     <option value="Guercif">Guercif</option>
+                     <option value="Figuig">Figuig</option>
+                     <option value="Béni Mellal">Béni Mellal</option>
+                     <option value="Azilal">Azilal</option>
+                     <option value="Fquih Ben Salah">Fquih Ben Salah</option>
+                     <option value="Khénifra">Khénifra</option>
+                     <option value="Khouribga">Khouribga</option>
+                     <option value="Errachidia">Errachidia</option>
+                     <option value="Ouarzazate">Ouarzazate</option>
+                     <option value="Midelt">Midelt</option>
+                     <option value="Tinghir">Tinghir</option>
+                     <option value="Zagora">Zagora</option>
+                     <option value="Agadir">Agadir Ida, Outanane</option>
+                     <option value="Inezgane Aït Melloul">Inezgane, Aït Melloul</option>
+                     <option value="Chtouka Aït Baha">Chtouka, Aït Baha</option>
+                     <option value="Taroudant">Taroudant</option>
+                     <option value="Tiznit">Tiznit</option>
+                     <option value="Tata">Tata</option>
+                     <option value="Guelmim">Guelmim</option>
+                     <option value="Assa-Zag">Assa-Zag</option>
+                     <option value="Tan Tan">Tan Tan</option>
+                     <option value="Sidi Ifni">Sidi Ifni</option>
+                     <option value="Laâyoune">Laâyoune</option>
+                     <option value="Boujdour">Boujdour</option>
+                     <option value="Tarfaya">Tarfaya</option>
+                     <option value="Es-Semara">Es-Semara</option>
+                     <option value="Oued Ed Dahab">Oued Ed Dahab</option>
+                     <option value="Aousserd">Aousserd</option>
                </select> 
          </td>
     </tr>
     <tr>
       <td>
         <label><b>Academy de votre Baccalauréat</label>
-             <select class="browser-default custom-select" style="width:80%;">
+             <select class="browser-default custom-select" style="width:80%;" name="AcademyBAC">
                      <option selected>Academy de votre Baccalauréat</option>
-                     <option value="1">Tanger Tetouan</option>
-                     <option value="2">Taza Elhouceima Taounate</option>
-                     <option value="3">Fes Boulmane</option>
-                     <option value="4">Meknes Tafilalt</option>
-                     <option value="5">Tadla Azilal</option>
-                     <option value="6">Dakhla Abda</option>
-                     <option value="7">Rabat Salé Zemour Zair</option>
-                     <option value="8">Grand Casablanca</option>
-                     <option value="9">Orientale</option>
-                     <option value="10">Marrakech Tansift ElHaouz</option>
-                     <option value="11">Chaouia Ouerdigha</option>
-                     <option value="12">Ghab Chrarda Bni Hsin</option>
-                     <option value="13">Sous Massa Daraa</option>
-                     <option value="14">Guelmim Essmara</option>
-                     <option value="15">Laayoune Boujdour</option>
-                     <option value="16">Oued Eddahab Lagouira</option>
+                     <option value="Tanger Tetouan">Tanger Tetouan</option>
+                     <option value="Taza Elhouceima">Taza Elhouceima Taounate</option>
+                     <option value="Fes Boulmane">Fes Boulmane</option>
+                     <option value="Meknes Tafilalt">Meknes Tafilalt</option>
+                     <option value="Tadla Azilal">Tadla Azilal</option>
+                     <option value="Dakhla Abda">Dakhla Abda</option>
+                     <option value="Rabat Salé">Rabat Salé Zemour Zair</option>
+                     <option value="Grand Casablanca">Grand Casablanca</option>
+                     <option value="Orientale">Orientale</option>
+                     <option value="Marrakech Tansift">Marrakech Tansift ElHaouz</option>
+                     <option value="Chaouia">Chaouia Ouerdigha</option>
+                     <option value="Ghab Chrarda">Ghab Chrarda Bni Hsin</option>
+                     <option value="Sous Massa">Sous Massa Daraa</option>
+                     <option value="Guelmim Essmara">Guelmim Essmara</option>
+                     <option value="Laayoune Boujdour">Laayoune Boujdour</option>
+                     <option value="Oued Eddahab Lagouira">Oued Eddahab Lagouira</option>
                     
               </select>
       </td>
        <td>
         <label><b>Année d'obtention du bac</label>
-             <select class="browser-default custom-select" style="width:80%;">
+             <select class="browser-default custom-select" style="width:80%;" name="AnnéeBAC">
                      <option selected>Année</option>
-                     <option value="1">2019</option>
-                     <option value="2">2020</option>
+                     <option value="2019">2019</option>
+                     <option value="2020">2020</option>
               </select>
       </td>
     </tr>
@@ -179,18 +253,15 @@
     	<tr>
          <td>
              <label><b>Note d'examen Régional:</label>
-             <input type="text" class="form-control"  placeholder="Enter votre nom" style="width:80%;" maxlength="255" id="nom" name="nom" >
+             <input type="text" class="form-control"  placeholder=" votre note d'examen Régional " style="width:80%;" maxlength="255"  name="NoteRégional" >
          </td>
          <td>
             <label><b>Note d'examen National:</label> 
-            <input type="text" class="form-control"  placeholder="Enter votre nom en Arabe" style="width:80%;" maxlength="255" id="nom_ar" name="nom_ar" >
+            <input type="text" class="form-control"  placeholder=" votre note d'examen National" style="width:80%;" maxlength="255"  name="NoteNational" >
          </td>
      </tr>
 
-     <tr>
-     	<td><strong>Votre Bac (recto)</strong> <input type="file" name="dichier"></td>
-     	<td> <strong>Votre Bax (verso)</strong><input type="file" name="dichier"></td>
-     </tr>
+     
         <td>
             <br><br>
             <input class="btn btn-info" type="submit" value="Confirmer" >
@@ -201,6 +272,7 @@
 
    
 </table>
+</form>
     
   
       
