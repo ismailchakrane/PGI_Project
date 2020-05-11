@@ -1,90 +1,99 @@
+/********************************** 
+				select uni
+**********************************/
 *
 {
 	margin: 0;
 	padding: 0;
 	
 }
-/* body*/
+/********************************** 
+				body
+**********************************/
 body
 {
 	width: 100%;
 	height: 100vh;
-	background-image:url(img/bg3.jpg);
+	background-image:url(img/bg5.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
+
 	
 
 }
 
-
-/* Header*/
+/**********************************
+				Header
+**********************************/
 
 .header
 {
-	position: fixed;
 	top: 25px;
 	left: 50%;
+	position: fixed;
 	transform: translateX(-50%);
-	width: 1250px;
+	width: 95%;
 	height: 70px;
-	background: #75CFC4;
-	z-index: 10;
+	background: #44a7e9;
 	border-bottom-right-radius: 30px;
 	border-top-left-radius: 30px;
 
 }
 
-/*width: 100%; 	height: 100%;*/
 .header_content
 {
 	display: block;
 	position: absolute;
 	top: 0;
 	left: 0;
-	box-shadow: 0px 20px 49px rgba(0,0,0,0.67);
-	z-index: -2;
+	width: 30%;
+	box-shadow: 8px 15px 20px ;
+	border-top-left-radius: 32px;
 }
 
 
 
-/*********************************
-3.1 Logo
-*********************************/
+/*******************************
+				Logo
+***************************************/
 
 .logo_content
 {
-	display: inline-block;
-	padding-left: 550px;
+	
+	margin-left: 150%;
 	margin-top: 10px;
 }
-.logo .span
+.logo .logo_pgi_1
 {
 	font-family:sans-serif;
 	font-size: 29px;
 	font-weight: 700;
-	color: red;
-	vertical-align: middle;
+	color: white;
 	text-transform: uppercase;
 	margin-left: -500px;
+	letter-spacing: 7px;
+}
 
-	
-	}
-
-.logo span
+.logo .logo_pgi_2
 {
-font-family:sans-serif;
+	font-family:sans-serif;
 	font-size: 	15px;
 	font-weight: 500;
-	color: yellow;
-	margin-left: -480px;
+	color: white;
+	margin-left: -485px;
+	letter-spacing: 3px;
 
 }
-/*Nav*/
+
+
+/**********************************
+			Nav
+**********************************/
 
 .nav_content
 {
 	display: inline-block;
-	margin-left: 720px;
+	margin-left: 57%;
 	margin-top: 28px;
 }
 
@@ -105,8 +114,6 @@ font-family:sans-serif;
 	color: #3a3a3a;
 	text-decoration: none;
 	
-	
-	
 }
 .nav_item a:hover
 {
@@ -115,34 +122,35 @@ font-family:sans-serif;
 .btn_login
 {
 	
-	background: #75CFC4;
+	background: #44a7e9;
 	
 }
 .btn_login :hover
 {
 	
-	background: #78C1D1;
+	background: #4085BD ;
 	padding: 10px 20px ;
 	border-radius: 42px;
 
 }
-/*Home*/
 
-
+/********************************** 
+				Home
+**********************************/
 
 .home
 {
-	
+	height: 58%;
 	margin-top: 180px;
 	margin-left: 47px;
-	margin-right: 44px;
-	background-color: hsla(200, 50%, 80%, 0.4);
+	width: 59%;
 	
 }
 
 .slide_content_left
 {
 	margin-left: 2%;
+	max-width: 70%;
 
 }
 
@@ -150,32 +158,29 @@ font-family:sans-serif;
 {
 	font-size: 35px;
 	font-weight: 70;
-	color: #FFFFFF;
+	color: black;
 	font-family: cursive;
-	
-	
-	
 	
 }
 
 .slide_content_right
 {
 	margin-left: 12%;
-	margin-top: 30px;
+	margin-top: 50px;
 	
 }
-
 
 .btn_registre 
 {
 	border: none;
 	outline: none;
 	color: black;
-	background: #4AC1C3;
-	padding: 5px 30px 0px 30px ;
+	background: #44a7e9;
+	padding: 15px 45px 15px 45px ;
 	border-radius: 42px;
 	font-size: 17px;
-	margin-bottom: 22px;
+	margin-bottom: 28px;
+	cursor: pointer;
 
 }
 .btn_registre a
@@ -186,15 +191,77 @@ font-family:sans-serif;
 }
 .btn_registre:hover
 { 
-	background: #BEE9D7;
+	background: #3D75B0;
 }
 
+/*********************************
+ 			About
+*********************************/
+.home_about
+{
+	margin-top: 11%;
+	margin-left: 5%;
+	background-color: hsla(240, 50%, 7%, 0.4);
+	width: 50%;
+}
+.slide_content_about
+{
 
+}
+.slide_content_about h3
+{
+	text-align: center;
+	color: #8ABDD9;
+	font-family: cursive;
+	font-size: 127%;
+}
+.info_pgi
+{
+	font-size: 20px;
+	font-weight: 70;
+	color: #FFFFFF;
+	font-family: monospace;
+	margin-left: 1%;
+}
+.pgi_icon
+{
+	text-align: center;
+}
+.info_team 
+{
+	text-align: center;
+	font-size: 20px;
+	font-weight: 70;
+	color: #FFFFFF;
+	font-family:monospace;
+	margin-left: 1%;
+	display: inline-block;
+	
+}
 
+.team_icon_1 
+{
+	
+	background-color: hsla(240, 50%, 7%, 0.4);
+	width: 55%;
+	height: ;
+	font-size: 18px;
+	display: inline-block;
+	color: #89CDD5;
+	margin-left: 17%;
+	
+}
 
 /*********************************
-9. Contact
+ 			Contact
 *********************************/
+.home_contact
+{
+	margin-top: 10%;
+	margin-left: 4.5%;
+	background-color: hsla(200, 50%, 80%, 0.4);
+	width: 47%;
+}
 
 .contact
 {
@@ -206,58 +273,70 @@ font-family:sans-serif;
 	font-size: 36px;
 	font-weight: 500;
 	color: #1a1a1a;
-	background-color:#ffb606;
+	background-color: #31769B;
 	text-align: center;
 	letter-spacing: 2px; 
 }
 .contact_form_content
 {
-	margin-top: 70px;
+	margin-top: 67px;
 }
 .input
 {
-	width: 90%;
-	background: hsla(200, 50%, 80%, 0.8);
+	width: 70%;
+	background: hsla(200, 30%, 45%, 0.4);
 	border: solid 2px transparent;
 	margin-bottom: 24px;
 	height: 42px;
 	padding-left: 33px;
-	margin-left: 8px;
+	margin-left: 12%;
 }
 .input:focus
 {
 	outline: none !important;
-	border-color: #ffb606;
+	border-color: #75CFC4;
 }
 .text
 {
-	width: 90%;
+	width: 70%;
 	height: 189px;
-	background: hsla(200, 50%, 80%, 0.8);
+	background: hsla(200, 30%, 45%, 0.4);
 	border: solid 2px transparent;
 	padding-left: 33px;
 	margin-bottom: 24px;
-	margin-left: 8px;
+	margin-left: 12%;
 }
 .text:focus
 {
 	
-	border-color: #ffb606;
+	border-color: #75CFC4;
 }
 .contact_send_btn
 {
-	width: 100%;
+	width: 75.7%;
 	height: 48px;
-	background: #ffb606;
+	background: #31769B;
 	font-size: 14px;
 	font-weight: 700;
 	text-transform: uppercase;
 	color: #FFFFFF;
 	cursor: pointer;
 	border: none;
+	padding-top: 10px;
+	margin-left: 12%;
 }
 .contact_send_btn:focus
 {
-	outline: solid 1px #ffb606;
-	border: green !important;
+	outline: solid 1px #0D1D26;
+}
+
+.msgflash
+{
+	background-color: hsla(200, 50%, 80%, 0.8);
+    padding: 5px 10px;
+    color: #3d503d;
+    font-size: 0.9em;
+    font-family: cursive;
+    text-align: center;
+    font-weight: 700;
 }
