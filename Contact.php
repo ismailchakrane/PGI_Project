@@ -18,16 +18,30 @@ if(isset($_POST['envoye']))
 		<html>
 			<body>
 				<div align="center">
-					<br>
-					<u>Nom complet:</u>'.$_POST['nom'].'<br>
-					<u>E-mail :</u>'.$_POST['email'].'<br>
-					<u>objet :</u>'.$_POST['objet'].'<br>
-					<br>
-					<div style="color:red;">
-					<u>Message :</u><br>
-					'.($_POST['message']).'
-					</div>
-					
+					<div ><img src="https://i.ibb.co/8634GLg/Pgi.png"></div>
+					<div style="background: #F9F9F9; width: 48%; font-family: fantasy;">
+						<br>
+					<p style="padding-right: 30%;">
+							Nom : 
+						<span style="margin-left: 10%;font-family:initial;">
+							'.$_POST['nom'].'
+						</span>
+					</p>
+					<p style="padding-right: 30%;">
+							E-mail : 
+						<span style="margin-left: 10%;font-family:initial;">
+							'.$_POST['email'].'
+						</span>
+					</p>
+					<p style="padding-right: 30%;">
+							Objet : 
+						<span style="margin-left: 10%;font-family:initial;">
+							'.$_POST['objet'].'
+						</span>
+					</p>
+					<p style="padding-right: 50%;">Messge :</p>
+ 						<span style="font-family:initial;">'.($_POST['message']).'</span>
+					<br><br>
 				</div>
 			</body>
 		</html>
