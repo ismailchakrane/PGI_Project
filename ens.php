@@ -107,6 +107,16 @@ else{
 
 <?php endif; ?>
 
+
+
+    <?php if (empty($_SESSION['flash'])): ?>
+                       
+                 
+                         <div class="alert alert-success"><li>Pour être inscrit à L'ENS MARRAKECH veuillez remplire le formulaire suivant</li></div>
+
+                     <?php unset($_SESSION['flash']); ?>
+                 <?php endif;?>
+
  <form action="" method="POST">
  <table align="center" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin:auto; border: 5;">
     <tr >

@@ -1,6 +1,6 @@
 <?php
 
-
+//récupération des données avec l'adresse url:
  $user_id = $_GET['id'];
 
  $token = $_GET['token'];

@@ -26,7 +26,7 @@ $filiére = $pdf->filièreENS;
 $photo =  $pdf->file_url1;
 
 
-
+//génération du PDF:
 $mpdf = new \Mpdf\Mpdf();
 
 
@@ -144,14 +144,7 @@ $data .='<header>
 <p><i>Le présent reçu vous sera demandé lors de la validation de votre inscription. </i></p>
 ';
 
-/*$data .='<strong>Nom complet:</strong>' .$nom_fr.' '.$prénom. '<br>' ;
-$data .='<strong>Année d\'obtention du BAC:</strong>' .$annéeBAC. '<br>' ;
-$data .='<strong>CNE:</strong>' .$CNE. '<br>' ;
-$data .='<strong>CIN:</strong>' .$CIN. '<br>' ;
-$data .='<strong>Date de naissance:</strong>' .$dateNaissance.  '<br>' ;
-$data .='<strong>Date de pré-inscription:</strong>' .$datePréinscription.  '<br>' ;
-$data .='<strong>Etablissement :</strong>' .$Etablissement.  '<br>' ;
-$data .='<strong>Filiére:</strong>' .$filiére.  '<br>' ;*/
+
 
 $mpdf->WriteHTML($data);
 $test=$mpdf->Output('reçu_ENS_M.pdf','D');

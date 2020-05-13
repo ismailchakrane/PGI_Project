@@ -35,6 +35,9 @@ session_start();
     	
    if (!empty($_POST['nom_fr']) && !empty($_POST['nom_ar']) && !empty($_POST['prénom_fr']) && !empty($_POST['prénom_ar']) && !empty($_POST['adresse_fr']) && !empty($_POST['adresse_ar']) && !empty($_POST['CNE']) && !empty($_POST['CIN']) && !empty($_POST['num_télé']) && !empty($_POST['pays']) && !empty($_POST['ville']) && !empty($_POST['date_de_naissance']) && !empty($_POST['sexe']) && !empty($_POST['Code_postal'])&& !empty($_POST['nationalité'])&& !empty($_POST['prénom_pére'])&& !empty($_POST['Nom_pére'])&& !empty($_POST['CIN_pére'])&& !empty($_POST['date_naissance_pére'])&& !empty($_POST['prénom_mére'])&& !empty($_POST['Nom_mére'])&& !empty($_POST['CIN_mére'])&& !empty($_POST['date_naissance_mére'])&& !empty($_POST['Assurance'])){
 
+
+//les variables:
+
               $nom_fr = $_POST['nom_fr'];
               $nom_ar = $_POST['nom_ar'];
               $prénom_fr = $_POST['prénom_fr'];
@@ -171,7 +174,6 @@ session_start();
 <?php endif; ?>
 
 
-<form action="" method="POST">
 
 <?php 
                 if (session_status() == PHP_SESSION_NONE ) {
@@ -187,6 +189,8 @@ session_start();
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>
                  <?php endif;?>
+
+<form action="" method="POST">
 
 
 <!--Information personelle-->

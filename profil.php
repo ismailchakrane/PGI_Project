@@ -1,8 +1,8 @@
 <?php
-
+require_once 'photo_et_nom_users.php';
 session_start();
 
-     require_once 'photo_et_nom_users.php';
+     
 
 
 
@@ -43,20 +43,7 @@ session_start();
   </head>
   <body>
 
-<?php 
-                if (session_status() == PHP_SESSION_NONE ) {
 
-                    session_start();
-                }
-                ?>
-    <?php if (isset($_SESSION['flash'])): ?>
-                       <?php foreach ($_SESSION['flash'] as $type => $message): ?>
-                 
-                         <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
-
-                      <?php endforeach; ?>
-                     <?php unset($_SESSION['flash']); ?>
-                 <?php endif;?>
 
 
 
@@ -77,7 +64,20 @@ session_start();
       </ul>
     </nav>
     
+<?php 
+                if (session_status() == PHP_SESSION_NONE ) {
 
+                    session_start();
+                }
+                ?>
+    <?php if (isset($_SESSION['flash'])): ?>
+                       <?php foreach ($_SESSION['flash'] as $type => $message): ?>
+                 
+                         <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
+
+                      <?php endforeach; ?>
+                     <?php unset($_SESSION['flash']); ?>
+                 <?php endif;?>
 
 
  <div class="container"
@@ -88,6 +88,7 @@ session_start();
       <h3 >Vous pouvez faire la préinscription pour les catégories suivantes:</h3>
       <br>
   <main>
+
 
 <?php  if (empty($user->candidature)):?>
 
@@ -126,7 +127,8 @@ session_start();
          0 4px  4px 0 rgba(0,0,0,.15);">
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
-      <p style="color: green; "><strong>Déja inscrit</strong></p>
+      <p><strong>Etat d'inscription: <span  style="color: green; ">Déja inscrit</span></strong></p>
+      <a href="pdftrait.php"><strong>le Reçu</strong></a>
     </div>
   </main>
 </div>  

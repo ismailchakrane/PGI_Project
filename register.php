@@ -95,30 +95,32 @@ if (!empty($_POST)) {
 
 
 <div class="login">
-		<tt><h2>Nouveau Compte</h2></tt>
+    <tt><h2>Nouveau Compte</h2></tt>
+
+<!--controle des messages d'erreurs-->
 
 <?php  if (!empty($errors)):?>
 
 <div class="alert alert-danger">
-	<p>vous n'avez pas rempli le formulaire correctement</p>
+  <p>vous n'avez pas rempli les champs</p>
    
   <?php foreach ($errors as $error): ?>
   <ul>
 
-	  <li><?= $error; ?></li>
-	  
-	  <?php endforeach; ?> 
+    <li><?= $error; ?></li>
+    
+    <?php endforeach; ?> 
 
-	  </ul>
+    </ul>
 
 </div>
+
+
 <?php endif; ?>
 
 
 
-
-<form action="" method="POST">
-  <?php 
+<?php 
                 if (session_status() == PHP_SESSION_NONE ) {
 
                     session_start();
@@ -132,6 +134,12 @@ if (!empty($_POST)) {
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>
                  <?php endif;?>
+
+
+
+
+<form action="" method="POST">
+              
     
 	     <div class="inputlogin">
           

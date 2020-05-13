@@ -3,10 +3,12 @@
 //pour faire un test online https://pgitest.000webhostapp.com/Contact.php
 //send email from localhost to gmail refuse 
 //send email from localhost to maildev accept 
-$type="msg";
-
 ?>
 <?php
+
+$type="msg";
+
+
 if(isset($_POST['envoye']))
 {
 	if(!empty($_POST['nom']) AND !empty($_POST['email']) AND !empty($_POST['objet']) AND !empty($_POST['message']))
@@ -34,11 +36,11 @@ if(isset($_POST['envoye']))
 		';
 
 		mail("projet.pgi@gmail.com", "CONTACT - PGI", $message, $header);//On peut changer l'email;
-		$msg="Votre message a étè Envoyé";
+		$msg="Votre message a été Envoyer";
 	}
 	else
 	{
-		$msg="Remplissez les champs sans erreur";
+		$msg="Vous n'avez pas rempli le formulaire correctement";
 		
 	}
 
@@ -102,7 +104,7 @@ if(isset($_POST['envoye']))
 							<br><br>
 				<input name="email" class="input" type="email" placeholder="E-mail" required>
 							<br><br>
-				<input name="objet" class="input" type="text" placeholder="Objet" required>
+				<input name="objet" class="input" type="text" placeholder="Sujet" required>
 							<br><br>
 				<textarea name="message" class="text"  placeholder="Message" required></textarea>
 							<br><br>

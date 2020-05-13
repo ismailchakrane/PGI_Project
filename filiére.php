@@ -27,8 +27,8 @@ require_once 'photo_et_nom_users.php';
 
             
 
-    $_SESSION['flash']['success'] = 'L\'Inscription a l\'ENS MARRAKECH est terminée avec succès vous pouvez maintenant retournez vers la page principale';
-    header('location: pdftrait.php');
+    $_SESSION['flash']['success'] = 'L\'Inscription a l\'ENS MARRAKECH est terminée avec succès vous pouvez maintenant télécharger le reçu d\'inscription';
+    header('location: profil.php');
     exit();
 
  
