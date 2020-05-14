@@ -94,7 +94,7 @@ require_once 'function.php';
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
 
-                         <div class="alt-<?=$type;?>"><li><?=$message;?></li></div>
+                         <div class="alt alt-<?=$type;?>"><li><?=$message;?></li></div>
 
 
                       <?php endforeach; ?>
