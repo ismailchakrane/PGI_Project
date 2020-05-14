@@ -81,7 +81,7 @@ if (!empty($_POST)) {
 
 
 <?php  if (!empty($errors)):?>
-  <div class="alt-danger">
+  <div class="alt alt-danger">
   <p>Vous n'avez pas uploader les fichiers  correctement</p>
    
   <?php foreach ($errors as $error): ?>
@@ -106,7 +106,7 @@ if (!empty($_POST)) {
     <?php if (isset($_SESSION['flash'])): ?>
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
-                         <div class="alt-<?=$type; ?>"><li><?=$message; ?> </li></div>
+                         <div class="alt alt-<?=$type; ?>"><li><?=$message; ?> </li></div>
 
                       <?php endforeach; ?>
                      <?php unset($_SESSION['flash']); ?>
