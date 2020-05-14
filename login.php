@@ -335,7 +335,7 @@ header a
   border-radius: 20px;
   font-family: cursive;
   font-size: 14px;
-  width: 77%;
+  width: 75%;
   margin-left: 6%;
 
 }
