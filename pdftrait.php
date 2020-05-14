@@ -110,7 +110,7 @@ $data .='<header>
         
 		<img src="'.$photo.'" width="100px" height="100px";>
 		<br>
-		<li>Nom :<tt>'.$nom_fr.'</tt></li>
+		<li>Nom :<tt>'.$nom.'</tt></li>
 		<br>
 		<li>Prenom :<tt>'.$prénom.'</tt></li>
 		<br>

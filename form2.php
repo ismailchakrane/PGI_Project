@@ -79,7 +79,7 @@ session_start();
 
                $insertionFile->execute();
 
-              $_SESSION['flash']['success'] = 'Votre compte est bien créé';
+              $_SESSION['flash']['success'] = ' Compte bien créé';
               header('location: profil.php');
 
                     }

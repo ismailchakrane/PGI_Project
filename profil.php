@@ -1,6 +1,7 @@
 <?php
-require_once 'photo_et_nom_users.php';
 session_start();
+require_once 'photo_et_nom_users.php';
+
 
      
 
@@ -48,6 +49,7 @@ session_start();
 
 
 
+
     <nav>
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
@@ -64,20 +66,24 @@ session_start();
       </ul>
     </nav>
     
-<?php 
-                if (session_status() == PHP_SESSION_NONE ) {
-
-                    session_start();
-                }
-                ?>
-    <?php if (isset($_SESSION['flash'])): ?>
-                       <?php foreach ($_SESSION['flash'] as $type => $message): ?>
+ <?php  if (!empty($user->file_url3) && empty($user->date_candidature)):?>  
                  
-                         <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
+                       
+                 
+                         <div class="alert alert-success"><li>Compte bien créé</li></div>
 
-                      <?php endforeach; ?>
-                     <?php unset($_SESSION['flash']); ?>
-                 <?php endif;?>
+                  
+   <?php endif;?>
+
+
+
+    <?php  if (!empty($user->date_candidature)):?>  
+                 
+                       
+                 
+    <div class="alert alert-success"><li>L'Inscription a l'ENS MARRAKECH est terminée avec succès vous pouvez maintenant télécharger le reçu d'inscription</li></div>
+
+    <?php endif;?>
 
 
  <div class="container"
@@ -89,8 +95,17 @@ session_start();
       <br>
   <main>
 
+ 
+
+
+
+
+
 
 <?php  if (empty($user->candidature)):?>
+
+
+  
 
     <div class="card" style="
         border-top-width: 0px;
