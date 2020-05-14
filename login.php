@@ -18,7 +18,7 @@ require_once 'function.php';
 			$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 
  //les conditions:
-    $req = $pdo->prepare('SELECT * FROM users WHERE (email = :email) AND confirmed_at IS NOT NULL' );
+    $req = $pdo->prepare('SELECT * FROM users WHERE (email = :email) AND confirmed_at IS NOT NULL ' );
     $req->execute(['email' => $_POST['email']]);
 
     $user = $req->fetch();
@@ -30,6 +30,7 @@ require_once 'function.php';
 
              
                  $_SESSION['auth'] = $user;
+                 $_SESSION['id'] = $user->id;
               
                  $_SESSION['flash']['success']= 'Vous êtes maintenant connecté ';
                  header('location: profil.php');
@@ -92,8 +93,6 @@ require_once 'function.php';
     <?php if (!empty($_SESSION['flash'])): ?>
                        <?php foreach ($_SESSION['flash'] as $type => $message): ?>
                  
-
-                         <!--<div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>-->
 
                          <div class="alt-<?=$type;?>"><li><?=$message;?></li></div>
 

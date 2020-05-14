@@ -5,6 +5,14 @@ require_once 'function.php';
 session_start();
 
 
+
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+
+    header("Location: login.php");    
+          
+       } 
     $errors=array();
 
 
@@ -68,7 +76,7 @@ session_start();
             
             if (move_uploaded_file( $file_tmp_name1,$file_dest1) && move_uploaded_file( $file_tmp_name2,$file_dest2) && move_uploaded_file( $file_tmp_name3,$file_dest3)) {
 
-             $insertionFile = $pdo->prepare("UPDATE users SET name_file1 = ?,file_url1 = ?,name_file2 = ?,file_url2 = ?,name_file3 = ?,file_url3 = ? WHERE  id =(SELECT MAX(id) FROM users) ");
+             $insertionFile = $pdo->prepare("UPDATE users SET name_file1 = ?,file_url1 = ?,name_file2 = ?,file_url2 = ?,name_file3 = ?,file_url3 = ? WHERE  id =? ");
 
                $insertionFile->bindValue(1, $name_file1);
                $insertionFile->bindValue(2, $file_dest1);
@@ -76,6 +84,7 @@ session_start();
                $insertionFile->bindValue(4, $file_dest2);
                $insertionFile->bindValue(5, $name_file3);
                $insertionFile->bindValue(6, $file_dest3);
+               $insertionFile->bindValue(7, $_SESSION['id']);
 
                $insertionFile->execute();
 

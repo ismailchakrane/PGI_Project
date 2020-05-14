@@ -3,11 +3,22 @@ session_start();
 require_once 'photo_et_nom_users.php';
 
 
+
+
      
 
 
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-  $req = $pdo->prepare('SELECT * FROM users WHERE id = (SELECT MAX(id) FROM users) ');
+    header("Location: login.php");    
+          
+       } 
+
+  $req = $pdo->prepare('SELECT * FROM users WHERE id = ? ');
+  $req->bindValue(1, $_SESSION['id']);
+
   $req->execute();
 
   $user = $req->fetch();
@@ -66,24 +77,17 @@ require_once 'photo_et_nom_users.php';
       </ul>
     </nav>
     
- <?php  if (!empty($user->file_url3) && empty($user->date_candidature)):?>  
+
+ <?php  if (isset($user->id) ) :?>
+
+                      
                  
-                       
-                 
-                         <div class="alert alert-success"><li>Compte bien créé</li></div>
+                         <div class="alert alert-success"><li>Vous êtes maintenant connecté</li></div>
 
-                  
-   <?php endif;?>
+    
+<?php endif;?>            
 
-
-
-    <?php  if (!empty($user->date_candidature)):?>  
-                 
-                       
-                 
-    <div class="alert alert-success"><li>L'Inscription a l'ENS MARRAKECH est terminée avec succès vous pouvez maintenant télécharger le reçu d'inscription</li></div>
-
-    <?php endif;?>
+    
 
 
  <div class="container"
@@ -96,10 +100,6 @@ require_once 'photo_et_nom_users.php';
   <main>
 
  
-
-
-
-
 
 
 <?php  if (empty($user->candidature)):?>

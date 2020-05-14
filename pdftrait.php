@@ -5,8 +5,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 
 
-    $requete= $pdo->prepare("SELECT * FROM users WHERE id = (SELECT MAX(id) FROM users)");
-             
+    $requete= $pdo->prepare("SELECT * FROM users WHERE id = ?");
+             $requete->bindValue(1, $_SESSION['id']);
              $requete->execute();
              $pdf = $requete->fetch();
 
@@ -149,13 +149,9 @@ $data .='<header>
 $mpdf->WriteHTML($data);
 $test=$mpdf->Output('reçu_ENS_M.pdf','D');
 
-      $transaction =  $pdf->filièreENS;
-    if (isset($transaction)){
-      
-$_SEESSION['flash']['success'] ='N\'oubliez pas de consulter votre espace pour suivre les nouveautés';
-header('location: profil.php');
+header('location : profil.php');
 
-    }
+   
 
 
 

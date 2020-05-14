@@ -25,12 +25,11 @@
 
      $pdo->prepare('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?')->execute([$user_id]);
      $_SESSION['auth'] = $user;
+     $_SESSION['id']= $user_id;
+
      $_SESSION['flash']['success'] = "votre compte a bien été validé";
       header('location: form1.php');
-      var_dump($_SESSION['auth']);
-     
 
-    
   
   }else{
 

@@ -2,13 +2,18 @@
 
 require_once 'function.php';
 
+
 session_start();
 		    
 
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-
-
+    header("Location: login.php");    
           
+       } 
+
 
         
    if (!empty($_POST)) {
@@ -37,7 +42,7 @@ session_start();
 
 
 //les variables:
-
+              
               $nom_fr = $_POST['nom_fr'];
               $nom_ar = $_POST['nom_ar'];
               $prénom_fr = $_POST['prénom_fr'];
@@ -74,7 +79,7 @@ session_start();
 
 
 
-   $insertion = $pdo->prepare("UPDATE users SET nom_fr = ?,nom_ar = ?,prénom_fr = ?,prénom_ar = ?,adresse_fr = ?,adresse_ar = ?,CNE = ?,CIN = ? ,num_télé = ?,pays = ? ,ville = ? ,date_de_naissance = ? ,sexe = ? ,Code_postal = ?,nationalité = ?,prénom_pére =? ,Nom_pére = ? ,CIN_pére = ? ,date_naissance_pére = ?,pére_décédé = ?,prénom_mére = ?,Nom_mére = ?,CIN_mére = ?,date_naissance_mére =? ,mére_décédée =? ,Assurance = ?,compte_bancaire =? WHERE id =(SELECT MAX(id) FROM users)");
+   $insertion = $pdo->prepare("UPDATE users SET nom_fr = ?,nom_ar = ?,prénom_fr = ?,prénom_ar = ?,adresse_fr = ?,adresse_ar = ?,CNE = ?,CIN = ? ,num_télé = ?,pays = ? ,ville = ? ,date_de_naissance = ? ,sexe = ? ,Code_postal = ?,nationalité = ?,prénom_pére =? ,Nom_pére = ? ,CIN_pére = ? ,date_naissance_pére = ?,pére_décédé = ?,prénom_mére = ?,Nom_mére = ?,CIN_mére = ?,date_naissance_mére =? ,mére_décédée =? ,Assurance = ?,compte_bancaire =? WHERE id = ?");
   $insertion->bindValue(1, $nom_fr);
   $insertion->bindValue(2, $nom_ar);
   $insertion->bindValue(3, $prénom_fr);
@@ -102,6 +107,7 @@ session_start();
   $insertion->bindValue(25, $mére_décédée);
   $insertion->bindValue(26, $Assurance);
   $insertion->bindValue(27, $compte_bancaire);
+  $insertion->bindValue(28, $_SESSION['id']);
 
    $insertion->execute();
 

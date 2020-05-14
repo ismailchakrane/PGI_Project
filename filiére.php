@@ -4,6 +4,13 @@ session_start();
 require_once 'photo_et_nom_users.php';
 
 
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+
+    header("Location: login.php");    
+          
+       } 
 
  if (!empty($_POST)) {
    if (!empty($_POST['filièreENS'])){
@@ -14,12 +21,12 @@ require_once 'photo_et_nom_users.php';
 
            $dure =  date("Y-m-d"); 
 
-             $requete= $pdo->prepare("UPDATE users SET filièreENS = ?,candidature = ?,date_candidature = ? WHERE id = (SELECT MAX(id) FROM users)");
+             $requete= $pdo->prepare("UPDATE users SET filièreENS = ?,candidature = ?,date_candidature = ? WHERE id = ?");
              
               $requete->bindValue(1, $filièreENS);
               $requete->bindValue(2, $candidature);
               $requete->bindValue(3, $dure);
-
+              $requete->bindValue(4, $_SESSION['id']);
              
              $requete->execute();
 

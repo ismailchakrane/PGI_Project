@@ -3,6 +3,13 @@ session_start();
 require_once 'photo_et_nom_users.php';
 
 
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+
+    header("Location: login.php");    
+          
+       } 
 
    if (!empty($_POST)) {
    if (!empty($_POST['SpécialitéBAC']) && !empty($_POST['ProvinceBAC']) && !empty($_POST['AcademyBAC']) && !empty($_POST['AnnéeBAC']) && !empty($_POST['NoteRégional']) && !empty($_POST['NoteNational'])){
@@ -19,13 +26,14 @@ require_once 'photo_et_nom_users.php';
               $NoteNational = $_POST['NoteNational'];
 
 
-  $insertion = $pdo->prepare("UPDATE users SET SpécialitéBAC = ?, ProvinceBAC = ?, AcademyBAC = ?, AnnéeBAC = ?,NoteRégional = ?,NoteNational = ? WHERE  id = (SELECT MAX(id) FROM users) ");
+  $insertion = $pdo->prepare("UPDATE users SET SpécialitéBAC = ?, ProvinceBAC = ?, AcademyBAC = ?, AnnéeBAC = ?,NoteRégional = ?,NoteNational = ? WHERE  id = ? ");
   $insertion->bindValue(1, $SpécialitéBAC);
   $insertion->bindValue(2, $ProvinceBAC);
   $insertion->bindValue(3, $AcademyBAC);
   $insertion->bindValue(4, $AnnéeBAC);
   $insertion->bindValue(5, $NoteRégional);
   $insertion->bindValue(6, $NoteNational);
+  $insertion->bindValue(7, $_SESSION['id']);
   $insertion->execute();
             
 

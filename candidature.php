@@ -4,11 +4,18 @@ session_start();
 require_once 'photo_et_nom_users.php';
 
 
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+
+    header("Location: login.php");    
+          
+       } 
 
    
     
-             $candidature = $pdo->prepare("SELECT * FROM users  WHERE id = (SELECT MAX(id) FROM users)");
-
+             $candidature = $pdo->prepare("SELECT * FROM users  WHERE id = ?");
+             $candidature->bindValue(1, $_SESSION['id']);
              $candidature->execute();
 
              $affichage = $candidature->fetch();

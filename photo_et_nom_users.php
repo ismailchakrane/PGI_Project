@@ -19,8 +19,8 @@
 
              
 
-             $requeteNom = $pdo->prepare("SELECT nom_fr,prénom_fr FROM users  WHERE id = (SELECT MAX(id) FROM users) ");
-
+             $requeteNom = $pdo->prepare("SELECT nom_fr,prénom_fr FROM users  WHERE id = ? ");
+             $requeteNom->bindValue(1, $_SESSION['id']);
              $requeteNom->execute();
 
              $NOM = $requeteNom->fetch();
@@ -28,8 +28,8 @@
 
 
 
-             $requetePHOTO = $pdo->prepare("SELECT file_url1 FROM users  WHERE id = (SELECT MAX(id) FROM users) ");
-
+             $requetePHOTO = $pdo->prepare("SELECT file_url1 FROM users  WHERE id = ? ");
+             $requetePHOTO->bindValue(1, $_SESSION['id']);
              $requetePHOTO->execute();
 
              $PHOTO = $requetePHOTO->fetch();
