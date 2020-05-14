@@ -132,6 +132,7 @@ require_once 'function.php';
              </form>
 
 
+            	                                      <br><br>
 
 <!--controle des  shamps avec le javascript-->
 
