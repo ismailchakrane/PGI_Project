@@ -12,7 +12,7 @@ require_once 'photo_et_nom_users.php';
        } 
 
    if (!empty($_POST)) {
-   if (!empty($_POST['SpécialitéBAC']) && !empty($_POST['ProvinceBAC']) && !empty($_POST['AcademyBAC']) && !empty($_POST['AnnéeBAC']) && !empty($_POST['NoteRégional']) && !empty($_POST['NoteNational'])){
+   if (!empty($_POST['SpécialitéBAC']) && $_POST['SpécialitéBAC'] != 'Filière' && !empty($_POST['ProvinceBAC']) && $_POST['ProvinceBAC'] != 'Province de votre Baccalauréat' && !empty($_POST['AcademyBAC']) && $_POST['AcademyBAC'] != 'Academy de votre Baccalauréat'  && !empty($_POST['AnnéeBAC']) && $_POST['AnnéeBAC'] != 'Année' && !empty($_POST['NoteRégional']) && !empty($_POST['NoteNational'])){
 
            
   
@@ -271,18 +271,20 @@ else{
     	<tr>
          <td>
              <label><b>Note d'examen Régional:</label>
-             <input type="text" class="form-control"  placeholder=" votre note d'examen Régional " style="width:80%;" maxlength="255"  name="NoteRégional" >
+             <input type="text" class="form-control"  placeholder=" votre note d'examen Régional " style="width:80%;" maxlength="255"  name="NoteRégional" id= "NoteRégional">
+             <span id="missNoteRégional"></span>
          </td>
          <td>
             <label><b>Note d'examen National:</label> 
-            <input type="text" class="form-control"  placeholder=" votre note d'examen National" style="width:80%;" maxlength="255"  name="NoteNational" >
+            <input type="text" class="form-control"  placeholder=" votre note d'examen National" style="width:80%;" maxlength="255"  name="NoteNational" id="NoteNational" >
+             <span id="missNoteNational"></span>
          </td>
      </tr>
 
      
         <td>
             <br><br>
-            <input class="btn btn-info" type="submit" value="Confirmer" >
+            <input class="btn btn-info" type="submit" value="Confirmer" id="submit">
             <input class="btn btn-warning" type="reset" value="Annuler" >
         </td>
       
@@ -291,8 +293,34 @@ else{
    
 </table>
 </form>
-    
+
+<!--controle des  shamps avec le javascript-->
+<script type="text/javascript">
+  var formValid = document.getElementById('submit');
+  var NoteNational = document.getElementById('NoteNational');
+  var NoteRégional = document.getElementById('NoteRégional');
+  var missNoteNational = document.getElementById('missNoteNational');
+  var missNoteRégional = document.getElementById('missNoteRégional');
+  var NoteValid = /^[012][0-9]([.,][0-9][0-9])?$/;
+
+
+formValid.addEventListener('click', validation);
+
+function validation(event){
+
+  if(NoteValid.test(NoteNational.value) == false){
+    event.preventDefault();
+    missNoteNational.textContent = 'Format incorrect';
+    missNoteNational.style.color = 'Red';
+  }
+  if(NoteValid.test(NoteRégional.value) == false){
+    event.preventDefault();
+    missNoteRégional.textContent = 'Format incorrect';
+    missNoteRégional.style.color = 'Red';
+  }
   
-      
-  </body>
+}
+
+</script>   
+</body>
 </html>

@@ -13,11 +13,11 @@ require_once 'photo_et_nom_users.php';
        } 
 
  if (!empty($_POST)) {
-   if (!empty($_POST['filièreENS'])){
+   if (!empty($_POST['filièreENS']) && $_POST['filièreENS'] != 'Les filières' ){
 
             $filièreENS = $_POST['filièreENS'];
   
-            $candidature = 'inscrit';
+            $candidature = 'Pré-inscrit';
 
            $dure =  date("Y-m-d"); 
 

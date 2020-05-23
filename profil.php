@@ -120,7 +120,7 @@ require_once 'photo_et_nom_users.php';
          0 4px  4px 0 rgba(0,0,0,.15);">
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
-      <a href="ens.php">Pré-inscription</a>
+      <a href="ens.php">Pour la Pré-inscription</a>
       <p>Du: 2020-06-01 au 2020-06-30</p>
     </div>
   </main>
@@ -142,7 +142,7 @@ require_once 'photo_et_nom_users.php';
          0 4px  4px 0 rgba(0,0,0,.15);">
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
-      <p><strong>Etat d'inscription: <span  style="color: green; ">Déja inscrit</span></strong></p>
+      <p><strong>Etat d'inscription: <span  style="color: green; ">Pré-inscrit</span></strong></p>
       <a href="pdftrait.php"><strong>le Reçu</strong></a>
     </div>
   </main>
