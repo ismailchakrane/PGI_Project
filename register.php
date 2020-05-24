@@ -42,7 +42,6 @@ if (!empty($_POST)) {
     mail($_POST['email'],'Confirmation de votre compte',"Votre compte est bien cree pour continuer les demarches d'inscription  merci de cliquer sur ce lien\n\nhttp://localhost/Projet/confirm.php?id=$user_id&token=$token");
 
     $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
-    $_SESSION['flash']['danger'] = 'Attention le token est valid pour une seul fois';
     header('location: register.php');
     exit();
     

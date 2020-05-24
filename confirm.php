@@ -32,9 +32,12 @@
 
   
   }else{
-
-    $_SESSION['flash']['danger'] = "Ce token n'est pas valide";
-    header('location: login.php');
+    
+     $_SESSION['flash']['success'] = "votre compte a bien été validé";
+      header('location: form1.php');
+      
+    /*$_SESSION['flash']['danger'] = "Ce token n'est pas valide, vous devez reconnecté";
+    header('location: login.php');*/
   }
 
 

@@ -301,23 +301,50 @@ else{
   var NoteRégional = document.getElementById('NoteRégional');
   var missNoteNational = document.getElementById('missNoteNational');
   var missNoteRégional = document.getElementById('missNoteRégional');
-  var NoteValid = /^[012][0-9]([.,][0-9][0-9])?$/;
+  var NoteValid = /^[012][0-9]([.][0-9][0-9])?$/;
+ 
 
 
 formValid.addEventListener('click', validation);
 
 function validation(event){
 
-  if(NoteValid.test(NoteNational.value) == false){
+  if(NoteNational.value < 10 ){
     event.preventDefault();
-    missNoteNational.textContent = 'Format incorrect';
+    missNoteNational.textContent = 'impossible d\'etre inscrit avec cette note';
     missNoteNational.style.color = 'Red';
   }
-  if(NoteValid.test(NoteRégional.value) == false){
+  if(NoteRégional.value < 10 ){
     event.preventDefault();
-    missNoteRégional.textContent = 'Format incorrect';
+    missNoteRégional.textContent = 'impossible d\'etre inscrit avec cette note';
     missNoteRégional.style.color = 'Red';
   }
+
+    if(NoteNational.value > 20 ){
+    event.preventDefault();
+    missNoteNational.textContent = 'impossible d\'etre inscrit avec cette note';
+    missNoteNational.style.color = 'Red';
+  }
+  if(NoteRégional.value > 20 ){
+    event.preventDefault();
+    missNoteRégional.textContent = 'impossible d\'etre inscrit avec cette note';
+    missNoteRégional.style.color = 'Red';
+  }
+
+  if(NoteValid.test(NoteNational.value) == false ){
+    event.preventDefault();
+    missNoteNational.textContent = 'Format incorrect, la forme compatible est XX.XX';
+    missNoteNational.style.color = 'Red';
+  }
+  if(NoteValid.test(NoteRégional.value) == false ){
+    event.preventDefault();
+    missNoteRégional.textContent = 'Format incorrect, la forme compatible est XX.XX';
+    missNoteRégional.style.color = 'Red';
+  }
+
+ 
+
+  
   
 }
 

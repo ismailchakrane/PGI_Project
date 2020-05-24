@@ -30,12 +30,11 @@
                  $_SESSION['auth'] = $user;
                  $_SESSION['id'] = $user->id;
               
-                 $_SESSION['flash']['success']= 'Vous êtes maintenant connecté ';
+
+                 $_SESSION['flash']['success']= 'Bien connecté';
                  header('location: profil.php');
-
-                 
-      
-
+               
+    
 
 		    }else{
                    
