@@ -153,7 +153,7 @@ session_start();
  <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
  <script src="bootstrap\js\jquery.min.js"></script>
  <script src="bootstrap\js\bootstrap.min.js"></script>
- <script src="style/farm1_valid.js"></script>
+ <script src="style/form1_valid.js"></script>
  <style>
      td{width:50%;}
      hr{border: 3px solid rgb(113, 197, 223);border-radius: 10px;}
