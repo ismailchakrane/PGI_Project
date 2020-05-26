@@ -1,7 +1,13 @@
 <?php
 
+     
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-            
+    header("Location: login.php");    
+          
+       }        
             $errors=array();
 
 

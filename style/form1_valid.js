@@ -52,15 +52,14 @@ function validation()
             var tel                 =      /^\+?([0-9]{1,3})\)?[ ]?([0-9]{4})?[ ]?([0-9]{4})$/;
             var date_naissance      =      /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/;
             var cpostal             =      /^([0-9]{5})+$/;
-            var num_bank            =      /^([0-9]{14})+$/;
-
+            
             
             //saisir en arabic 
 
 
       if(!nom_eleve_ar.value.match(alphabet_ar))
       {
-      document.getElementById('msg_nom_ar').innerHTML=" champ vide || champ contient (symbole, lettres pas arabic )";
+      document.getElementById('msg_nom_ar').innerHTML=" Entrer un nom valide (en arabe)";
       val = false;
       }
       if(nom_eleve_ar.value.match(alphabet_ar))
@@ -71,7 +70,7 @@ function validation()
 
       if(!prenom_eleve_ar.value.match(alphabet_ar))
       {
-      document.getElementById('msg_prenom_ar').innerHTML=" champ vide || champ contient (symbole, lettres pas arabic)";
+      document.getElementById('msg_prenom_ar').innerHTML=" Entrer un prénom valide (en arabe)";
       val = false;
       }
       if(prenom_eleve_ar.value.match(alphabet_ar))
@@ -82,7 +81,7 @@ function validation()
 
       if(!adress_ar.value.match(adrss_ar))
       {
-      document.getElementById('msg_adresse_ar').innerHTML=" champ vide || champ contient (lettres pas arabic )";
+      document.getElementById('msg_adresse_ar').innerHTML="Entrer une adresse valide (en arabe)";
       val = false;
       }
       if(adress_ar.value.match(adrss_ar))
@@ -95,7 +94,7 @@ function validation()
 
       if(!nom_eleve_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_nom_fr').innerHTML=" champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_nom_fr').innerHTML=" Entrer un nom valide (en français)";
       val = false;
       }
       if(nom_eleve_fr.value.match(alphabet_fr))
@@ -106,7 +105,7 @@ function validation()
 
       if(!prenom_eleve_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_prenom_fr').innerHTML=" champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_prenom_fr').innerHTML="Entrer un prénom valide (en français)";
       val = false;
       }
       if(prenom_eleve_fr.value.match(alphabet_fr))
@@ -117,7 +116,7 @@ function validation()
 
       if(!adress_fr.value.match(adrss_fr))
       {
-      document.getElementById('msg_adresse_fr').innerHTML=" champ vide || champ contient (lettres arabic )";
+      document.getElementById('msg_adresse_fr').innerHTML=" Entrer une adresse valide (en français) ";
       val = false;
       }
       if(adress_fr.value.match(adrss_fr))
@@ -128,7 +127,7 @@ function validation()
 
       if(!cni.value.match(num_cni))
       {
-      document.getElementById('msg_cni').innerHTML=" Entrez le numéro de votre CNI, tout en respectant la forme donné";
+      document.getElementById('msg_cni').innerHTML=" Veuillez entrer votre CNI, tout en respectant la forme donnée";
       val = false;
       }
       if(cni.value.match(num_cni))
@@ -139,7 +138,7 @@ function validation()
 
       if(!cne.value.match(num_cne))
       {
-      document.getElementById('msg_cne').innerHTML=" Entrez le numéro CNE, tout en respectant la forme donné";
+      document.getElementById('msg_cne').innerHTML=" Veuillez entrer votre CNE, tout en respectant la forme donnée";
       val = false;
       }
       if(cne.value.match(num_cne))
@@ -150,7 +149,7 @@ function validation()
 
       if(pays_naissance.value == "default")
       {
-      document.getElementById('msg_pays').innerHTML=" Veuillez Choisir le pays de naissance";
+      document.getElementById('msg_pays').innerHTML=" Veuillez Choisir votre pays de naissance";
       val = false;
       }
       if(pays_naissance.value != "default")
@@ -161,7 +160,7 @@ function validation()
 
       if(ville_naissance.value == "default")
       {
-      document.getElementById('msg_ville').innerHTML=" Veuillez Choisir la ville de naissance";
+      document.getElementById('msg_ville').innerHTML=" Veuillez Choisir votre ville de naissance";
       val = false;
       }
       if(ville_naissance.value != "default")
@@ -172,7 +171,7 @@ function validation()
 
       if(!birthday_eleve.value.match(date_naissance))
       {
-      document.getElementById('msg_birthday_eleve').innerHTML=" Entrez la date naissance du vous, tout en respectant la forme donné";
+      document.getElementById('msg_birthday_eleve').innerHTML=" Veuillez entrer votre  date de naissance , tout en respectant la forme donnée";
       val = false;
       }
       if(birthday_eleve.value.match(date_naissance))
@@ -183,7 +182,7 @@ function validation()
 
       if(sexe.value == "default")
       {
-      document.getElementById('msg_sexe').innerHTML=" Veuillez Choisir le sexe du vous";
+      document.getElementById('msg_sexe').innerHTML=" Veuillez Choisir votre sexe ";
       val = false;
       }
       if(sexe.value != "default")
@@ -194,7 +193,7 @@ function validation()
 
       if(!code_postal.value.match(cpostal))
       {
-      document.getElementById('msg_cpostal').innerHTML=" Entrez les 5 chiffre de code postal";
+      document.getElementById('msg_cpostal').innerHTML=" Veuillez entrer le code postal (composé de 5 chiffres) ";
       val = false;
       }
       if(code_postal.value.match(cpostal))
@@ -205,7 +204,7 @@ function validation()
 
       if(!nationalite.value.match(alphabet_fr))
       {
-      document.getElementById('msg_nationalite').innerHTML=" Entrez la nationalitéde vous";
+      document.getElementById('msg_nationalite').innerHTML="Veuillez entrer votre nationalité ";
       val = false;
       }
       if(nationalite.value.match(alphabet_fr))
@@ -216,7 +215,7 @@ function validation()
 
       if(!numero.value.match(tel))
       {
-      document.getElementById('msg_tel').innerHTML=" Entrez le numéro téléphone, tout en respectant la forme donné";
+      document.getElementById('msg_tel').innerHTML=" Veuillez entrer un  numéro de téléphone, tout en respectant la forme donnée";
       val = false;
       }
       if(numero.value.match(tel))
@@ -229,7 +228,7 @@ function validation()
 
       if(!nom_pere_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_nom_pere').innerHTML="  champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_nom_pere').innerHTML="  Veuillez entrer le nom valide de votre père (en français) ";
       val = false;
       }
       if(nom_pere_fr.value.match(alphabet_fr))
@@ -240,7 +239,7 @@ function validation()
 
       if(!prenom_pere_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_prenom_pere').innerHTML=" champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_prenom_pere').innerHTML="Veuillez entrer le prénom valide de votre père (en français) ";
       val = false;
       }
       if(prenom_pere_fr.value.match(alphabet_fr))
@@ -251,7 +250,7 @@ function validation()
 
       if(!cni_pere.value.match(num_cni))
       {
-      document.getElementById('msg_cni_pere').innerHTML=" Entrez le numéro CNI du pére, tout en respectant la forme donné";
+      document.getElementById('msg_cni_pere').innerHTML=" Veuillez entrer le CNI du père, tout en respectant la forme donnée";
       val = false;
       }
       if(cni_pere.value.match(num_cni))
@@ -261,7 +260,7 @@ function validation()
       }
       if(!birthday_pere.value.match(date_naissance))
       {
-      document.getElementById('msg_birthday_pere').innerHTML=" Entrez la date naissance du pére, tout en respectant la forme donné";
+      document.getElementById('msg_birthday_pere').innerHTML=" Veuillez entrer la date de naissance du père, tout en respectant la forme donnée";
       val = false;
       }
       if(birthday_pere.value.match(date_naissance))
@@ -275,7 +274,7 @@ function validation()
 
       if(!nom_mere_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_nom_mere').innerHTML=" champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_nom_mere').innerHTML=" Veuillez entrer le nom valide de votre mère (en français) ";
       val = false;
       }
       if(nom_mere_fr.value.match(alphabet_fr))
@@ -286,7 +285,7 @@ function validation()
 
       if(!prenom_mere_fr.value.match(alphabet_fr))
       {
-      document.getElementById('msg_prenom_mere').innerHTML=" champ vide || champ contient (symbole, lettres arabic )";
+      document.getElementById('msg_prenom_mere').innerHTML="  Veuillez entrer le prénom valide de votre mère (en français)";
       val = false;
       }
       if(prenom_mere_fr.value.match(alphabet_fr))
@@ -297,7 +296,7 @@ function validation()
 
       if(!cni_mere.value.match(num_cni))
       {
-      document.getElementById('msg_cni_mere').innerHTML=" Entrez le numéro CNI du mére, tout en respectant la forme donné";
+      document.getElementById('msg_cni_mere').innerHTML="  Veuillez entrer le  CNI du mère, tout en respectant la forme donné";
       val = false;
       }
       if(cni_mere.value.match(num_cni))
@@ -307,7 +306,7 @@ function validation()
       }
       if(!birthday_mere.value.match(date_naissance))
       {
-      document.getElementById('msg_birthday_mere').innerHTML=" Entrez la date naissance du mére, tout en respectant la forme donné";
+      document.getElementById('msg_birthday_mere').innerHTML="  Veuillez entrer la date de naissance du mère, tout en respectant la forme donnée";
       val = false;
       }
       if(birthday_mere.value.match(date_naissance))
@@ -320,7 +319,7 @@ function validation()
       
       if(assurance.value == "default")
       {
-      document.getElementById('msg_assurance').innerHTML=" Veuillez Choisir le type d'assurance médicale du vous";
+      document.getElementById('msg_assurance').innerHTML=" Veuillez Choisir le type de votre d'assurance médicale ";
       val = false;
       }
       if(assurance.value != "default")

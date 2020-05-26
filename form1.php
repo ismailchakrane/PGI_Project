@@ -240,16 +240,16 @@ session_start();
     <tr>
         <td>
             <label><b>Adresse :<br><span class="msg_error" id="msg_adresse_fr"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter votre adresse" style="width:80%;" minlength="10" maxlength="100" id="adress_fr" name="adresse_fr" required>
+            <input type="text" class="form-control"  placeholder="Enter votre adresse" style="width:80%;" minlength="10" maxlength="255" id="adress_fr" name="adresse_fr" required>
         </td>
        <td>
             <label><b> Adresse en Arabe :<br><span class="msg_error" id="msg_adresse_ar"></span></label> 
-             <input type="text" class="form-control"  placeholder="Enter votre adresse en Arabe" style="width:80%;" minlength="10" maxlength="100" id="adress_ar" name="adresse_ar" required>
+             <input type="text" class="form-control"  placeholder="Enter votre adresse en Arabe" style="width:80%;" minlength="10" maxlength="255" id="adress_ar" name="adresse_ar" required>
        </td>
    </tr>
     <tr>
          <td>
-           <label><b><abbr title="CARTE NATIONALE D'IDENTITE" style="text-decoration:none;">CNI:<br></abbr>
+           <label><b><abbr title="CODE NATIONALE D'IDENTITE" style="text-decoration:none;">CNI:<br></abbr>
                 <span class="msg_error" id="msg_cni"></span></label>
              <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;"  id="CNI" name="CIN" required>
          </td>
@@ -367,7 +367,7 @@ session_start();
         </td>
         <td>
             <label><b>Nationalité :<br><span class="msg_error" id="msg_nationalite"></span></label><br>
-            <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" minlength="2" maxlength="30" id="nationalite" name="nationalité" required>
+            <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" minlength="2" maxlength="40" id="nationalite" name="nationalité" required>
         </td>
    </tr>
    <tr>
@@ -380,42 +380,42 @@ session_start();
 
 </table>
 
-<!--Information sur le pére -->
+<!--Information sur le père -->
 
 
 <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
-        <hr><h3>Information sur le pére</h3><hr>
+        <hr><h3>Information sur le père</h3><hr>
         </td>
     </tr>
     
    <tr>
         <td>
-            <label><b>Prénom du pére :<br><span class="msg_error" id="msg_prenom_pere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" 
+            <label><b>Prénom du père :<br><span class="msg_error" id="msg_prenom_pere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
             style="width:80%;" minlength="2" maxlength="40" id="prenom_pere" name="prénom_pére" required>
         </td>
         <td>
-            <label><b>Nom du pére :<br><span class="msg_error" id="msg_nom_pere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" 
+            <label><b>Nom du père :<br><span class="msg_error" id="msg_nom_pere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
             style="width:80%;" minlength="2" maxlength="40" id="Nom_pere" name="Nom_pére" required>
         </td>
     </tr>
     <tr>
         <td>
-            <label><b>CNI du pére :<br><span class="msg_error" id="msg_cni_pere"></span></label>
+            <label><b>CNI du père :<br><span class="msg_error" id="msg_cni_pere"></span></label>
             <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
         </td>
         <td>
-            <label><b>Date de naissance du pére :<br><span class="msg_error" id="msg_birthday_pere"></label>
+            <label><b>Date de naissance du père :<br><span class="msg_error" id="msg_birthday_pere"></label>
             <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
             id="date_naissance_pere" name="date_naissance_pére" required>
         </td>
     </tr>
     <tr>
         <td>
-          <label class="form-check-label"><b>votre pére est t-il décédé ?</b></label>
+          <label class="form-check-label"><b>votre père est t-il décédé ?</b></label>
           
           	OUI: 
           	<input  type="radio" value="OUI"name="pére_décédé" required> 
@@ -427,42 +427,42 @@ session_start();
        
 </table>
 
-<!--Information sur la mére -->
+<!--Information sur la mère -->
 
 <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
-            <hr><h3>Information sur la mére</h3><hr>
+            <hr><h3>Information sur la mère</h3><hr>
         </td>
     </tr>
     
    <tr>
         <td>
-            <label><b>Prénom du mére :<br><span class="msg_error" id="msg_prenom_mere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" 
+            <label><b>Prénom du mère :<br><span class="msg_error" id="msg_prenom_mere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
             style="width:80%;" minlength="2" maxlength="40" id="prenom_mere" name="prénom_mére" required>
         </td>
         <td>
-            <label><b>Nom du mére :<br><span class="msg_error" id="msg_nom_mere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" 
+            <label><b>Nom du mère :<br><span class="msg_error" id="msg_nom_mere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
             style="width:80%;" minlength="2" maxlength="40" id="Nom_mere" name="Nom_mére" required>
         </td>
     </tr>
     <tr>
         <td>
-            <label><b>CNI du mére :<br><span class="msg_error" id="msg_cni_mere"></span></label>
+            <label><b>CNI du mère :<br><span class="msg_error" id="msg_cni_mere"></span></label>
             <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" 
             style="width:80%;" id="CNI_mere" name="CIN_mére" required>
         </td>
         <td>
-            <label><b>Date de naissance du mére :<br><span class="msg_error" id="msg_birthday_mere"></label>
+            <label><b>Date de naissance du mère :<br><span class="msg_error" id="msg_birthday_mere"></label>
             <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
             id="date_naissance_mere" name="date_naissance_mére" required>
         </td>
     </tr>
     <tr>
         <td>
-          <label class="form-check-label"><b>votre mére est t-elle décédée ?</b></label>
+          <label class="form-check-label"><b>votre mère est t-elle décédée ?</b></label>
             OUI: 
           	<input  type="radio" value="OUI"name="mére_décédée" required> 
           	NON: 
@@ -477,7 +477,7 @@ session_start();
 <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
-            <hr><h3>Information relatives à l'Assurance Maladie Obligatoire</h3><hr>
+            <hr><h3>Information relatives à l'Assurance des Maladies Obligatoires </h3><hr>
         </td>
     </tr>
     
@@ -495,8 +495,8 @@ session_start();
             </select>
         </td>
         <td>
-            <label><b>Avez-vous un compte bancaire?<br><span class="msg_error" id="msg_rib"></span></label>
-            <input type="text" class="form-control"  placeholder="Entre le numéro de compte bancaire" style="width:80%;" pattern="/^([0-9]{14})+$/" title="Entre les 14 chiffre de numéro compte bancaire" name="compte_bancaire" >
+            <label><b>Avez-vous un compte bancaire?<br></label>
+              <input type="text" class="form-control"  placeholder="Entre le numéro de compte bancaire" style="width:80%;" pattern="^[0-9]{14}$"  title="Entre les 14 chiffre de numéro compte bancaire" name="compte_bancaire" >
         </td>
     </tr>
     

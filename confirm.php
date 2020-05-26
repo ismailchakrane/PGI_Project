@@ -1,5 +1,6 @@
 <?php
 
+      
 //récupération des données avec l'adresse url:
  $user_id = $_GET['id'];
 
@@ -33,6 +34,11 @@
   
   }else{
     
+    
+     $pdo->prepare('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?')->execute([$user_id]);
+     $_SESSION['auth'] = $user;
+     $_SESSION['id']= $user_id;
+
      $_SESSION['flash']['success'] = "votre compte a bien été validé";
       header('location: form1.php');
       

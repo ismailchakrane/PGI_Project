@@ -1,7 +1,16 @@
 <?php
+session_start();
 require_once 'photo_et_nom_users.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
+
+      if (empty($_SESSION['id'])) {
+        
+    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+
+    header("Location: login.php");    
+          
+       } 
 
 
 

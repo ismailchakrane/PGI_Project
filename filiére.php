@@ -19,7 +19,7 @@ require_once 'photo_et_nom_users.php';
   
             $candidature = 'Pré-inscrit';
 
-           $dure =  date("Y-m-d"); 
+           $dure =  date("d/m/Y"); 
 
              $requete= $pdo->prepare("UPDATE users SET filièreENS = ?,candidature = ?,date_candidature = ? WHERE id = ?");
              
