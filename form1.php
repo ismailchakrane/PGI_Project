@@ -152,10 +152,12 @@ session_start();
 
  <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
  <script src="bootstrap\js\jquery.min.js"></script>
- <script src="bootstrap\js\bootstrap.min.js"></script>   
+ <script src="bootstrap\js\bootstrap.min.js"></script>
+ <script src="style/farm1_valid.js"></script>
  <style>
      td{width:50%;}
      hr{border: 3px solid rgb(113, 197, 223);border-radius: 10px;}
+     .msg_error{ color: red; font-size: 14.4px;}
  </style>
 	 
 </head>
@@ -196,12 +198,14 @@ session_start();
                      <?php unset($_SESSION['flash']); ?>
                  <?php endif;?>
 
-<form action="" method="POST">
+
+	<form action="" method="POST" name="valid_form" onclick ="validation()">
+
 
 
 <!--Information personelle-->
 
-<table align="right" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin: 10px 0; border: 5;">
+<table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
         <hr><h3>Information Personelle</h3><hr>
@@ -212,58 +216,62 @@ session_start();
    
      <tr>
          <td>
-             <label><b>Nom :</label>
-             <input type="text" class="form-control"  placeholder="Enter votre nom" style="width:80%;" maxlength="255" id="nom" name="nom_fr" >
+             <label><b>Nom :<br> <span class="msg_error" id="msg_nom_fr"></span></label>
+                <input type="text" class="form-control"  placeholder="Enter votre nom" style="width:80%;" 
+                 minlength="2" maxlength="40" id="nom_fr" name="nom_fr" required>
          </td>
          <td>
-            <label><b>Nom en Arabe :</label> 
-            <input type="text" class="form-control"  placeholder="Enter votre nom en Arabe" style="width:80%;" maxlength="255" id="nom_ar" name="nom_ar" >
+          
+ 
+            <label><b>Nom en Arabe :<br><span class="msg_error" id="msg_nom_ar"></span></label>
+        <input type="text" class="form-control"  placeholder="Enter votre nom en Arabe " style="width:80%;" minlength="2" maxlength="40" id="nom_ar" name="nom_ar" required>
          </td>
      </tr>
      <tr>
          <td>
-             <label><b>Prénom :</label>
-             <input type="text" class="form-control"  placeholder="Enter votre prénom" style="width:80%;" maxlength="255" id="prénom" name="prénom_fr" >
+             <label><b>Prénom :<br><span class="msg_error" id="msg_prenom_fr"></span></label>
+             <input type="text" class="form-control"  placeholder="Enter votre prénom" style="width:80%;" minlength="2" maxlength="40" id="prenom_fr" name="prénom_fr" required>
          </td>
         <td>
-             <label><b>Prénom en Arabe :</label> 
-             <input type="text" class="form-control"  placeholder="Enter votre prénom en Arabe" style="width:80%;" maxlength="255" id="prénom_ar" name="prénom_ar" >
+             <label><b>Prénom en Arabe :<br><span class="msg_error" id="msg_prenom_ar"></span></label> 
+             <input type="text" class="form-control"  placeholder="Enter votre prénom en Arabe" style="width:80%;" minlength="2" maxlength="40" id="prenom_ar" name="prénom_ar" required>
         </td>
     </tr>
     <tr>
         <td>
-            <label><b>Adresse :</label>
-            <input type="text" class="form-control"  placeholder="Enter votre adresse" style="width:80%;" maxlength="255" id="adresse" name="adresse_fr" >
+            <label><b>Adresse :<br><span class="msg_error" id="msg_adresse_fr"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter votre adresse" style="width:80%;" minlength="10" maxlength="100" id="adress_fr" name="adresse_fr" required>
         </td>
        <td>
-            <label><b> Adresse en Arabe :</label> 
-             <input type="text" class="form-control"  placeholder="Enter votre adresse en Arabe" style="width:80%;" maxlength="255" id="adresse_ar" name="adresse_ar" >
+            <label><b> Adresse en Arabe :<br><span class="msg_error" id="msg_adresse_ar"></span></label> 
+             <input type="text" class="form-control"  placeholder="Enter votre adresse en Arabe" style="width:80%;" minlength="10" maxlength="100" id="adress_ar" name="adresse_ar" required>
        </td>
    </tr>
     <tr>
          <td>
-             <label><b>CIN:</label>
-             <input type="text" class="form-control"  placeholder="Enter le numéro de votre CIN" style="width:80%;" maxlength="255" id="CIN" name="CIN" >
+           <label><b><abbr title="CARTE NATIONALE D'IDENTITE" style="text-decoration:none;">CNI:<br></abbr>
+                <span class="msg_error" id="msg_cni"></span></label>
+             <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;"  id="CNI" name="CIN" required>
          </td>
         <td>
-             <label><b>CNE:</label> 
-             <input type="text" class="form-control"  placeholder="Enter le numéro de votre CNE" style="width:80%;" maxlength="255" id="num_télé" name="CNE" >
+            <label><b><abbr title="CODE NATIONAL D'ETUDIENT" style="text-decoration:none;">CNE:<br></abbr>
+                <span class="msg_error" id="msg_cne"></span></label> 
+             <input type="text" class="form-control"  placeholder="Ex : G000000001" style="width:80%;" 
+              id="CNE" name="CNE" required>
         </td>
     </tr>
     <tr>
          <td>
-             <label><b>Pays de naissance :</label>
-             <select class="browser-default custom-select" style="width:80%;"
-             name="pays">
-                     <option selected>Veuillez choisir votre pays</option>
+             <label><b>Pays de naissance :<br><span class="msg_error" id="msg_pays"></span></label>
+             <select class="browser-default custom-select" style="width:80%;" name="pays" required>
+                     <option selected value="default">Veuillez choisir votre pays</option>
                      <option value="Maroc">Maroc</option>
              </select>
          </td>
          <td>
-             <label><b>Ville de naissance :</label>
-             <select class="browser-default custom-select" style="width:80%;"
-             name="ville">
-                     <option selected>Veuillez choisir votre Ville</option>
+             <label><b>Ville de naissance :<br><span class="msg_error" id="msg_ville"></span></label>
+             <select class="browser-default custom-select" style="width:80%;" name="ville" id="ville" required>
+                     <option selected value="default">Veuillez choisir votre Ville</option>
                      <option value="casablanca">casablanca</option>
                      <option value="Fez">Fez</option>
                      <option value="Tangier">Tangier</option>
@@ -338,14 +346,15 @@ session_start();
     </tr>
     <tr>
         <td>
-            <label><b>Date de naissance :</label>
-                <input type="date" class="form-control"  placeholder="Enter votre date de naissance" style="width:80%;" maxlength="255" id="date_naissance" name="date_de_naissance" >
+            <label><b>Date de naissance :<br><span class="msg_error" id="msg_birthday_eleve"></label>
+                <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+                id="date_naissance_eleve" name="date_de_naissance"  required>
         </td>
         <td>
-            <label><b>Sexe :</label><br>
+            <label><b>Sexe :<br><span class="msg_error" id="msg_sexe"></span></label><br>
             <select class="browser-default custom-select" style="width:80%;"
-            name="sexe">
-                     <option selected>--sexe--</option>
+            name="sexe" required>
+                     <option selected value="default">--sexe--</option>
                      <option value="M">Masculin</option>
                      <option value="F">Féminin</option>
             </select>
@@ -353,18 +362,19 @@ session_start();
    </tr>
     <tr>
         <td>
-            <label><b>Code postal :</label><br>
-            <input type="text" class="form-control"  placeholder="Enter votre Code postal" style="width:80%;" maxlength="255" id="Code postal" name="Code_postal" >
+            <label><b>Code postal :<br><span class="msg_error" id="msg_cpostal"></span></label><br>
+        <input type="text" class="form-control"  placeholder="Ex: 10000" style="width:80%;"  id="code_postal" name="Code_postal" required>
         </td>
         <td>
-            <label><b>Nationalité :</label><br>
-            <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" maxlength="255" id="nationalité" name="nationalité" >
+            <label><b>Nationalité :<br><span class="msg_error" id="msg_nationalite"></span></label><br>
+            <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" minlength="2" maxlength="30" id="nationalite" name="nationalité" required>
         </td>
    </tr>
    <tr>
     <td>
-       <label><b>Numéro de téléphone :</label> 
-             <input type="tel" class="form-control"  placeholder="Enter votre numéro de téléphone" style="width:80%;" maxlength="255" id="num_télé" name="num_télé" >
+       <label><b>
+       Numéro de téléphone :<br><span class="msg_error" id="msg_tel"></span></label>
+             <input type="text" class="form-control"  placeholder="Ex : +212 0000 0001" style="width:80%;" id="num_tel" name="num_télé" required>
     </td>
    </tr>
 
@@ -373,7 +383,7 @@ session_start();
 <!--Information sur le pére -->
 
 
-<table align="right" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin: 10px 0; border: 5;">
+<table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
         <hr><h3>Information sur le pére</h3><hr>
@@ -382,32 +392,35 @@ session_start();
     
    <tr>
         <td>
-            <label><b>Prénom du pére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" style="width:80%;" maxlength="255" id="prénom_mére" name="prénom_pére" >
+            <label><b>Prénom du pére :<br><span class="msg_error" id="msg_prenom_pere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" 
+            style="width:80%;" minlength="2" maxlength="40" id="prenom_pere" name="prénom_pére" required>
         </td>
         <td>
-            <label><b>Nom du pére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" style="width:80%;" maxlength="255" id="Nom_pére" name="Nom_pére" >
+            <label><b>Nom du pére :<br><span class="msg_error" id="msg_nom_pere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre pére" 
+            style="width:80%;" minlength="2" maxlength="40" id="Nom_pere" name="Nom_pére" required>
         </td>
     </tr>
     <tr>
         <td>
-            <label><b>CIN du pére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le CIN de votre pére" style="width:80%;" maxlength="255" id="CIN_pére" name="CIN_pére" >
+            <label><b>CNI du pére :<br><span class="msg_error" id="msg_cni_pere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le CIN de votre pére" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
         </td>
         <td>
-            <label><b>Date de naissance du pére :</label>
-            <input type="date" class="form-control"  placeholder="Enter la date de naissance de votre pére" style="width:80%;" maxlength="255" id="date_naissance_pére" name="date_naissance_pére" >
+            <label><b>Date de naissance du pére :<br><span class="msg_error" id="msg_birthday_pere"></label>
+            <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+            id="date_naissance_pere" name="date_naissance_pére" required>
         </td>
     </tr>
     <tr>
         <td>
           <label class="form-check-label"><b>votre pére est t-il décédé ?</b></label>
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          
           	OUI: 
-          	<input  type="radio" value="OUI"name="pére_décédé"> 
+          	<input  type="radio" value="OUI"name="pére_décédé" required> 
           	NON: 
-          	<input  type="radio" value="NON"name="pére_décédé">
+          	<input  type="radio" value="NON"name="pére_décédé" required>
          
         </td>
     </tr>
@@ -416,7 +429,7 @@ session_start();
 
 <!--Information sur la mére -->
 
-<table align="right" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin: 10px 0; border: 5;">
+<table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
             <hr><h3>Information sur la mére</h3><hr>
@@ -425,32 +438,35 @@ session_start();
     
    <tr>
         <td>
-            <label><b>Prénom du mére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" style="width:80%;" maxlength="255" id="prénom_mére" name="prénom_mére" >
+            <label><b>Prénom du mére :<br><span class="msg_error" id="msg_prenom_mere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" 
+            style="width:80%;" minlength="2" maxlength="40" id="prenom_mere" name="prénom_mére" required>
         </td>
         <td>
-            <label><b>Nom du mére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" style="width:80%;" maxlength="255" id="Nom_mére" name="Nom_mére" >
+            <label><b>Nom du mére :<br><span class="msg_error" id="msg_nom_mere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le prénom de votre mére" 
+            style="width:80%;" minlength="2" maxlength="40" id="Nom_mere" name="Nom_mére" required>
         </td>
     </tr>
     <tr>
         <td>
-            <label><b>CIN du mére :</label>
-            <input type="text" class="form-control"  placeholder="Enter le CIN de votre mére" style="width:80%;" maxlength="255" id="CIN_mére" name="CIN_mére" >
+            <label><b>CNI du mére :<br><span class="msg_error" id="msg_cni_mere"></span></label>
+            <input type="text" class="form-control"  placeholder="Enter le CIN de votre mére" 
+            style="width:80%;" id="CNI_mere" name="CIN_mére" required>
         </td>
         <td>
-            <label><b>Date de naissance du mére :</label>
-            <input type="date" class="form-control"  placeholder="Enter la date de naissance de votre mére" style="width:80%;" maxlength="255" id="date_naissance_mére" name="date_naissance_mére" >
+            <label><b>Date de naissance du mére :<br><span class="msg_error" id="msg_birthday_mere"></label>
+            <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+            id="date_naissance_mere" name="date_naissance_mére" required>
         </td>
     </tr>
     <tr>
         <td>
           <label class="form-check-label"><b>votre mére est t-elle décédée ?</b></label>
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             OUI: 
-          	<input  type="radio" value="OUI"name="mére_décédée"> 
+          	<input  type="radio" value="OUI"name="mére_décédée" required> 
           	NON: 
-          	<input  type="radio" value="NON"name="mére_décédée">
+          	<input  type="radio" value="NON"name="mére_décédée" required>
          
         </td>
     </tr>
@@ -458,7 +474,7 @@ session_start();
 </table>
 <!--l'Assurance -->
 
-<table align="right" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin: 10px 0; border: 5;">
+<table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td>
             <hr><h3>Information relatives à l'Assurance Maladie Obligatoire</h3><hr>
@@ -467,18 +483,20 @@ session_start();
     
    <tr>
         <td>
-            <label><b>Avez-vous une Assurance Médicale?</label>
+        <label><b>Avez-vous une Assurance Médicale?<br>
+            <span class="msg_error" id="msg_assurance"></span>
+        </label>
            <select class="browser-default custom-select" style="width:80%;"
-           name="Assurance">
-                     <option selected>Avez-vous une Assurance Médicale?</option>
+           name="Assurance" required>
+                     <option selected value="default">Avez-vous une Assurance Médicale?</option>
                      <option value="CNOPS">CNOPS</option>
                      <option value="SANAD">SANAD</option>
                      <option value="Autres">Autres</option>
             </select>
         </td>
         <td>
-            <label><b>Avez-vous un compte bancaire?</label>
-            <input type="text" class="form-control"  placeholder="Si vous avez un numéro de compte(RIB) afin de l'utiliser pour l'Assurance" style="width:80%;" maxlength="255" name="compte_bancaire" >
+            <label><b>Avez-vous un compte bancaire?<br><span class="msg_error" id="msg_rib"></span></label>
+            <input type="text" class="form-control"  placeholder="Entre le numéro de compte bancaire" style="width:80%;" pattern="/^([0-9]{14})+$/" title="Entre les 14 chiffre de numéro compte bancaire" name="compte_bancaire" >
         </td>
     </tr>
     
@@ -486,11 +504,11 @@ session_start();
 </table>
 
 
-<table align="right" cellpadding="10" cellspacing="10" width="80%" class="mod-form" style="margin: 10px 0; border: 5;">
+<table align="right" cellpadding="10" cellspacing="10" width="110%" class="mod-form" style="margin: 10px 0; border: 5;">
     <tr>
         <td align="center">
-            <input class="btn btn-info" type="submit" value="Continuer"  >
-            <input class="btn btn-warning" type="reset" value="Annuler" >
+            <input class="btn btn-info" type="submit" value="Continuer">
+            <input class="btn btn-warning" type="reset" value="Annuler" style="margin-left: 10px;">
         </td>
       
     </tr>
