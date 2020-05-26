@@ -405,7 +405,7 @@ session_start();
     <tr>
         <td>
             <label><b>CNI du pére :<br><span class="msg_error" id="msg_cni_pere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le CIN de votre pére" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
+            <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
         </td>
         <td>
             <label><b>Date de naissance du pére :<br><span class="msg_error" id="msg_birthday_pere"></label>
@@ -451,7 +451,7 @@ session_start();
     <tr>
         <td>
             <label><b>CNI du mére :<br><span class="msg_error" id="msg_cni_mere"></span></label>
-            <input type="text" class="form-control"  placeholder="Enter le CIN de votre mére" 
+            <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" 
             style="width:80%;" id="CNI_mere" name="CIN_mére" required>
         </td>
         <td>
