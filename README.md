@@ -1,1 +1,3 @@
 # PGI_Project
+
+This is a platform that allows you to manipulate a member area for students who will be enrolled at a chosen university. Requirements: A Windows Web development environment for Apache, MySQL, PHP databases, ...
