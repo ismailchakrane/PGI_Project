@@ -67,6 +67,7 @@ if(isset($_POST['envoye']))
 <head>
 	<title>Contact - plateforme de gestion d'inscription</title>
 	<meta charset="utf-8">
+	<link rel="shortcut icon" href="style/Icon/pgicon.ico">
 	<link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 	
