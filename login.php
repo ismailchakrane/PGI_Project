@@ -50,7 +50,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<link rel="shortcut icon" href="style/Icon/pgicon.ico">
 	<meta charset="utf-8">
 	<title>Se connecte - Plateform de Gestion d'inscription</title>
 	
