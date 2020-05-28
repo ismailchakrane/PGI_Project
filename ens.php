@@ -240,16 +240,16 @@ else{
                      <option selected>Academy de votre Baccalauréat</option>
                        <option value="Tanger_Tetouan">Tanger - Tetouan - Alhouceima</option>
                      <option value="draa_tafilalt">Drâa Tafilalt</option>
+                   <option value="Rabat_Salé">Rabat-Salé-Kénitra</option>
                      <option value="Meknes_fes">Fès-Meknès</option>
-                     <option value="Rabat_Salé">Rabat-Salé-Kénitra</option>
+                   <option value="Orientale">Orientale</option>
                      <option value="Casablanca_settat">Casablanca-Settat</option>
-                     <option value="Orientale">Orientale</option>
                      <option value="Marrakech_safi">Marrakech-Safi</option>
+                   <option value="bnimellal_khnefra">Béni Mellal-Khénifra</option>
+                    <option value="Sous_Massa">Souss-Massa</option>
                      <option value="laayoun_sakia">Laâyoune-Sakia El Hamra</option>
-                     <option value="guelmim_oued">Guelmim-Oued Noun</option>
-                     <option value="Sous_Massa">Souss-Massa</option>
                      <option value="dakhla_dahb">Dakhla-Oued Ed-Dahab</option>
-                     <option value="bnimellal_khnefra">Béni Mellal-Khénifra</option>
+                   <option value="guelmim_oued">Guelmim-Oued Noun</option>
 
               </select>
       </td>
