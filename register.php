@@ -108,7 +108,7 @@ if (!empty($_POST)) {
 <!DOCTYPE html>
 <html>
 <head>
-
+	<link rel="shortcut icon" href="style/Icon/pgicon.ico">
 	<meta charset="utf-8">
 	<title>Créer un compte</title>
 	
