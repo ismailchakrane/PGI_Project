@@ -64,7 +64,7 @@ else{
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Inscription a l'ENS Marrakech</title>
-
+<link rel="shortcut icon" href="style/Icon/pgicon.ico">
  <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
  <script src="bootstrap\js\jquery.min.js"></script>
  <script src="bootstrap\js\bootstrap.min.js"></script>   
