@@ -39,7 +39,62 @@ if (!empty($_POST)) {
 
     $req->execute([$_POST['email'],$password,$token]);
     $user_id = $pdo->lastInsertId();
-    mail($_POST['email'],'Confirmation de votre compte',"Votre compte est bien cree pour continuer les demarches d'inscription  merci de cliquer sur ce lien\n\nhttp://localhost/Projet/confirm.php?id=$user_id&token=$token");
+	$header="MIME-Version: 1.0\r\n";
+    $header.='Content-Type:text/html; charset="uft-8"'."\n";
+    $header.='Content-Transfer-Encoding: 8bit';
+    $message='
+    <html>
+      <body>
+        <div align="center" style="margin:0;padding:0;width:100%;background-color:#B2E0E6">
+
+<div align="center" >
+<br>
+  <div border="0" style="margin:0;padding:0" >
+      
+    <table border="0" cellpadding="0" cellspacing="0" width="600" style="border:1px ;background-color:#ffffff;max-width:600px">
+          <tr>
+            <td style="margin:0;padding:10px 40px;background:#43AFBC;">
+              <strong style="color:black;text-transform:uppercase; letter-spacing: 3px">
+            PGI: plateforme de Gestion d’Inscription</strong>
+            </td>
+          </tr>
+        </table>
+          </div><br>
+
+
+          <div style="background-color: white;width: 80.5%;">
+    <table border="0" cellpadding="0" cellspacing="0" width="600" style="border:1px;background-color:#white;max-width:600px">
+                  
+<div style="color:#222222;font-family:Verdana,Geneva,sans-serif;font-size:100%;line-height:150%;text-align:left;word-wrap:break-word">
+                            
+<br>
+<p style="margin-left: 15px; margin-top: 12px;">Bonjour<strong> Mr/Mme</strong>,</p>
+<div>
+
+  <br>
+  <center>
+    <a href="http://localhost/Projet/confirm.php?id=$user_id&token=$token" target="_blank" style="background-color:#81C0E4;border:1px;color:#ffffff;font-family:cursive;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:250px;
+    padding: 17px 17px 17px 17px">
+        Confirmez votre compte
+     </a>
+  </center>
+  <br>
+</div>
+  
+      <div style="margin-left: 40px; font-family: all">                  
+  <span><b>
+      <br><br>
+  — Envoyé par PGI: Plateforme de Gestion d’Inscription</b><br><br>
+      </span>
+    </table><br></div></div>
+
+
+      <br>
+  </div>
+      </body>
+    </html>
+    ';
+    mail($_POST['email'],'Confirmation de votre compte', $message, $header);
 
     $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
     header('location: register.php');
