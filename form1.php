@@ -148,6 +148,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="style/Icon/pgicon.ico">
 <title>Formulaire d'inscription </title>
 
  <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
