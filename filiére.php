@@ -59,6 +59,7 @@ else{
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+        <link rel="shortcut icon" href="style/Icon/pgicon.ico">
     <meta charset="utf-8">
     <title>Page de profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
