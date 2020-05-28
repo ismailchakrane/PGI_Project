@@ -238,23 +238,19 @@ else{
         <label><b>Academy de votre Baccalauréat</label>
              <select class="browser-default custom-select" style="width:80%;" name="AcademyBAC">
                      <option selected>Academy de votre Baccalauréat</option>
-                     <option value="Tanger Tetouan">Tanger Tetouan</option>
-                     <option value="Taza Elhouceima">Taza Elhouceima Taounate</option>
-                     <option value="Fes Boulmane">Fes Boulmane</option>
-                     <option value="Meknes Tafilalt">Meknes Tafilalt</option>
-                     <option value="Tadla Azilal">Tadla Azilal</option>
-                     <option value="Dakhla Abda">Dakhla Abda</option>
-                     <option value="Rabat Salé">Rabat Salé Zemour Zair</option>
-                     <option value="Grand Casablanca">Grand Casablanca</option>
+                       <option value="Tanger_Tetouan">Tanger - Tetouan - Alhouceima</option>
+                     <option value="draa_tafilalt">Drâa Tafilalt</option>
+                     <option value="Meknes_fes">Fès-Meknès</option>
+                     <option value="Rabat_Salé">Rabat-Salé-Kénitra</option>
+                     <option value="Casablanca_settat">Casablanca-Settat</option>
                      <option value="Orientale">Orientale</option>
-                     <option value="Marrakech Tansift">Marrakech Tansift ElHaouz</option>
-                     <option value="Chaouia">Chaouia Ouerdigha</option>
-                     <option value="Ghab Chrarda">Ghab Chrarda Bni Hsin</option>
-                     <option value="Sous Massa">Sous Massa Daraa</option>
-                     <option value="Guelmim Essmara">Guelmim Essmara</option>
-                     <option value="Laayoune Boujdour">Laayoune Boujdour</option>
-                     <option value="Oued Eddahab Lagouira">Oued Eddahab Lagouira</option>
-                    
+                     <option value="Marrakech_safi">Marrakech-Safi</option>
+                     <option value="laayoun_sakia">Laâyoune-Sakia El Hamra</option>
+                     <option value="guelmim_oued">Guelmim-Oued Noun</option>
+                     <option value="Sous_Massa">Souss-Massa</option>
+                     <option value="dakhla_dahb">Dakhla-Oued Ed-Dahab</option>
+                     <option value="bnimellal_khnefra">Béni Mellal-Khénifra</option>
+
               </select>
       </td>
        <td>
