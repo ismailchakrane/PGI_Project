@@ -28,7 +28,7 @@
      $_SESSION['auth'] = $user;
      $_SESSION['id']= $user_id;
 
-     $_SESSION['flash']['success'] = "votre compte a bien été validé";
+     $_SESSION['flash']['success'] = "Votre compte a bien été validé";
       header('location: form1.php');
 
   
@@ -39,7 +39,7 @@
      $_SESSION['auth'] = $user;
      $_SESSION['id']= $user_id;
 
-     $_SESSION['flash']['success'] = "votre compte a bien été validé";
+     $_SESSION['flash']['success'] = "Votre compte a bien été validé";
       header('location: form1.php');
       
     /*$_SESSION['flash']['danger'] = "Ce token n'est pas valide, vous devez reconnecté";

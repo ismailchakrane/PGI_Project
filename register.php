@@ -28,7 +28,7 @@ if (!empty($_POST)) {
     }
 
     if (empty($_POST['password']) || $_POST['password'] != $_POST['password2']){
-    	$errors['password']="Vous devez rentrer un mot de passe valide ";
+    	$errors['password']="Vous devez entrer un mot de passe valide ";
     }
 
     if (empty($errors)){
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
     $req->execute([$_POST['email'],$password,$token]);
     $user_id = $pdo->lastInsertId();
 	$header="MIME-Version: 1.0\r\n";
-    $header.='Content-Type:text/html; charset="uft-8"'."\n";
+    $header.='Content-Type:text/html; charset="UTF-8"'."\n";
     $header.='Content-Transfer-Encoding: 8bit';
     $message='
     <html>
@@ -55,7 +55,7 @@ if (!empty($_POST)) {
           <tr>
             <td style="margin:0;padding:10px 40px;background:#43AFBC;">
               <strong style="color:black;text-transform:uppercase; letter-spacing: 3px">
-            PGI: plateforme de Gestion d’Inscription</strong>
+            PGI: plateforme de Gestion d’Inscriptions</strong>
             </td>
           </tr>
         </table>
@@ -84,7 +84,7 @@ if (!empty($_POST)) {
       <div style="margin-left: 40px; font-family: all">                  
   <span><b>
       <br><br>
-  — Envoyé par PGI: Plateforme de Gestion d’Inscription</b><br><br>
+  — Envoyé par PGI: Plateforme de Gestion d’Inscriptions</b><br><br>
       </span>
     </table><br></div></div>
 
