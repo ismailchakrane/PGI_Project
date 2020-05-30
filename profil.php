@@ -45,13 +45,18 @@ require_once 'photo_et_nom_users.php';
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style type="text/css">
-      li img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50% ;
-        
-
-      }
+      li img {width: 40px;height: 40px;border-radius: 50% ;}
+      .form_card{
+        border-top-width: 0px;
+        width: 450px;
+        height: 300px;
+        margin-top: 0px;
+        background: white;
+        padding: 1.5em;
+        border-radius: .4em;
+        box-shadow:
+         0 20px 30px 0 rgba(0,0,0,.1),
+         0 4px  4px 0 rgba(0,0,0,.15);}
     </style>
   </head>
   <body>
@@ -71,9 +76,8 @@ require_once 'photo_et_nom_users.php';
       <ul>
         <li><img src="<?php echo $PHOTO->file_url1; ?>"></li>
         <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
-        <li><a href="#">Principale</a></li>
+        <li><a href="profil.php">Principale</a></li>
         <li><a href="candidature.php">Mes candidatures</a></li>
-
         <li><a href="logout.php">Quitter</a></li>
       </ul>
     </nav>
@@ -108,17 +112,7 @@ require_once 'photo_et_nom_users.php';
 
   
 
-    <div class="card" style="
-        border-top-width: 0px;
-        width: 450px;
-        height: 300px;
-        margin-top: 0px;
-        background: white;
-        padding: 1.5em;
-        border-radius: .4em;
-        box-shadow:
-         0 20px 30px 0 rgba(0,0,0,.1),
-         0 4px  4px 0 rgba(0,0,0,.15);">
+    <div class="card form_card">
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
       <a href="ens.php"><strong>Pour la Pré-inscription</strong></a>
@@ -130,17 +124,7 @@ require_once 'photo_et_nom_users.php';
 
 <?php  else: ?>
 
-   <div class="card" style="
-        border-top-width: 0px;
-        width: 450px;
-        height: 300px;
-        margin-top: 0px;
-        background: white;
-        padding: 1.5em;
-        border-radius: .4em;
-        box-shadow:
-         0 20px 30px 0 rgba(0,0,0,.1),
-         0 4px  4px 0 rgba(0,0,0,.15);">
+   <div class="card form_card">
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
       <p><strong>Etat d'inscription: <span  style="color: green; ">Pré-inscrit</span></strong></p>
