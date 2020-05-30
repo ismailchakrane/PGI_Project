@@ -185,7 +185,7 @@ else{
   <main>
     <div class="card" style="
         background: white;
-        padding: 1.5em;
+        padding: 1em;
         border-radius: .4em;
         box-shadow:
         0 20px 30px 0 rgba(0,0,0,.1),
@@ -194,25 +194,25 @@ else{
       <strong>Photo de profil:</strong>
       <input type="file" name="file1">
       <p>Exemple</p>
-      <img src="style/img/profil.jpg" width="450pX" height="300px">
+      <img src="style/img/profil.jpg" width="250px" height="100px">
       <br>
   
 
       <strong>Carte d'identité en format PDF:</strong>
       <input type="file" name="file2">
       <p>Exemple</p>
-      <img src="style/img/carte.jpg"width="450pX" height="500px">
+      <img src="style/img/carte.jpg"width="250px" height="350px">
       <br><br>
 
       
       <strong>Votre Bac au format PDF:</strong> 
       <input type="file" name="file3"></td>
       <p>Exemple</p>
-      <img src="style/img/BACfile.jpg"width="800pX" height="500px">
+      <img src="style/img/BACfile.jpg" width="300px" height="200px">
       <br><br>
      
 
-      <input class="btn btn-info" type="submit" value="Confirmer" >
+      <input class="btn btn-info" type="submit" value="Confirmer" style="margin-left: 35%;width: 15%" >
     </div>
   </main>
 </div>
