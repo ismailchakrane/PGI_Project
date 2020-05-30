@@ -39,7 +39,9 @@ if (!empty($_POST)) {
 
     $req->execute([$_POST['email'],$password,$token]);
     $user_id = $pdo->lastInsertId();
-	$header="MIME-Version: 1.0\r\n";
+    
+    $lien =  "http://localhost/Projet/confirm.php?id=$user_id&token=$token";
+  	$header="MIME-Version: 1.0\r\n";
     $header.='Content-Type:text/html; charset="UTF-8"'."\n";
     $header.='Content-Transfer-Encoding: 8bit';
     $message='
@@ -73,12 +75,12 @@ if (!empty($_POST)) {
 
   <br>
   <center>
-    <a href="http://localhost/Projet/confirm.php?id=$user_id&token=$token" target="_blank" style="background-color:#81C0E4;border:1px;color:#ffffff;font-family:cursive;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:250px;
+   <a href="'.$lien.'" style="background-color:#81C0E4;border:1px;color:#ffffff;font-family:cursive;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:250px;
     padding: 17px 17px 17px 17px">
-        Confirmez votre compte
+       Confirmez votre compte
      </a>
   </center>
-  <br>
+   <br>
 </div>
   
       <div style="margin-left: 40px; font-family: all">                  
@@ -94,7 +96,8 @@ if (!empty($_POST)) {
       </body>
     </html>
     ';
-    mail($_POST['email'],'Confirmation de votre compte', $message, $header);
+    
+    mail($_POST['email'],'Confirmation de votre compte',$message,$header);
 
     $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
     header('location: register.php');
@@ -125,8 +128,8 @@ if (!empty($_POST)) {
   </div>
        
 </header>
- 
 
+<!--target="_blank"--> 
 
 <div class="login">
     <tt><h2>Nouveau Compte</h2></tt>

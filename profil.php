@@ -144,7 +144,7 @@ require_once 'photo_et_nom_users.php';
       <img src="style/img/logoens.jpg">
       <strong>ENS Marrakech</strong>
       <p><strong>Etat d'inscription: <span  style="color: green; ">Pré-inscrit</span></strong></p>
-      <a href="pdftrait.php"><strong>le Reçu</strong></a>
+      <a href="pdftrait.php"><strong>Le Reçu</strong></a>
     </div>
   </main>
 </div>  
