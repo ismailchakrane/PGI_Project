@@ -67,6 +67,18 @@ require_once 'photo_et_nom_users.php';
        #case4{
         width: 25%;
       }
+      .form_card{
+        border-top-width: 0px;
+        width: 140%;
+        height: 100%;
+        margin-top: 0px;
+        background: white;
+        padding: 1.5em;
+        border-radius: .4em;
+        box-shadow:
+        0 20px 30px 0 rgba(0,0,0,.1),
+        0 4px  4px 0 rgba(0,0,0,.15);
+      }
      
     </style>
   </head>
@@ -81,7 +93,7 @@ require_once 'photo_et_nom_users.php';
         <li><img src="<?php echo $PHOTO->file_url1; ?>"></li>
         <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
         <li><a href="profil.php">PRINCIPALE</a></li>
-        <li><a href="#">Mes candidatures</a></li>
+        <li><a href="candidature.php">Mes candidatures</a></li>
         
         <li><a href="logout.php">Quitter</a></li>
       </ul>
@@ -98,17 +110,7 @@ require_once 'photo_et_nom_users.php';
             <main>
 
 <?php  if (!empty($affichage->candidature)):?>
-              <div class="card" style="
-                  border-top-width: 0px;
-                  width: 1100px;
-                  height: 100px;
-                  margin-top: 0px;
-                  background: white;
-                  padding: 1.5em;
-                  border-radius: .4em;
-                  box-shadow:
-                 0 20px 30px 0 rgba(0,0,0,.1),
-                 0 4px  4px 0 rgba(0,0,0,.15);">
+              <div class="card form_card">
                 <table  >
                   <tr  >
                     <th class="ligne" id='case1' > Nom d'établissement</th>
@@ -131,17 +133,7 @@ require_once 'photo_et_nom_users.php';
  <?php  else: ?>   
 
 
- <div class="card" style="
-                  border-top-width: 0px;
-                  width: 1100px;
-                  height: 100px;
-                  margin-top: 0px;
-                  background: white;
-                  padding: 1.5em;
-                  border-radius: .4em;
-                  box-shadow:
-                 0 20px 30px 0 rgba(0,0,0,.1),
-                 0 4px  4px 0 rgba(0,0,0,.15);">
+ <div class="card form_card">
                 <table  >
                   <tr  >
                     <th class="ligne" id='case1' > Nom d'établissement</th>
