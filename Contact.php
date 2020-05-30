@@ -127,7 +127,7 @@ if(isset($_POST['envoye']))
 			</form>
 		
 		</div>
-	</div>
+	</div><br>
 </div>
 
 </body>
