@@ -113,7 +113,7 @@
 
             	                        <input type="password" id="password" name="password" required="" >
             	                        <label>Mot de Passe</label>
-                                        <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd()">
+              <img src="style/Icon/hide.png" width="4%" height="4%" id="view" onclick="show_hide_pwd()">
 
                               </div>
                                  
@@ -135,16 +135,21 @@
 
 <script type="text/javascript">
 
-function Viewpwd() {
-  var VIEW = document.getElementById("password");
-  if (VIEW.type === "password") {
-    VIEW.type = "text";
+ /*Script pour regarde le pwd  */
+
+function show_hide_pwd() {
+  var pwd = document.getElementById("password");
+  var img = document.getElementById("view");
+  if (pwd.type == "password") {
+    pwd.type = "text";
+    img.src = "style/Icon/show.png";
   } else {
-    VIEW.type = "password";
+    pwd.type = "password";
+    img.src = "style/Icon/hide.png";
   }
 }
+</script>
 
- </script>
 
                  
  </div>
