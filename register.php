@@ -180,10 +180,10 @@ if (!empty($_POST)) {
     <input type="email" name="email" placeholder="Adressd e-mail" required="">
 
     <input type="password"  name="password" id="password" placeholder="Mot de passe" required="">
-      <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd1()">
+      <img src="style/Icon/hide.png" width="4%" height="4%" id="view_I" onclick="show_hide_pwd()">
 
-    <input type="password" name="password2" id="confirm_pwd"   placeholder="Confirme Mot de passe" required=""  >
-      <img src="style\Icon\View.png" width="4%" height="4%" onclick="Viewpwd2()">
+    <input type="password" name="password2" id="confirm_pwd"  placeholder="Confirme Mot de passe" required=""  >
+      <img src="style/Icon/hide.png" width="4%" height="4%" id="view_II" onclick="show_hide_confirm_pwd()">
                                 
   </div>
     
@@ -197,9 +197,43 @@ if (!empty($_POST)) {
 
    <!--script js-->
 
+<script type="text/javascript">
 
-   <script type="text/javascript">
-  //Script pour valide est ce que le mot de passe est le meme dans la confirmation 
+ /*Script pour regarde le pwd 1 */
+
+function show_hide_pwd() {
+  var pwd = document.getElementById("password");
+  var img = document.getElementById("view_I");
+  if (pwd.type == "password") {
+    pwd.type = "text";
+    img.src = "style/Icon/show.png";
+  } else {
+    pwd.type = "password";
+    img.src = "style/Icon/hide.png";
+  }
+}
+</script>
+
+<script type="text/javascript">
+
+ /*Script pour regarde le confirmed pwd  */
+
+function show_hide_confirm_pwd() {
+  var pwd = document.getElementById("confirm_pwd");
+  var img = document.getElementById("view_II");
+  if (pwd.type == "password") {
+    pwd.type = "text";
+    img.src = "style/Icon/show.png";
+  } else {
+    pwd.type = "password";
+    img.src = "style/Icon/hide.png";
+  }
+}
+</script>
+
+<script type="text/javascript">
+
+  /*Script pour valide est ce que le mot de passe est le meme dans la confirmation */
   var password = document.getElementById("password"), confirm_pwd = document.getElementById("confirm_pwd");
 
 function validatePassword(){
@@ -209,42 +243,9 @@ function validatePassword(){
     confirm_pwd.setCustomValidity('');
   }
 }
-
 password.onchange = validatePassword;
 confirm_pwd.onkeyup = validatePassword;
 </script>
-
-
-
-<script type="text/javascript">
-  //Ce script pour regarde le motdepasse de input 1
-function Viewpwd1() {
-  var VIEW = document.getElementById('password');
-  if (VIEW.type === "password") {
-    VIEW.type = "text";
-  } else {
-    VIEW.type = "password";
-  }
-}
-    </script>
-
-
-
- <script type="text/javascript">
-  //Ce script pour regarde le motdepasse de input 2 (Confirme mot de passe)
-function Viewpwd2() {
-  var VIEW = document.getElementById('confirm_pwd');
-  if (VIEW.type === "password") {
-    VIEW.type = "text";
-  } else {
-    VIEW.type = "password";
-  }
-}
-</script> 
-
-
-
-
 
 </body>
 <style type="text/css">
