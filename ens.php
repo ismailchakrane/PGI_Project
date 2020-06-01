@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'photo_et_nom_users.php';
+require_once 'traitement_PHP/photo_et_nom_users.php';
 
 
       if (empty($_SESSION['id'])) {
@@ -60,14 +60,14 @@ else{
     <meta charset="utf-8">
     <title>Page de profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/styleprofil.css">
+    <link rel="stylesheet" href="style/css_style/styleprofil.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Inscription a l'ENS Marrakech</title>
 <link rel="shortcut icon" href="style/Icon/pgicon.ico">
- <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
- <script src="bootstrap\js\jquery.min.js"></script>
- <script src="bootstrap\js\bootstrap.min.js"></script>   
+ <link rel="stylesheet" href="style\bootstrap\css\bootstrap.min.css">
+ <script src="style\bbootstrap\js\jquery.min.js"></script>
+ <script src="style\bbootstrap\js\bootstrap.min.js"></script>   
  <style>
      td{width:50%;}
      hr{border: 3px solid rgb(113, 197, 223);
@@ -91,7 +91,7 @@ else{
         <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
         <li><a href="profil.php">Principale</a></li>
         <li><a href="candidature.php">Mes candidatures</a></li>
-        <li><a href="logout.php">Quitter</a></li>
+        <li><a href="traitement_PHP/logout.php">Quitter</a></li>
       </ul>
     </nav>
 

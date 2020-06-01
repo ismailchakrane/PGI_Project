@@ -1,14 +1,15 @@
 <?php
 session_start();
 require_once 'photo_et_nom_users.php';
-require_once __DIR__ . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
+//require_once __DIR__ . '..\vendor\autoload.php';
 
 
       if (empty($_SESSION['id'])) {
         
     $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-    header("Location: login.php");    
+    header("Location: ../login.php");    
           
        } 
 
@@ -117,7 +118,7 @@ $data .='<header>
 	<h2>FORMATIONS CHOISIES</h2>
 	<ul>
         
-		<img src="'.$photo.'" width="100px" height="100px";>
+		<img src="../'.$photo.'" width="100px" height="100px";>
 		<br>
 		<li>Nom :<tt>'.$nom.'</tt></li>
 		<br>
@@ -158,7 +159,7 @@ $data .='<header>
 $mpdf->WriteHTML($data);
 $test=$mpdf->Output('reçu_ENS_M.pdf','D');
 
-header('location : profil.php');
+header('location : ../profil.php');
 
    
 

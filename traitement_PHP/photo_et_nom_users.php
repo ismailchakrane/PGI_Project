@@ -5,7 +5,7 @@
         
     $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-    header("Location: login.php");    
+    header("Location: ../login.php");    
           
        }        
             $errors=array();

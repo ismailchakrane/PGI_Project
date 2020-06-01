@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-require_once 'photo_et_nom_users.php';
+require_once 'traitement_PHP/photo_et_nom_users.php';
 
 
       if (empty($_SESSION['id'])) {
@@ -33,7 +33,7 @@ require_once 'photo_et_nom_users.php';
     <meta charset="utf-8">
     <title>Page de profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/styleprofil.css">
+    <link rel="stylesheet" href="style/css_style/styleprofil.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
      <style type="text/css">
@@ -95,7 +95,7 @@ require_once 'photo_et_nom_users.php';
         <li><a href="profil.php">PRINCIPALE</a></li>
         <li><a href="candidature.php">Mes candidatures</a></li>
         
-        <li><a href="logout.php">Quitter</a></li>
+        <li><a href="traitement_PHP/logout.php">Quitter</a></li>
       </ul>
     </nav>
   

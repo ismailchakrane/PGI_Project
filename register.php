@@ -1,4 +1,4 @@
-<?php require_once'function.php'; 
+<?php require_once'traitement_PHP/function.php'; 
 
 session_start();
 
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
     $req->execute([$_POST['email'],$password,$token]);
     $user_id = $pdo->lastInsertId();
     
-    $lien =  "http://localhost/Projet/confirm.php?id=$user_id&token=$token";
+    $lien =  "http://localhost/Projet/traitement_PHP/confirm.php?id=$user_id&token=$token";
   	$header="MIME-Version: 1.0\r\n";
     $header.='Content-Type:text/html; charset="UTF-8"'."\n";
     $header.='Content-Transfer-Encoding: 8bit';

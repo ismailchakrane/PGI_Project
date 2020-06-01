@@ -1,5 +1,5 @@
 <?php 
-require_once 'function.php';
+
 
 
 session_start();
@@ -119,7 +119,7 @@ else{
   <meta charset="utf-8">
     <title>Page de profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/styleprofil.css">
+    <link rel="stylesheet" href="style/css_style/styleprofil.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
@@ -193,21 +193,21 @@ else{
      
       <strong>Photo de profil:</strong>
       <input type="file" name="file1">
-      <p>Exemple</p>
+      <strong>Exemple</strong>
       <img src="style/img/profil.jpg" width="250px" height="100px">
       <br>
   
 
       <strong>Carte d'identité en format PDF:</strong>
       <input type="file" name="file2">
-      <p>Exemple</p>
+      <strong>Exemple</strong>
       <img src="style/img/carte.jpg"width="250px" height="350px">
       <br><br>
 
       
       <strong>Votre Bac au format PDF:</strong> 
       <input type="file" name="file3"></td>
-      <p>Exemple</p>
+      <strong>Exemple</strong>
       <img src="style/img/BACfile.jpg" width="300px" height="200px">
       <br><br>
      
