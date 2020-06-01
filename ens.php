@@ -66,8 +66,8 @@ else{
     <title>Inscription a l'ENS Marrakech</title>
 <link rel="shortcut icon" href="style/Icon/pgicon.ico">
  <link rel="stylesheet" href="style\bootstrap\css\bootstrap.min.css">
- <script src="style\bbootstrap\js\jquery.min.js"></script>
- <script src="style\bbootstrap\js\bootstrap.min.js"></script>   
+ <script src="style\bootstrap\js\jquery.min.js"></script>
+ <script src="style\bootstrap\js\bootstrap.min.js"></script>   
  <style>
      td{width:50%;}
      hr{border: 3px solid rgb(113, 197, 223);
