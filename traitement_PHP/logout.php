@@ -1,13 +1,13 @@
 <?php
 
 //redirégement vers la page du login:
-    session_start();
+session_start();
 
-    unset($_SESSION['auth']);
-    unset($_SESSION['id']);
+unset($_SESSION['auth']);
+unset($_SESSION['id']);
 
-    $_SESSION['flash']['success'] = 'Vous êtes maintenant déconnecté';
+$_SESSION['flash']['success'] = 'Vous êtes maintenant déconnecté';
 
-    header("Location: ../login.php");
-    
+header("Location: ../login.php");
+
 ?>

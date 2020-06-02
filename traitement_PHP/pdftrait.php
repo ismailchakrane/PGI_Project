@@ -5,20 +5,20 @@ require_once '../vendor/autoload.php';
 //require_once __DIR__ . '..\vendor\autoload.php';
 
 
-      if (empty($_SESSION['id'])) {
-        
-    $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
+if (empty($_SESSION['id'])) {
+	
+	$_SESSION['flash']['danger'] = 'Vous  devez être connecté';
 
-    header("Location: ../login.php");    
-          
-       } 
+	header("Location: ../login.php");    
+	
+} 
 
 
 
-    $requete= $pdo->prepare("SELECT * FROM users WHERE id = ?");
-             $requete->bindValue(1, $_SESSION['id']);
-             $requete->execute();
-             $pdf = $requete->fetch();
+$requete= $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$requete->bindValue(1, $_SESSION['id']);
+$requete->execute();
+$pdf = $requete->fetch();
 
 
 
@@ -43,8 +43,8 @@ $mpdf = new \Mpdf\Mpdf();
 $data ='';
 
 
-	$data .='<style type="text/css">
-	.logo_pgi_1
+$data .='<style type="text/css">
+.logo_pgi_1
 {
 	font-family:sans-serif;
 	font-size: 29px;
@@ -108,44 +108,44 @@ p{
 </style>';
 
 $data .='<header>
-	<div class="logo_pgi_1">Plateforme</div>
-	<div class="logo_pgi_2">De Gestion d\'inscription</div>
-	<div class="titre_pdf">Récu de Pré-inscription</div>
+<div class="logo_pgi_1">Plateforme</div>
+<div class="logo_pgi_2">De Gestion d\'inscription</div>
+<div class="titre_pdf">Récu de Pré-inscription</div>
 
 
 </header>
 <div>
-	<h2>FORMATIONS CHOISIES</h2>
-	<ul>
-        
-		<img src="../'.$photo.'" width="100px" height="100px";>
-		<br>
-		<li>Nom :<tt>'.$nom.'</tt></li>
-		<br>
-		<li>Prenom :<tt>'.$prénom.'</tt></li>
-		<br>
-		<li>CNE :<tt>' .$CNE. '</tt></li>
-		<br>
-		<li>CIN :<tt>'.$CIN.'</tt></li>
-		<br>
-		<li>Date de naissance :<tt>' .$dateNaissance.  '</tt></li>
-		<br>
-		<li>Année d\'obtention du BAC :<tt>' .$annéeBAC. '</tt></li>
-		<br>
-		<li>Date de pré-inscription :<tt>' .$datePréinscription.  '</tt></li>
+<h2>FORMATIONS CHOISIES</h2>
+<ul>
 
-	</ul>
+<img src="../'.$photo.'" width="100px" height="100px";>
+<br>
+<li>Nom :<tt>'.$nom.'</tt></li>
+<br>
+<li>Prenom :<tt>'.$prénom.'</tt></li>
+<br>
+<li>CNE :<tt>' .$CNE. '</tt></li>
+<br>
+<li>CIN :<tt>'.$CIN.'</tt></li>
+<br>
+<li>Date de naissance :<tt>' .$dateNaissance.  '</tt></li>
+<br>
+<li>Année d\'obtention du BAC :<tt>' .$annéeBAC. '</tt></li>
+<br>
+<li>Date de pré-inscription :<tt>' .$datePréinscription.  '</tt></li>
+
+</ul>
 </div>
 <div>
-	<h2>FORMATION CHOISIE:</h2>
-	<ul>
+<h2>FORMATION CHOISIE:</h2>
+<ul>
 
-		<li>Etablissement :<tt>' .$Etablissement.  '</tt></li>
-		<br>
-		<li>Filière :<tt>' .$filiére.  '</tt></li>
-		
+<li>Etablissement :<tt>' .$Etablissement.  '</tt></li>
+<br>
+<li>Filière :<tt>' .$filiére.  '</tt></li>
 
-	</ul>
+
+</ul>
 
 
 
@@ -161,7 +161,7 @@ $test=$mpdf->Output('reçu_ENS_M.pdf','D');
 
 header('location : ../profil.php');
 
-   
+
 
 
 
