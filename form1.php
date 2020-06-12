@@ -36,6 +36,8 @@ if (!empty($_POST)) {
 
 
 
+
+
  if (!empty($_POST['nom_fr']) && !empty($_POST['nom_ar']) && !empty($_POST['prénom_fr']) && !empty($_POST['prénom_ar']) && !empty($_POST['adresse_fr']) && !empty($_POST['adresse_ar']) && !empty($_POST['CNE']) && !empty($_POST['CIN']) && !empty($_POST['num_télé']) && !empty($_POST['pays']) && $_POST['pays'] != 'Veuillez choisir votre pays' && !empty($_POST['ville']) && $_POST['ville'] != 'Veuillez choisir votre Ville' && !empty($_POST['date_de_naissance']) && !empty($_POST['sexe']) && $_POST['sexe'] != '--sexe--' && !empty($_POST['Code_postal'])&& !empty($_POST['nationalité'])&& !empty($_POST['prénom_pére'])&& !empty($_POST['Nom_pére'])&& !empty($_POST['CIN_pére'])&& !empty($_POST['date_naissance_pére'])&& !empty($_POST['prénom_mére'])&& !empty($_POST['Nom_mére'])&& !empty($_POST['CIN_mére'])&& !empty($_POST['date_naissance_mére'])&& !empty($_POST['Assurance']) && $_POST['Assurance'] != 'Avez-vous une Assurance Médicale?' ){
 
 
@@ -336,179 +338,177 @@ else{
                        <option value="Azrou">Azrou</option>
                        <option value="Drargua">Drargua</option>
                      </select>
-                   </select>
-                 </select>
-               </td>
-             </tr>
-             <tr>
-              <td>
-                <label><b>Date de naissance :<br><span class="msg_error" id="msg_birthday_eleve"></label>
-                  <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
-                  id="date_naissance_eleve" name="date_de_naissance"  required>
-                </td>
-                <td>
-                  <label><b>Sexe :<br><span class="msg_error" id="msg_sexe"></span></label><br>
-                    <select class="browser-default custom-select" style="width:80%;"
-                    name="sexe" required>
-                    <option selected value="default">--sexe--</option>
-                    <option value="M">Masculin</option>
-                    <option value="F">Féminin</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label><b>Code postal :<br><span class="msg_error" id="msg_cpostal"></span></label><br>
-                    <input type="text" class="form-control"  placeholder="Ex: 10000" style="width:80%;"  id="code_postal" name="Code_postal" required>
-                  </td>
+                   </td>
+                 </tr>
+                 <tr>
                   <td>
-                    <label><b>Nationalité :<br><span class="msg_error" id="msg_nationalite"></span></label><br>
-                      <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" minlength="2" maxlength="40" id="nationalite" name="nationalité" required>
+                    <label><b>Date de naissance :<br><span class="msg_error" id="msg_birthday_eleve"></label>
+                      <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+                      id="date_naissance_eleve" name="date_de_naissance"  required>
+                    </td>
+                    <td>
+                      <label><b>Sexe :<br><span class="msg_error" id="msg_sexe"></span></label><br>
+                        <select class="browser-default custom-select" style="width:80%;"
+                        name="sexe" required>
+                        <option selected value="default">--sexe--</option>
+                        <option value="M">Masculin</option>
+                        <option value="F">Féminin</option>
+                      </select>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                     <label><b>
-                       Numéro de téléphone :<br><span class="msg_error" id="msg_tel"></span></label>
-                       <input type="text" class="form-control"  placeholder="Ex : +212 0000 0001" style="width:80%;" id="num_tel" name="num_télé" required>
-                     </td>
-                   </tr>
-
-                 </table>
-
-                 <!--Information sur le père -->
-
-
-                 <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
-                  <tr>
-                    <td>
-                      <hr><h3>Information sur le père</h3><hr>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <label><b>Prénom du père :<br><span class="msg_error" id="msg_prenom_pere"></span></label>
-                        <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
-                        style="width:80%;" minlength="2" maxlength="40" id="prenom_pere" name="prénom_pére" required>
+                      <label><b>Code postal :<br><span class="msg_error" id="msg_cpostal"></span></label><br>
+                        <input type="text" class="form-control"  placeholder="Ex: 10000" style="width:80%;"  id="code_postal" name="Code_postal" required>
                       </td>
                       <td>
-                        <label><b>Nom du père :<br><span class="msg_error" id="msg_nom_pere"></span></label>
-                          <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
-                          style="width:80%;" minlength="2" maxlength="40" id="Nom_pere" name="Nom_pére" required>
+                        <label><b>Nationalité :<br><span class="msg_error" id="msg_nationalite"></span></label><br>
+                          <input type="text" class="form-control"  placeholder="Enter votre nationalité" style="width:80%;" minlength="2" maxlength="40" id="nationalite" name="nationalité" required>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <label><b>CNI du père :<br><span class="msg_error" id="msg_cni_pere"></span></label>
-                            <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
+                         <label><b>
+                           Numéro de téléphone :<br><span class="msg_error" id="msg_tel"></span></label>
+                           <input type="text" class="form-control"  placeholder="Ex : +212 0000 0001" style="width:80%;" id="num_tel" name="num_télé" required>
+                         </td>
+                       </tr>
+
+                     </table>
+
+                     <!--Information sur le père -->
+
+
+                     <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
+                      <tr>
+                        <td>
+                          <hr><h3>Information sur le père</h3><hr>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label><b>Prénom du père :<br><span class="msg_error" id="msg_prenom_pere"></span></label>
+                            <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
+                            style="width:80%;" minlength="2" maxlength="40" id="prenom_pere" name="prénom_pére" required>
                           </td>
                           <td>
-                            <label><b>Date de naissance du père :<br><span class="msg_error" id="msg_birthday_pere"></label>
-                              <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
-                              id="date_naissance_pere" name="date_naissance_pére" required>
+                            <label><b>Nom du père :<br><span class="msg_error" id="msg_nom_pere"></span></label>
+                              <input type="text" class="form-control"  placeholder="Enter le prénom de votre père" 
+                              style="width:80%;" minlength="2" maxlength="40" id="Nom_pere" name="Nom_pére" required>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <label class="form-check-label"><b>votre père est t-il décédé ?</b></label>
-
-                              OUI: 
-                              <input  type="radio" value="OUI"name="pére_décédé" required> 
-                              NON: 
-                              <input  type="radio" value="NON"name="pére_décédé" required>
-
-                            </td>
-                          </tr>
-
-                        </table>
-
-                        <!--Information sur la mère -->
-
-                        <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
-                          <tr>
-                            <td>
-                              <hr><h3>Information sur la mère</h3><hr>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>
-                              <label><b>Prénom du mère :<br><span class="msg_error" id="msg_prenom_mere"></span></label>
-                                <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
-                                style="width:80%;" minlength="2" maxlength="40" id="prenom_mere" name="prénom_mére" required>
+                              <label><b>CNI du père :<br><span class="msg_error" id="msg_cni_pere"></span></label>
+                                <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" style="width:80%;" id="CNI_pere" name="CIN_pére" required>
                               </td>
                               <td>
-                                <label><b>Nom du mère :<br><span class="msg_error" id="msg_nom_mere"></span></label>
-                                  <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
-                                  style="width:80%;" minlength="2" maxlength="40" id="Nom_mere" name="Nom_mére" required>
+                                <label><b>Date de naissance du père :<br><span class="msg_error" id="msg_birthday_pere"></label>
+                                  <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+                                  id="date_naissance_pere" name="date_naissance_pére" required>
                                 </td>
                               </tr>
                               <tr>
                                 <td>
-                                  <label><b>CNI du mère :<br><span class="msg_error" id="msg_cni_mere"></span></label>
-                                    <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" 
-                                    style="width:80%;" id="CNI_mere" name="CIN_mére" required>
+                                  <label class="form-check-label"><b>votre père est t-il décédé ?</b></label>
+
+                                  OUI: 
+                                  <input  type="radio" value="OUI"name="pére_décédé" required> 
+                                  NON: 
+                                  <input  type="radio" value="NON"name="pére_décédé" required>
+
+                                </td>
+                              </tr>
+
+                            </table>
+
+                            <!--Information sur la mère -->
+
+                            <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
+                              <tr>
+                                <td>
+                                  <hr><h3>Information sur la mère</h3><hr>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <label><b>Prénom du mère :<br><span class="msg_error" id="msg_prenom_mere"></span></label>
+                                    <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
+                                    style="width:80%;" minlength="2" maxlength="40" id="prenom_mere" name="prénom_mére" required>
                                   </td>
                                   <td>
-                                    <label><b>Date de naissance du mère :<br><span class="msg_error" id="msg_birthday_mere"></label>
-                                      <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
-                                      id="date_naissance_mere" name="date_naissance_mére" required>
+                                    <label><b>Nom du mère :<br><span class="msg_error" id="msg_nom_mere"></span></label>
+                                      <input type="text" class="form-control"  placeholder="Enter le prénom de votre mère" 
+                                      style="width:80%;" minlength="2" maxlength="40" id="Nom_mere" name="Nom_mére" required>
                                     </td>
                                   </tr>
                                   <tr>
                                     <td>
-                                      <label class="form-check-label"><b>votre mère est t-elle décédée ?</b></label>
-                                      OUI: 
-                                      <input  type="radio" value="OUI"name="mére_décédée" required> 
-                                      NON: 
-                                      <input  type="radio" value="NON"name="mére_décédée" required>
+                                      <label><b>CNI du mère :<br><span class="msg_error" id="msg_cni_mere"></span></label>
+                                        <input type="text" class="form-control"  placeholder="Ex : EE 00000 ou E 000000" 
+                                        style="width:80%;" id="CNI_mere" name="CIN_mére" required>
+                                      </td>
+                                      <td>
+                                        <label><b>Date de naissance du mère :<br><span class="msg_error" id="msg_birthday_mere"></label>
+                                          <input type="text" placeholder="jj/mm/aaaa" class="form-control" style="width:80%;" 
+                                          id="date_naissance_mere" name="date_naissance_mére" required>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <label class="form-check-label"><b>votre mère est t-elle décédée ?</b></label>
+                                          OUI: 
+                                          <input  type="radio" value="OUI"name="mére_décédée" required> 
+                                          NON: 
+                                          <input  type="radio" value="NON"name="mére_décédée" required>
 
-                                    </td>
-                                  </tr>
+                                        </td>
+                                      </tr>
 
-                                </table>
-                                <!--l'Assurance -->
+                                    </table>
+                                    <!--l'Assurance -->
 
-                                <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
-                                  <tr>
-                                    <td>
-                                      <hr><h3>Information relatives à l'Assurance des Maladies Obligatoires </h3><hr>
-                                    </td>
-                                  </tr>
+                                    <table align="right" cellpadding="10" cellspacing="10" width="95%" class="mod-form" style="margin: 10px 0; border: 5;">
+                                      <tr>
+                                        <td>
+                                          <hr><h3>Information relatives à l'Assurance des Maladies Obligatoires </h3><hr>
+                                        </td>
+                                      </tr>
 
-                                  <tr>
-                                    <td>
-                                      <label><b>Avez-vous une Assurance Médicale?<br>
-                                        <span class="msg_error" id="msg_assurance"></span>
-                                      </label>
-                                      <select class="browser-default custom-select" style="width:80%;"
-                                      name="Assurance" required>
-                                      <option selected value="default">Avez-vous une Assurance Médicale?</option>
-                                      <option value="CNOPS">CNOPS</option>
-                                      <option value="SANAD">SANAD</option>
-                                      <option value="Autres">Autres</option>
-                                    </select>
-                                  </td>
-                                  <td>
-                                    <label><b>Avez-vous un compte bancaire?<br></label>
-                                      <input type="text" class="form-control"  placeholder="Entre le numéro de compte bancaire" style="width:80%;" pattern="^[0-9]{14}$"  title="Entre les 14 chiffre de numéro compte bancaire" name="compte_bancaire" >
-                                    </td>
-                                  </tr>
-
-
-                                </table>
+                                      <tr>
+                                        <td>
+                                          <label><b>Avez-vous une Assurance Médicale?<br>
+                                            <span class="msg_error" id="msg_assurance"></span>
+                                          </label>
+                                          <select class="browser-default custom-select" style="width:80%;"
+                                          name="Assurance" required>
+                                          <option selected value="default">Avez-vous une Assurance Médicale?</option>
+                                          <option value="CNOPS">CNOPS</option>
+                                          <option value="SANAD">SANAD</option>
+                                          <option value="Autres">Autres</option>
+                                        </select>
+                                      </td>
+                                      <td>
+                                        <label><b>Avez-vous un compte bancaire?<br></label>
+                                          <input type="text" class="form-control"  placeholder="Entre le numéro de compte bancaire" style="width:80%;" pattern="^[0-9]{14}$"  title="Entre les 14 chiffre de numéro compte bancaire" name="compte_bancaire" >
+                                        </td>
+                                      </tr>
 
 
-                                <table align="right" cellpadding="10" cellspacing="10" width="110%" class="mod-form" style="margin: 10px 0; border: 5;">
-                                  <tr>
-                                    <td align="center">
-                                      <input class="btn btn-info" type="submit" value="Continuer">
-                                      <input class="btn btn-warning" type="reset" value="Annuler" style="margin-left: 10px;">
-                                    </td>
+                                    </table>
 
-                                  </tr>
-                                </table>
-                              </body>
-                            </head>
-                            </html>
+
+                                    <table align="right" cellpadding="10" cellspacing="10" width="110%" class="mod-form" style="margin: 10px 0; border: 5;">
+                                      <tr>
+                                        <td align="center">
+                                          <input class="btn btn-info" type="submit" value="Continuer">
+                                          <input class="btn btn-warning" type="reset" value="Annuler" style="margin-left: 10px;">
+                                        </td>
+
+                                      </tr>
+                                    </table>
+                                  </body>
+                                </head>
+                                </html>

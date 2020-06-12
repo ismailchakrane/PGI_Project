@@ -113,7 +113,7 @@ else{
 
 
 
-    <?php if (empty($_SESSION['flash'])): ?>
+    <?php if (!empty($_SESSION['flash'])): ?>
      
      
      <div class="alert alert-success"><li>Pour être inscrit à L'ENS MARRAKECH veuillez remplire le formulaire suivant</li></div>

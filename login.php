@@ -3,7 +3,6 @@
 session_start();
 
 
-
 if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
   //connection avec la base de données: 
