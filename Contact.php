@@ -18,11 +18,12 @@ if(isset($_POST['envoye']))
 		$headers .= "Reply-To: "._EMAIL_FROM."\r\n"; 	
 		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 		$message='
+		<html>
 		<style type="text/css">
 		td{padding-bottom: 10%;}
 		.all{border-right: 5px solid black;border-left: 5px solid black;border-top: 5px solid black;border-bottom: 5px solid black;background: rgba(110,110,180,.1);}
 		</style>
-
+		
 		<body>
 
 		<div align="center">

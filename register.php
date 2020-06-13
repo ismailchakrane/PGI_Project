@@ -15,7 +15,7 @@ if (!empty($_POST)) {
   if (empty($_POST['email']) || !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
    $errors['email']="Votre email n'est valide";
  } else{
-  
+
   $req = $pdo->prepare('SELECT id FROM users WHERE email = ?');
 
   $req->execute([$_POST['email']]);
@@ -32,7 +32,7 @@ if (empty($_POST['password']) || $_POST['password'] != $_POST['password2']){
 }
 
 if (empty($errors)){
-  
+
   $req = $pdo->prepare("INSERT INTO users SET email=?, password=?,confirmation_token=?");
   $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
   $token = str_random(60); 
@@ -47,57 +47,56 @@ if (empty($errors)){
   $message='
   <html>
   <body>
+
   <div align="center" style="margin:0;padding:0;width:100%;background-color:#B2E0E6">
 
   <div align="center" >
   <br>
   <div border="0" style="margin:0;padding:0" >
-  
-  <table border="0" cellpadding="0" cellspacing="0" width="600" style="border:1px ;background-color:#ffffff;max-width:600px">
+
+  <table width="600">
   <tr>
   <td style="margin:0;padding:10px 40px;background:#43AFBC;">
-  <strong style="color:black;text-transform:uppercase; letter-spacing: 3px">
-  PGI: plateforme de Gestion d’Inscriptions</strong>
+  <strong style="text-transform:uppercase; letter-spacing: 3px">
+  PGI: plateforme de Gestion d’Inscriptions
+  </strong>
   </td>
   </tr>
   </table>
-  </div><br>
-
-
-  <div style="background-color: white;width: 80.5%;">
-  <table border="0" cellpadding="0" cellspacing="0" width="600" style="border:1px;background-color:#white;max-width:600px">
-  
-  <div style="color:#222222;font-family:Verdana,Geneva,sans-serif;font-size:100%;line-height:150%;text-align:left;word-wrap:break-word">
-  
+  </div>
   <br>
-  <p style="margin-left: 15px; margin-top: 12px;">Bonjour<strong> Mr/Mme</strong>,</p>
-  <div>
 
+  <div style="background-color: white;border:3px solid #43AFBC;width: 80.5%;">
+
+  <div style="font-family:Verdana;font-size:100%;line-height:150%;text-align:left;">
   <br>
+  <p style="margin-left: 15px; margin-top: 12px;">
+  Bonjour
+  <strong> Mr/Mme</strong>,
+  </p>
+  <br><br>
+
   <center>
-  <a href="'.$lien.'" style="background-color:#81C0E4;border:1px;color:#ffffff;font-family:cursive;font-size:13px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:250px;
-  padding: 17px 17px 17px 17px">
+  <a href="'.$lien.'" style="background-color:#81C0E4;color:#ffffff;font-family:cursive;
+  font-size:13px;font-weight:bold;text-decoration:none;padding: 17px 17px 17px 17px">
   Confirmez votre compte
   </a>
   </center>
-  <br>
+  <br><br><br>
+
+  <div style="margin-left: 40px; font-family: all">
+  <strong>— Envoyé par PGI: Plateforme de Gestion d’Inscriptions</strong>
   </div>
-  
-  <div style="margin-left: 40px; font-family: all">                  
-  <span><b>
   <br><br>
-  — Envoyé par PGI: Plateforme de Gestion d’Inscriptions</b><br><br>
-  </span>
-  </table><br></div></div>
-
-
+  </div>
+  </div>
   <br>
   </div>
   </body>
   </html>
   ';
   
-  mail($_POST['email'],'Confirmation de votre compte',$message,$header);
+  mail($_POST['email'],'Confirmation de compte',$message,$header);
 
   $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
   header('location: register.php');
@@ -162,7 +161,7 @@ if (empty($errors)){
     ?>
     <?php if (isset($_SESSION['flash'])): ?>
      <?php foreach ($_SESSION['flash'] as $type => $message): ?>
-       
+
        <div class="alt alt-<?=$type; ?>"><li><?=$message; ?> </li></div>
 
      <?php endforeach; ?>
@@ -173,10 +172,10 @@ if (empty($errors)){
 
 
    <form action="" method="POST">
-    
-    
+
+
      <div class="inputlogin">
-      
+
       <input type="email" name="email" placeholder="Adressd e-mail" required="">
 
       <input type="password"  name="password" id="password" placeholder="Mot de passe" required="">
@@ -309,7 +308,7 @@ bo x*/
 
 .login
 {
-  
+
   width: 35%;
   height: 72%;
   margin-top: 5.5%;
@@ -391,7 +390,7 @@ bo x*/
 }
 .login  input[type="submit"]:hover
 {
-  
+
   background: #178edd;
   
 }
