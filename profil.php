@@ -1,39 +1,12 @@
 <?php
-session_start();
-require_once 'traitement_PHP/photo_et_nom_users.php';
+require_once 'inc/users_data.php';
 
-
-
-
-
-
-
-if (empty($_SESSION['id'])) {
-  
-  $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
-
-  header("Location: login.php");    
-  
-} 
-
-$req = $pdo->prepare('SELECT * FROM users WHERE id = ? ');
-$req->bindValue(1, $_SESSION['id']);
-
-$req->execute();
-
-$user = $req->fetch();
-
-
-
-
-
-
-
-
+if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('login.php');
+}
+$user = $db->query('SELECT * FROM users WHERE id = ?',[Session::getInstance()->read('id')])->fetch();
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -60,12 +33,6 @@ $user = $req->fetch();
 </head>
 <body>
 
-
-
-
-
-
-
   <nav>
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
@@ -77,21 +44,17 @@ $user = $req->fetch();
       <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
       <li><a href="profil.php">Principale</a></li>
       <li><a href="candidature.php">Mes candidatures</a></li>
-      <li><a href="traitement_PHP/logout.php">Quitter</a></li>
+      <li><a href="inc/logout.php">Quitter</a></li>
     </ul>
   </nav>
-  
 
   <?php  if (isset($user->id) ) :?>
 
-    
-   
    <div class="alert alert-success"><li>Vous êtes maintenant connecté</li></div>
 
-   
- <?php endif;?>            
+ <?php endif;?>
 
- 
+
 
 
  <div class="container"
@@ -103,13 +66,13 @@ $user = $req->fetch();
  <br>
  <main>
 
-   
+
 
 
   <?php  if (empty($user->candidature)):?>
 
 
-    
+
 
     <div class="card form_card">
       <img src="style/img/logoens.jpg">
@@ -118,7 +81,7 @@ $user = $req->fetch();
       <p><strong>Du: 2020-06-01 au 2020-06-30</strong></p>
     </div>
   </main>
-</div>  
+</div>
 
 
 <?php  else: ?>
@@ -127,10 +90,10 @@ $user = $req->fetch();
   <img src="style/img/logoens.jpg">
   <strong>ENS Marrakech</strong>
   <p><strong>Etat d'inscription: <span  style="color: green; ">Pré-inscrit</span></strong></p>
-  <a href="traitement_PHP/pdftrait.php"><strong>Le Reçu</strong></a>
+  <a href="inc/pdf_generator.php"><strong>Le Reçu</strong></a>
 </div>
 </main>
-</div>  
+</div>
 
 <?php  endif; ?>
 

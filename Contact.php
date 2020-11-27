@@ -1,21 +1,18 @@
 <?php
-
-define('_EMAIL_TO', 'contact@pgi.ma'); 
-define('_EMAIL_SUBJECT', 'CONTACT  -  PGI'); 
+define('_EMAIL_TO', 'contact@pgi.ma');
+define('_EMAIL_SUBJECT', 'CONTACT  -  PGI');
 define('_EMAIL_FROM', $_POST['email']);
-
-
 if(isset($_POST['envoye']))
 {
 	if(!empty($_POST['nom']) AND !empty($_POST['email']) AND !empty($_POST['objet']) AND !empty($_POST['message']))
 	{
-		
-        //$header="MIME-Version: 1.0\r\n";
+
+    //$header="MIME-Version: 1.0\r\n";
 		//$header.='Content-Type:text/html; charset="uft-8"'."\n";
 		//$header.='Content-Transfer-Encoding: 8bit';
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers = "From: "._EMAIL_FROM."\r\n"; 
-		$headers .= "Reply-To: "._EMAIL_FROM."\r\n"; 	
+		$headers = "From: "._EMAIL_FROM."\r\n";
+		$headers .= "Reply-To: "._EMAIL_FROM."\r\n";
 		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 		$message='
 		<html>
@@ -23,13 +20,13 @@ if(isset($_POST['envoye']))
 		td{padding-bottom: 10%;}
 		.all{border-right: 5px solid black;border-left: 5px solid black;border-top: 5px solid black;border-bottom: 5px solid black;background: rgba(110,110,180,.1);}
 		</style>
-		
+
 		<body>
 
 		<div align="center">
 		<img src="https://i.ibb.co/8634GLg/Pgi.png">
 		<div class="all">
-		<br>			
+		<br>
 		<table>
 
 		<tr>
@@ -61,7 +58,7 @@ if(isset($_POST['envoye']))
 		</html>
 		';
 
-		
+
 
 		mail (_EMAIL_TO, _EMAIL_SUBJECT, $message, $headers);
 		$msg="Votre message a été Envoyer";
@@ -69,9 +66,8 @@ if(isset($_POST['envoye']))
 	else
 	{
 		$msg="Vous n'avez pas rempli le formulaire correctement";
-		
-	}	    
-	
+
+	}
 }
 ?>
 <html>
@@ -89,7 +85,7 @@ if(isset($_POST['envoye']))
 	<header class="header">
 		<div class="header_content">
 			<!-- Logo -->
-			
+
 			<div class="logo_content">
 				<div class="logo">
 					<div class="logo_pgi_1">Plateforme<br></div>
@@ -110,7 +106,7 @@ if(isset($_POST['envoye']))
 			</ul>
 		</nav>
 
-	</header>	
+	</header>
 	<div class="home_contact">
 
 		<div class="contact_form">
@@ -164,7 +160,7 @@ if(isset($_POST['envoye']))
  				color: #1a1a1a;
  				background-color: #31769B;
  				text-align: center;
- 				letter-spacing: 2px; 
+ 				letter-spacing: 2px;
  			}
  			.contact_form_content
  			{

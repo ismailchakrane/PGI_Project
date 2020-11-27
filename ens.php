@@ -1,22 +1,12 @@
-<?php 
-session_start();
-require_once 'traitement_PHP/photo_et_nom_users.php';
+<?php
+require_once 'inc/users_data.php';
 
-
-if (empty($_SESSION['id'])) {
-  
-  $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
-
-  header("Location: login.php");    
-  
-} 
-
+if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('login.php');
+}
 if (!empty($_POST)) {
  if (!empty($_POST['SpécialitéBAC']) && $_POST['SpécialitéBAC'] != 'Filière' && !empty($_POST['ProvinceBAC']) && $_POST['ProvinceBAC'] != 'Province de votre Baccalauréat' && !empty($_POST['AcademyBAC']) && $_POST['AcademyBAC'] != 'Academy de votre Baccalauréat'  && !empty($_POST['AnnéeBAC']) && $_POST['AnnéeBAC'] != 'Année' && !empty($_POST['NoteRégional']) && !empty($_POST['NoteNational'])){
-
-   
-  
-
 
   $SpécialitéBAC = $_POST['SpécialitéBAC'];
   $ProvinceBAC = $_POST['ProvinceBAC'];
@@ -25,35 +15,21 @@ if (!empty($_POST)) {
   $NoteRégional = $_POST['NoteRégional'];
   $NoteNational = $_POST['NoteNational'];
 
+  $insertion = $db->query("UPDATE users SET SpécialitéBAC = ?, ProvinceBAC = ?, AcademyBAC = ?, AnnéeBAC = ?,NoteRégional = ?,NoteNational = ? WHERE  id = ? ",[$SpécialitéBAC,
+  $ProvinceBAC,
+  $AcademyBAC,
+  $AnnéeBAC,
+  $NoteRégional,
+  $NoteNational,$_SESSION['id']]);
 
-  $insertion = $pdo->prepare("UPDATE users SET SpécialitéBAC = ?, ProvinceBAC = ?, AcademyBAC = ?, AnnéeBAC = ?,NoteRégional = ?,NoteNational = ? WHERE  id = ? ");
-  $insertion->bindValue(1, $SpécialitéBAC);
-  $insertion->bindValue(2, $ProvinceBAC);
-  $insertion->bindValue(3, $AcademyBAC);
-  $insertion->bindValue(4, $AnnéeBAC);
-  $insertion->bindValue(5, $NoteRégional);
-  $insertion->bindValue(6, $NoteNational);
-  $insertion->bindValue(7, $_SESSION['id']);
-  $insertion->execute();
-  
-
-  $_SESSION['flash']['success'] = 'Choisissez la filiére préféré';
-  header('location: filiére.php');
-  exit();
-  
+  Session::getInstance()->setFlash('success','Choisissez la filiére préféré');
+  App::redirect('filiére.php');
 }
-
 else{
-
-  $errors[]="tous les champs doivent être remplis"; 
-  
+  $errors[]="tous les champs doivent être remplis";
 }
 }
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -68,9 +44,9 @@ else{
    td{width:50%;}
    hr{border: 3px solid rgb(113, 197, 223);
     border-radius: 10px;}}
-    
+
   </style>
-  
+
 </head>
 <body>
   <nav>
@@ -87,7 +63,7 @@ else{
       <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
       <li><a href="profil.php">Principale</a></li>
       <li><a href="candidature.php">Mes candidatures</a></li>
-      <li><a href="traitement_PHP/logout.php">Quitter</a></li>
+      <li><a href="inc/logout.php">Quitter</a></li>
     </ul>
   </nav>
 
@@ -99,13 +75,13 @@ else{
 
     <div class="alert alert-danger">
       <p>vous n'avez pas rempli le formulaire correctement</p>
-      
+
       <?php foreach ($errors as $error): ?>
         <ul>
 
           <li><?= $error; ?></li>
-          
-        <?php endforeach; ?> 
+
+        <?php endforeach; ?>
 
       </ul>
 
@@ -114,8 +90,8 @@ else{
 
 
     <?php if (!empty($_SESSION['flash'])): ?>
-     
-     
+
+
      <div class="alert alert-success"><li>Pour être inscrit à L'ENS MARRAKECH veuillez remplire le formulaire suivant</li></div>
 
      <?php unset($_SESSION['flash']); ?>
@@ -126,10 +102,10 @@ else{
       <tr >
         <td>
           <hr><h3 >Informations concernant votre Baccalauréat</h3><hr>
-        </td>          
-        
+        </td>
+
       </tr>
-      
+
       <tr>
        <td>
         <br><br>
@@ -144,7 +120,7 @@ else{
            <option value="STGC">Sciences et Techniques de Gestion et de Comptabilité</option>
            <option value="STE">Sciences et Technologies Electriques</option>
            <option value="STM">Sciences et Technologies Mécaniques</option>
-         </select>  
+         </select>
        </td>
        <td>
         <br><br>
@@ -226,7 +202,7 @@ else{
            <option value="Es-Semara">Es-Semara</option>
            <option value="Oued Ed Dahab">Oued Ed Dahab</option>
            <option value="Aousserd">Aousserd</option>
-         </select> 
+         </select>
        </td>
      </tr>
      <tr>
@@ -258,7 +234,7 @@ else{
          </select>
        </td>
      </tr>
-     
+
      <tr>
        <tr>
          <td>
@@ -267,22 +243,22 @@ else{
              <span id="missNoteRégional"></span>
            </td>
            <td>
-            <label><b>Note d'examen National:</label> 
+            <label><b>Note d'examen National:</label>
               <input type="text" class="form-control"  placeholder=" votre note d'examen National" style="width:80%;" maxlength="255"  name="NoteNational" id="NoteNational" >
               <span id="missNoteNational"></span>
             </td>
           </tr>
 
-          
+
           <td>
             <br><br>
             <input class="btn btn-info" type="submit" value="Confirmer" id="submit">
             <input class="btn btn-warning" type="reset" value="Annuler" >
           </td>
-          
+
         </tr>
 
-        
+
       </table>
     </form>
 
@@ -294,7 +270,7 @@ else{
       var missNoteNational = document.getElementById('missNoteNational');
       var missNoteRégional = document.getElementById('missNoteRégional');
       var NoteValid = /^[012][0-9]([.][0-9][0-9])?$/;
-      
+
 
 
       formValid.addEventListener('click', validation);
@@ -334,12 +310,12 @@ else{
           missNoteRégional.style.color = 'Red';
         }
 
-        
 
-        
-        
+
+
+
       }
 
-    </script>   
+    </script>
   </body>
   </html>

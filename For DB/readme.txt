@@ -1,2 +1,0 @@
-According to the function of the system , and for the DataBase of the system, you can use the file named "users.sql.gz" like an a DB for testing or just to review the flow of the information into the backend of the website .
-To use it just import it  into the interface of the  phpmyadmin and you can see all the data on it ,just for mention before the importation , create a new DB with the name "first_proj" and then you can import the DB on it.

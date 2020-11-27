@@ -1,58 +1,29 @@
-<?php  
+<?php
+require 'inc/bootstrap.php';
 
-session_start();
-
-
-if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
-
-  //connection avec la base de données: 
-
-  
-  $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','');
-
-  $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-  $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
-
- //les conditions:
-  $req = $pdo->prepare('SELECT * FROM users WHERE (email = :email) AND confirmed_at IS NOT NULL ' );
-  $req->execute(['email' => $_POST['email']]);
-
-  $user = $req->fetch();
-  
-  if( password_verify($_POST['password'], $user->password)){     
-
-    
-    session_start();
-
-    
-    $_SESSION['auth'] = $user;
-    $_SESSION['id'] = $user->id;
-    
-
-    $_SESSION['flash']['success']= 'Bien connecté';
-    header('location: profil.php');
-    
-    
-
-  }else{
-   
-    $_SESSION['flash']['danger']= 'Email ou mot de passe incorrecte ';
-    
-
+if (!empty($_POST)){
+  $db = App::getDatabase();
+  $validator = new Validator($_POST);
+  if($validator->userValid('email','password',$db))
+  {
+    $user = $validator->userValid('email','password',$db);
+     Session::getInstance()->write('auth', $user);
+     Session::getInstance()->write('id', $user->id);
+     Session::getInstance()->setFlash('success','Bien connecté');
+     App::redirect('profil.php');
   }
-  
+  else{
+    Session::getInstance()->setFlash('danger','Email ou mot de passe incorrecte');
+  }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="shortcut icon" href="style/Icon/pgicon.ico">
 	<meta charset="utf-8">
 	<title>Se connecte - Plateform de Gestion d'inscription</title>
-	
+
 
 </head>
 
@@ -63,9 +34,9 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
     <div>
       <a href="index.html">
         <h2>
-          
+
           <span class="titre1">Plate-forme de Gestion d'inscription</span>
-        </h2>      
+        </h2>
       </a>
     </div>
     <br>
@@ -79,30 +50,17 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
    <!--controle des messages flash -->
 
-
-   <?php 
-   if (session_status() == PHP_SESSION_NONE ) {
-
-    session_start();
-  }
-  ?>
-  <?php if (!empty($_SESSION['flash'])): ?>
-   <?php foreach ($_SESSION['flash'] as $type => $message): ?>
-     
-
-     <div class="alt alt-<?=$type;?>"><li><?=$message;?></li></div>
-
-
-   <?php endforeach; ?>
-   <?php unset($_SESSION['flash']); ?>
- <?php endif;?>
-
+   <?php if (Session::getInstance()->hasFlashes()): ?>
+    <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
+      <div class="alt alt-<?=$type; ?>"><li><?=$message; ?> </li></div>
+    <?php endforeach; ?>
+  <?php endif;?>
 
 
  <form action="" method="POST">
-   
+
    <div class="inputlogin">
-    
+
      <input type="email" id="email" name="email" required="">
      <label>Adress e-mail</label>
 
@@ -115,16 +73,16 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
      <img src="style/Icon/hide.png" width="4%" height="4%" id="view" onclick="show_hide_pwd()">
 
    </div>
-   
-   
+
+
    <input type="submit" name="ok" value="se connecter">
-   
-   
+
+
    <br><br>
-   
-   <h6><a href="register.php">Créer un compte</a></h6>     
-   
-   
+
+   <h6><a href="register.php">Créer un compte</a></h6>
+
+
  </form>
 
 
@@ -165,11 +123,11 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
   body
   {
-    background:url(style/Img/bg5.jpg);  
+    background:url(style/img/bg5.jpg);
     background-size: cover;
     font-family: sans-serif;
     background-repeat: no-repeat;
-    
+
   }
 
 
@@ -177,7 +135,7 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
 
 
-  header 
+  header
   {
     background: #44a7e9;
     height: 20px;
@@ -191,8 +149,8 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
     padding-bottom: 4%;
     border-radius: 52px;
     cursor: pointer;
-    
-  } 
+
+  }
 
 
   header a
@@ -200,7 +158,7 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
     text-decoration: none;
   }
   /*style of titre*/
-  .titre1 
+  .titre1
   {
     color: white;
     font-size: 25px;
@@ -214,13 +172,13 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
   .login
   {
-    
+
     width: 35%;
     height: 72%;
     margin-top: 9%;
     margin-left: 18%;
     border: 1px solid hsla(0, 90%, 75%, 0.3) ;
-    background: hsla(200, 50%, 80%, 0.4); 
+    background: hsla(200, 50%, 80%, 0.4);
     border-radius: 20px;
   }
 
@@ -232,7 +190,7 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
     margin: 0 0 30px;
     padding-top: 12px;
 
-    
+
   }
 
   /*input style*/
@@ -260,7 +218,7 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
     font-family: sans-serif;
     color: black;
     border-bottom: 1px solid #0f7cc5 ;
-    
+
   }
   .login .inputlogin label
   {
@@ -304,9 +262,9 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
   }
   .login  input[type="submit"]:hover
   {
-    
+
     background: #178edd;
-    
+
   }
 
   /*style of second titre*/
@@ -320,12 +278,12 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
   {
     font-size: 11.1px;
     text-decoration: none;
-    
+
   }
   .login h6 a:hover
   {
     text-decoration: underline;
-    
+
   }
   /*message flash*/
   .alt
@@ -345,13 +303,13 @@ if (!empty($_POST) && !empty($_POST['email']) && !empty($_POST['password'])) {
   .alt-danger
   {
     background:  hsla(0, 90%, 75%, 0.2);
-    
+
 
   }
   .alt-success
   {
     background:  hsla(150, 47%, 75%, 0.5);
-    
+
   }
 </style>
 </html>

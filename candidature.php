@@ -1,31 +1,12 @@
-<?php 
+<?php
+require_once 'inc/users_data.php';
 
-session_start();
-require_once 'traitement_PHP/photo_et_nom_users.php';
-
-
-if (empty($_SESSION['id'])) {
-  
-  $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
-
-  header("Location: login.php");    
-  
-} 
-
-
-
-$candidature = $pdo->prepare("SELECT * FROM users  WHERE id = ?");
-$candidature->bindValue(1, $_SESSION['id']);
-$candidature->execute();
-
-$affichage = $candidature->fetch();
-
-
-
+if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('login.php');
+}
+$affichage = $db->query('SELECT * FROM users  WHERE id = ?',[$_SESSION['id']])->fetch();
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -40,7 +21,7 @@ $affichage = $candidature->fetch();
       width: 40px;
       height: 40px;
       border-radius: 50% ;
-      
+
     }
     th {
       font-family: montserrat;
@@ -48,8 +29,8 @@ $affichage = $candidature->fetch();
       background:  #8c8c8c;
     }
     .ligne{
-      
-      border-right:3px white solid; 
+
+      border-right:3px white solid;
     }
     table {
       text-align: center;
@@ -78,7 +59,7 @@ $affichage = $candidature->fetch();
       0 20px 30px 0 rgba(0,0,0,.1),
       0 4px  4px 0 rgba(0,0,0,.15);
     }
-    
+
   </style>
 </head>
 <body>
@@ -93,11 +74,11 @@ $affichage = $candidature->fetch();
       <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
       <li><a href="profil.php">PRINCIPALE</a></li>
       <li><a href="candidature.php">Mes candidatures</a></li>
-      
-      <li><a href="traitement_PHP/logout.php">Quitter</a></li>
+
+      <li><a href="inc/logout.php">Quitter</a></li>
     </ul>
   </nav>
-  
+
 
   <div class="container"
   style="display: grid;
@@ -116,7 +97,7 @@ $affichage = $candidature->fetch();
             <th class="ligne" id='case2' > Date d'inscription </th>
             <th class="ligne"id='case3'> filière choisie</th>
             <th id='case4'> Statut d'admission</th>
-            
+
           </tr>
           <tr>
             <td class="ligne">ENS MARRAKECH</td>
@@ -126,10 +107,10 @@ $affichage = $candidature->fetch();
           </tr>
 
         </table>
-        
+
       </div>
 
-      <?php  else: ?>   
+      <?php  else: ?>
 
 
        <div class="card form_card">
@@ -139,7 +120,7 @@ $affichage = $candidature->fetch();
             <th class="ligne" id='case2' > Date d'inscription </th>
             <th class="ligne"id='case3'> filière choisie</th>
             <th id='case4'> Statut d'admission</th>
-            
+
           </tr>
           <tr>
             <td class="ligne">---</td>
@@ -149,14 +130,14 @@ $affichage = $candidature->fetch();
           </tr>
 
         </table>
-        
+
       </div>
 
     <?php  endif; ?>
 
 
-  </main> 
-</div> 
+  </main>
+</div>
 
 </body>
 </html>

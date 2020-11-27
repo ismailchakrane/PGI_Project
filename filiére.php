@@ -1,61 +1,26 @@
-<?php 
+<?php
+require_once 'inc/users_data.php';
 
-session_start();
-require_once 'traitement_PHP/photo_et_nom_users.php';
-
-
-if (empty($_SESSION['id'])) {
-  
-  $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
-
-  header("Location: login.php");    
-  
-} 
-
+if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('login.php');
+}
 if (!empty($_POST)) {
  if (!empty($_POST['filièreENS']) && $_POST['filièreENS'] != 'Les filières' ){
-
   $filièreENS = $_POST['filièreENS'];
-  
   $candidature = 'Pré-inscrit';
-
-  $dure =  date("d/m/Y"); 
-
-  $requete= $pdo->prepare("UPDATE users SET filièreENS = ?,candidature = ?,date_candidature = ? WHERE id = ?");
-  
-  $requete->bindValue(1, $filièreENS);
-  $requete->bindValue(2, $candidature);
-  $requete->bindValue(3, $dure);
-  $requete->bindValue(4, $_SESSION['id']);
-  
-  $requete->execute();
-
-  
-
-  
-
-  $_SESSION['flash']['success'] = 'L\'Inscription a l\'ENS MARRAKECH est terminée avec succès vous pouvez maintenant télécharger le reçu d\'inscription';
-  header('location: profil.php');
-  exit();
-
-  
-  
+  $dure =  date("d/m/Y");
+  $db->query("UPDATE users SET filièreENS = ?,candidature = ?,date_candidature = ? WHERE id = ?",[$filièreENS,
+  $candidature,
+  $dure,$_SESSION['id']]);
+  Session::getInstance()->setFlash('success','L\'Inscription a l\'ENS MARRAKECH est terminée avec succès vous pouvez maintenant télécharger le reçu d\'inscription');
+  App::redirect('profil.php');
 }
-
 else{
-
-  $errors[]="le champs doit être remplis"; 
-  
+  $errors[]="le champs doit être remplis";
 }
 }
-
-
-
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -70,7 +35,7 @@ else{
       width: 40px;
       height: 40px;
       border-radius: 50% ;
-      
+
     }
   </style>
 </head>
@@ -86,13 +51,13 @@ else{
       <li style="color: white;"><?php echo $NOM->nom_fr.' '.$NOM->prénom_fr;   ?></li>
       <li><a href="profil.php">PRINCIPALE</a></li>
       <li><a href="candidature.php">Mes candidatures</a></li>
-      
-      <li><a href="traitement_PHP/logout.php">Quitter</a></li>
+
+      <li><a href="inc/logout.php">Quitter</a></li>
     </ul>
   </nav>
-  
 
-  <?php 
+
+  <?php
   if (session_status() == PHP_SESSION_NONE ) {
 
     session_start();
@@ -100,7 +65,7 @@ else{
   ?>
   <?php if (isset($_SESSION['flash'])): ?>
    <?php foreach ($_SESSION['flash'] as $type => $message): ?>
-     
+
      <div class="alert alert-<?=$type; ?>"><li><?=$message;?></li></div>
 
    <?php endforeach; ?>
@@ -116,19 +81,19 @@ else{
 
   <div class="alert alert-danger">
     <p>vous n'avez pas rempli le formulaire correctement</p>
-    
+
     <?php foreach ($errors as $error): ?>
       <ul>
 
         <li><?= $error; ?></li>
-        
-      <?php endforeach; ?> 
+
+      <?php endforeach; ?>
 
     </ul>
 
   <?php endif; ?>
 
-  
+
   <form action="" method="POST">
     <div class="container"
     style="display: grid;
@@ -137,7 +102,7 @@ else{
     margin-top:2em;">
     <h3>Vous pouvez choisir les filiéres disponibles:</h3>
     <br>
-    
+
     <main>
       <div class="card" style="
       border-top-width: 0px;
@@ -160,14 +125,14 @@ else{
        <option value="CLE-PC">CLE-SECONDAIRE SCIENCES PHYSIQUES ET CHIMIQUES</option>
        <option value="CLE-PRIMAIRE">CLE-ENSEIGNEMENT PRIMAIRE</option>
        <option value="DUT-INFO">DUT-INGÉNIERIE INFORMATIQUE</option>
-       
-     </select> 
+
+     </select>
      <input class="btn btn-info" type="submit" value="Confirmer" >
    </div>
  </main>
- 
 
-</div> 
-</form> 
+
+</div>
+</form>
 </body>
 </html>

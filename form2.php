@@ -1,42 +1,15 @@
-<?php 
+<?php
+require 'inc/bootstrap.php';
 
-
-
-session_start();
-
-
-
-if (empty($_SESSION['id'])) {
-
-  $_SESSION['flash']['danger'] = 'Vous  devez être connecté';
-
-  header("Location: login.php");    
-
-} 
-$errors=array();
-
-
+if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('login.php');
+}
 if (!empty($_FILES)) {
-
-
-
-  $errors=array();
-
-  $pdo = new PDO('mysql:dbname=first_proj;host=localhost','root','');
-
-  $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-  $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
-
-
-
-
+  $db = App::getDatabase();
+  $errors = array();
   if (!empty($_FILES['file1']) && !empty($_FILES['file2']) && !empty($_FILES['file3'])){
-
-
-
-// la photo de profil:    
-
+    // la photo de profil:
     $name_file1 = $_FILES['file1']['name'];
 
     $name_extension1 = strrchr($name_file1, ".");
@@ -46,8 +19,7 @@ if (!empty($_FILES)) {
     $file_tmp_name1 = $_FILES['file1']['tmp_name'];
 
     $file_dest1 = 'files_upload/'.$name_file1;
-
-// le fichier PDF:
+    // le fichier PDF:
     $name_file2 = $_FILES['file2']['name'];
 
     $name_extension2 = strrchr($name_file2, ".");
@@ -57,9 +29,7 @@ if (!empty($_FILES)) {
     $file_tmp_name2 = $_FILES['file2']['tmp_name'];
 
     $file_dest2 = 'files_upload/'.$name_file2;
-
-//le BAC :
-
+    //le BAC :
     $name_file3 = $_FILES['file3']['name'];
 
     $name_extension3 = strrchr($name_file3, ".");
@@ -70,47 +40,31 @@ if (!empty($_FILES)) {
 
     $file_dest3 = 'files_upload/'.$name_file3;
 
-
-
     if (in_array($name_extension1, $extensions_autorisation1) && in_array($name_extension2, $extensions_autorisation2) && in_array($name_extension3, $extensions_autorisation3)) {
 
       if (move_uploaded_file( $file_tmp_name1,$file_dest1) && move_uploaded_file( $file_tmp_name2,$file_dest2) && move_uploaded_file( $file_tmp_name3,$file_dest3)) {
 
-       $insertionFile = $pdo->prepare("UPDATE users SET name_file1 = ?,file_url1 = ?,name_file2 = ?,file_url2 = ?,name_file3 = ?,file_url3 = ? WHERE  id =? ");
+        $insertionFile = $db->query("UPDATE users SET name_file1 = ?,file_url1 = ?,name_file2 = ?,file_url2 = ?,name_file3 = ?,file_url3 = ? WHERE  id =?",[$name_file1,
+        $file_dest1,
+        $name_file2,
+        $file_dest2,
+        $name_file3,
+        $file_dest3,$_SESSION['id']]);
 
-       $insertionFile->bindValue(1, $name_file1);
-       $insertionFile->bindValue(2, $file_dest1);
-       $insertionFile->bindValue(3, $name_file2);
-       $insertionFile->bindValue(4, $file_dest2);
-       $insertionFile->bindValue(5, $name_file3);
-       $insertionFile->bindValue(6, $file_dest3);
-       $insertionFile->bindValue(7, $_SESSION['id']);
-
-       $insertionFile->execute();
-
-       $_SESSION['flash']['success'] = ' Compte bien créé';
-       header('location: profil.php');
-
+       Session::getInstance()->setFlash('success','Compte bienn crée');
+       App::redirect('profil.php');
      }
-
-   }    
+   }
    else{
-
     $errors['file1']= "Pour l'images seuls les extenetions PNG ou JBG sont autorisées";
     $errors['file2']= "Pour le fichier de la Carte d'identité seul l'extenetion PDF est autorisée";
     $errors['file3']= "Pour le fichier du BAC  seul l'extenetion PDF est autorisée";
-
-  }     
-  
+  }
 }
 else{
  $errors['error']= "Tout les fichiers doivent être uploadés ";
 }
 }
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -137,7 +91,7 @@ else{
 
           <li><?= $error; ?></li>
 
-        <?php endforeach; ?> 
+        <?php endforeach; ?>
 
       </ul>
 
@@ -146,7 +100,7 @@ else{
 
 
 
-  <?php 
+  <?php
   if (session_status() == PHP_SESSION_NONE ) {
 
     session_start();
@@ -175,7 +129,7 @@ else{
     <tr>
       <td>
         <hr><h3>Priére de compléter les information ci-dessous</h3><hr>
-      </td> 
+      </td>
       <td></td>
     </tr>
   </table>
@@ -193,7 +147,7 @@ else{
     <strong>Photo de profil:</strong>
     <input type="file" name="file1">
     <strong>Exemple</strong>
-    <img src="style/img/profil.jpg" width="250px" height="100px">
+    <img src="style/img/Profil.jpg" width="250px" height="100px">
     <br>
 
 
@@ -204,7 +158,7 @@ else{
     <br><br>
 
 
-    <strong>Votre Bac au format PDF:</strong> 
+    <strong>Votre Bac au format PDF:</strong>
     <input type="file" name="file3"></td>
     <strong>Exemple</strong>
     <img src="style/img/BACfile.jpg" width="300px" height="200px">
